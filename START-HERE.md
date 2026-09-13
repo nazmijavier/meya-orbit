@@ -6,7 +6,7 @@ An animated media cloud for your Meya header: transparent background, mixed card
 
 1. Open **orbit-editor.html** in your browser (double-click the file).
 2. Click **Clear samples**, then **+ Add URL** to add your media. Choose Image, MP4 / WebM, or Vimeo for each item.
-3. Choose each card’s shape: **4:3, 1:1, 3:4, or 9:16**. Enter an optional title and enable or disable its popup. Adjust section height, card count, speed, and corners. Media repeats when the card count exceeds the number of items, up to 48 cards.
+3. Use **Card aspect ratio** to set every card to Mixed, 1:1, 4:3, 3:4, 16:9, or 9:16. You can still change one card’s shape separately in its own dropdown. Returning to **Mixed** restores the original varied proportions. Enter an optional title and enable or disable its popup. Adjust section height, card count, speed, and corners. Media repeats when the card count exceeds the number of items, up to 48 cards.
 4. Click **Copy Webflow embed**. **View code** lets you select and copy it manually; **Download embed** saves it as a text file.
 5. In Webflow, add a **Code Embed** element inside the header where the image placeholder belongs. Set its width to 100%, and paste the code. Do not add another full HTML document around it.
 6. Save and check Webflow Preview with custom code enabled, then your published staging page. The default export uses a direct embed so the popup can cover the whole page. The script notice in Designer is normal.
@@ -44,7 +44,7 @@ You did not do anything wrong. Webflow Designer shows a gray warning for direct 
 
 ## Verification
 
-The updated editor was checked for all four card shapes, a 390 px wide preview, mouse click and keyboard popup opening, Escape close, drag without opening, per-card popup toggles, and exported titles and proportions. The sample direct embed is about 23,000 characters, below Webflow’s 50,000-character limit. Vimeo playback still needs verification on your published Webflow page because the local preview environment previously blocked its player script.
+The updated editor was checked for all five card shapes, global ratio changes, per-card overrides, Mixed restoration, clipboard export, a 390 px wide preview, mouse click and keyboard popup opening, Escape close, drag without opening, per-card popup toggles, and exported titles and proportions. The sample direct embed is about 24,000 characters, below Webflow’s 50,000-character limit. Vimeo playback still needs verification on your published Webflow page because the local preview environment previously blocked its player script.
 
 ## Files
 

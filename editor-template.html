@@ -39,6 +39,7 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
 .preview-actions{margin-left:auto}
 .stage .meya-orbit__card{transition:none}
 .inspector-right{display:block}
+.ratio-control{margin:14px 0 4px}.ratio-control>span{display:block;margin-bottom:8px;color:#7b8491;font-size:12px}.ratio-presets{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;padding:3px;background:#eef0f3;border-radius:12px}.ratio-preset{min-width:0;height:38px;padding:4px 2px;border:0;border-radius:9px;background:transparent;color:#7b8491;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}.ratio-preset:hover{border:0;background:rgba(255,255,255,.55)}.ratio-preset[aria-pressed=true]{background:#fff;color:#273244;box-shadow:0 1px 4px rgba(20,28,40,.1);font-weight:600}.ratio-icon{display:block;width:13px;height:10px;border:1.5px solid currentColor;border-radius:2px}.ratio-preset[data-ratio="1:1"] .ratio-icon{width:10px}.ratio-preset[data-ratio="3:4"] .ratio-icon{width:8px;height:11px}.ratio-preset[data-ratio="16:9"] .ratio-icon{width:15px;height:8px}.ratio-preset[data-ratio="9:16"] .ratio-icon{width:7px;height:12px}.ratio-preset[data-ratio="mixed"] .ratio-icon{border-style:dashed;transform:rotate(-7deg)}
 @media(max-width:1100px) and (min-width:851px){.layout{grid-template-columns:280px minmax(0,1fr)}.inspector-right{grid-column:1/-1;max-height:none;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}.inspector-heading{grid-column:1/-1}.inspector-right .inspector-section{margin-top:0}}
 @media(max-width:520px){header{height:auto;min-height:64px;flex-wrap:wrap;gap:12px;padding:14px}header nav{width:100%;display:flex;flex-wrap:wrap}header nav button{flex:1;font-size:10px;padding:9px 6px;white-space:nowrap}.preview-label>span{font-size:10px}.layout{padding:10px}.stage-wrap{width:100%}}
 </style>
@@ -67,7 +68,15 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
   <details class="inspector-section" open><summary><h2 class="panel-title">Canvas</h2></summary>
   <div class="property-row"><span>Section</span><strong>Responsive</strong></div>
   <div class="property-row"><span>Background</span><strong>Transparent</strong></div>
-  <div class="property-row"><span>Card shapes</span><strong>Mixed</strong></div>
+  <div class="property-row"><span>Card shapes</span><strong id="card-shapes-value">Mixed</strong></div>
+  <div class="ratio-control"><span>Card aspect ratio</span><div class="ratio-presets" id="global-ratio" role="group" aria-label="Card aspect ratio">
+    <button class="ratio-preset" type="button" data-ratio="mixed" aria-pressed="true"><i class="ratio-icon" aria-hidden="true"></i>Mixed</button>
+    <button class="ratio-preset" type="button" data-ratio="1:1" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>1:1</button>
+    <button class="ratio-preset" type="button" data-ratio="4:3" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>4:3</button>
+    <button class="ratio-preset" type="button" data-ratio="3:4" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>3:4</button>
+    <button class="ratio-preset" type="button" data-ratio="16:9" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>16:9</button>
+    <button class="ratio-preset" type="button" data-ratio="9:16" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>9:16</button>
+  </div></div>
   </details>
   <details class="inspector-section" open><summary><h2 class="panel-title">Motion & layout</h2></summary>
   <div class="field"><label for="height">Height <output id="height-value">420 px</output></label><input id="height" type="range" min="240" max="650" step="10" value="420"></div>
@@ -92,7 +101,9 @@ const config = structuredClone(initial);
 const list = document.querySelector('#media-list'), preview = document.querySelector('#preview');
 const status = document.querySelector('#status');
 const temporaryURLs = new Set();
-let mobile = false, dark = false, previewTimer;
+let mobile = false, dark = false, previewTimer, globalCardRatio = 'mixed';
+const mixedRatios = ['4:3', '1:1', '3:4', '9:16'];
+config.media.forEach((item, index) => { item.mixedCardRatio = item.mixedCardRatio || item.cardRatio || mixedRatios[index % mixedRatios.length]; });
 function renderOrbit(replay = false) { clearTimeout(previewTimer); window.MeyaOrbit.mount(preview, {...config, intro: replay && config.intro !== false}); }
 function input(label, value, onChange, kind = 'url') {
   const field = document.createElement('input'); field.type = kind; field.placeholder = label; field.setAttribute('aria-label', label); field.value = value || '';
@@ -115,7 +126,7 @@ function renderList() {
     fields.append(type, input('Media URL ' + (index + 1), item.src.startsWith('blob:') ? '' : item.src, value => { item.src = value; }));
     fields.append(input('Title (optional) ' + (index + 1), item.title, value => { item.title = value; }, 'text'));
     const shape = document.createElement('select'); shape.setAttribute('aria-label', 'Card shape ' + (index + 1));
-    for (const value of ['4:3', '1:1', '3:4', '9:16']) {
+    for (const value of ['4:3', '1:1', '3:4', '16:9', '9:16']) {
       const option = document.createElement('option'); option.value = value; option.textContent = 'Card: ' + value;
       option.selected = (item.cardRatio || '4:3') === value; shape.append(option);
     }
@@ -149,7 +160,8 @@ for (const name of ['height','count','speed','radius']) {
 }
 document.querySelector('#add').onclick = () => {
   if (config.media.length >= 48) { status.textContent = 'Use up to 48 media items.'; return; }
-  config.media.push({type:'image',src:''}); renderList();
+  const mixedCardRatio = mixedRatios[config.media.length % mixedRatios.length];
+  config.media.push({type:'image',src:'',cardRatio:globalCardRatio === 'mixed' ? mixedCardRatio : globalCardRatio,mixedCardRatio}); renderList();
   list.lastElementChild.querySelector('input').focus();
 };
 document.querySelector('#clear').onclick = () => { config.media = []; renderList(); renderOrbit(); status.textContent = 'Samples cleared. Add your own media links or preview local files.'; };
@@ -159,13 +171,26 @@ document.querySelector('#files').onchange = e => {
     if (config.media.length >= 48) break;
     if (!file.type.startsWith('image/') && !['video/mp4','video/webm'].includes(file.type)) continue;
     const src = URL.createObjectURL(file); temporaryURLs.add(src);
-    config.media.push({type:file.type.startsWith('image/') ? 'image' : 'video',src});
+    const mixedCardRatio = mixedRatios[config.media.length % mixedRatios.length];
+    config.media.push({type:file.type.startsWith('image/') ? 'image' : 'video',src,cardRatio:globalCardRatio === 'mixed' ? mixedCardRatio : globalCardRatio,mixedCardRatio});
   }
   renderList(); renderOrbit(); e.target.value = '';
   status.textContent = 'Files are previewed locally. Add hosted URLs to those cards before exporting.';
 };
 document.querySelector('#mobile').onclick = e => { mobile = !mobile; document.querySelector('#stage').style.maxWidth = mobile ? '390px' : '1100px'; e.target.textContent = mobile ? 'Desktop size' : 'Mobile size'; };
 document.querySelector('#background').onclick = e => { dark = !dark; document.querySelector('#stage').style.background = dark ? '#101110' : '#fff'; e.target.textContent = dark ? 'White background' : 'Dark background'; };
+document.querySelector('#global-ratio').addEventListener('click', event => {
+  const button = event.target.closest('.ratio-preset'); if (!button) return;
+  globalCardRatio = button.dataset.ratio;
+  document.querySelectorAll('.ratio-preset').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+  document.querySelector('#card-shapes-value').textContent = globalCardRatio === 'mixed' ? 'Mixed' : globalCardRatio;
+  document.querySelector('.preview-label>span').textContent = 'Visual only · ' + (globalCardRatio === 'mixed' ? 'Mixed card shapes' : globalCardRatio + ' cards');
+  config.media.forEach((item, index) => {
+    item.mixedCardRatio = item.mixedCardRatio || mixedRatios[index % mixedRatios.length];
+    item.cardRatio = globalCardRatio === 'mixed' ? item.mixedCardRatio : globalCardRatio;
+  });
+  renderList(); renderOrbit();
+});
 function getEmbed() {
   if (!config.media.length) { status.textContent = 'Add at least one media item first.'; return null; }
   for (let i=0;i<config.media.length;i++) {
@@ -187,10 +212,29 @@ document.querySelector('#view-code').onclick = () => {
   const code = getEmbed(); if(!code) return;
   document.querySelector('#code').value = code; document.querySelector('#code-dialog').showModal();
 };
+async function copyText(text) {
+  let clipboardError, modernCopied = false;
+  if (navigator.clipboard?.writeText && window.isSecureContext) {
+    try { await navigator.clipboard.writeText(text); modernCopied = true; }
+    catch (error) { clipboardError = error; console.error('Clipboard API copy failed; trying fallback.', error); }
+  }
+  const fallback = document.createElement('textarea');
+  fallback.value = text; fallback.setAttribute('readonly', ''); fallback.setAttribute('aria-hidden', 'true');
+  fallback.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none';
+  document.body.append(fallback); fallback.focus(); fallback.select(); fallback.setSelectionRange(0, fallback.value.length);
+  try {
+    const copied = document.execCommand('copy');
+    if (!copied) throw new Error('document.execCommand returned false');
+    return true;
+  } catch (error) {
+    console.error('Clipboard fallback copy failed.', error, clipboardError || (modernCopied ? 'Modern Clipboard API reported success.' : 'Modern Clipboard API unavailable.'));
+    return modernCopied;
+  } finally { fallback.remove(); }
+}
 document.querySelector('#copy').onclick = async () => {
   const code = getEmbed(); if(!code) return;
-  try { await navigator.clipboard.writeText(code); status.textContent = 'Copied. Replace your old Webflow Code Embed. Test with custom code enabled in Preview; the Designer script notice is normal.'; }
-  catch { document.querySelector('#code').value = code; document.querySelector('#code-dialog').showModal(); document.querySelector('#code').select(); }
+  if (await copyText(code)) status.textContent = 'Copied. Replace your old Webflow Code Embed. Test with custom code enabled in Preview; the Designer script notice is normal.';
+  else { status.textContent = 'Automatic copy was blocked. The full embed is selected so you can copy it manually.'; document.querySelector('#code').value = code; document.querySelector('#code-dialog').showModal(); document.querySelector('#code').select(); }
 };
 document.querySelector('#download').onclick = () => {
   const code = getEmbed(); if(!code) return;

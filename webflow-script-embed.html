@@ -301,7 +301,7 @@
         element.type = 'button'; element.setAttribute('aria-label', item.title ? 'Open ' + item.title : 'Open project ' + (i % items.length + 1));
         element.setAttribute('aria-haspopup', 'dialog');
       } else element.setAttribute('aria-hidden', 'true');
-      const cardRatio = ({ '4:3': 4/3, '1:1': 1, '3:4': 3/4, '9:16': 9/16 })[item.cardRatio] || 4/3;
+      const cardRatio = ({ '4:3': 4/3, '1:1': 1, '3:4': 3/4, '16:9': 16/9, '9:16': 9/16 })[item.cardRatio] || 4/3;
       element.style.aspectRatio = String(cardRatio);
       const y = 1 - 2 * (i + 0.5) / count;
       const r = Math.sqrt(1 - y * y), angle = i * Math.PI * (3 - Math.sqrt(5));

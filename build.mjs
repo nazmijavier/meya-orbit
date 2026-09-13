@@ -49,5 +49,8 @@ fs.writeFileSync(path.join(dir, 'orbit-preview.html'), `<!doctype html>
 <style>html,body{margin:0;min-height:100%;background:transparent}body{min-height:100vh;display:grid;align-items:center}main{width:100%;max-width:1120px;margin:auto}</style></head>
 <body><main>${embed}</main></body></html>`);
 const template = fs.readFileSync(path.join(dir, 'editor-template.html'), 'utf8');
+const editorCSS = template.match(/<style>\n\/\* ORBIT_CSS \*\/\n([\s\S]*?)\n<\/style>/)?.[1];
+if (!editorCSS) throw new Error('Could not extract editor UI styles.');
+fs.writeFileSync(path.join(dir, 'editor-ui.css'), editorCSS + '\n');
 fs.writeFileSync(path.join(dir, 'orbit-editor.html'), template.replace('/* ORBIT_CSS */', css).replace('/* ORBIT_RUNTIME */', js).replace('/* ORBIT_BUNDLE */', `const bundledCSS = ${JSON.stringify(css)};\nconst bundledJS = ${JSON.stringify(js)};\nconst initial = ${escaped(config)};`));
 console.log('Built preview, editor, and Webflow embeds (' + iframe.length + ' iframe characters, ' + embed.length + ' script characters).');
