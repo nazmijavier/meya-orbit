@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meya Orbit · Media editor</title>
+<style>
+.meya-orbit {
+  --orbit-height: 420px;
+  --orbit-radius: 3px;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: var(--orbit-height);
+  overflow: hidden;
+  background: transparent;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+}
+.meya-orbit:focus-visible { outline: 2px solid #828282; outline-offset: -4px; }
+.meya-orbit[data-dragging="true"] { cursor: grabbing; }
+.meya-orbit__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  aspect-ratio: 4 / 3;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  border-radius: var(--orbit-radius);
+  background: #e9e8e5;
+  will-change: transform, opacity;
+  transform-origin: center;
+  box-shadow: 0 2px 7px #00000008;
+}
+.meya-orbit button.meya-orbit__card { cursor: pointer; }
+.meya-orbit button.meya-orbit__card:focus-visible { outline: 3px solid #7d9eff; outline-offset: 3px; }
+.meya-orbit__popup {
+  position: fixed; inset: 0; box-sizing: border-box;
+  width: 100%; max-width: none; height: 100%; max-height: none;
+  margin: 0; padding: 64px 24px 28px; border: 0;
+  background: transparent; color: white; overflow: auto;
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.meya-orbit__popup[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+.meya-orbit__popup::backdrop { background: #000c; backdrop-filter: blur(5px); }
+.meya-orbit__viewer { display: flex; align-items: center; justify-content: center; max-width: 100%; min-height: 0; animation: meya-preview-in 250ms ease-out both; }
+.meya-orbit__viewer > img, .meya-orbit__viewer > video {
+  display: block; width: auto; height: auto; max-width: min(100%, 1000px);
+  max-height: calc(100dvh - 150px); object-fit: contain; border-radius: 14px;
+}
+.meya-orbit__viewer > iframe { width: min(1000px, calc(100vw - 48px)); max-height: calc(100dvh - 150px); border: 0; border-radius: 14px; background: #111; }
+.meya-orbit__caption { margin: 0; color: white; text-align: center; max-width: 900px; overflow-wrap: anywhere; font: inherit; }
+.meya-orbit__caption[hidden] { display: none; }
+.meya-orbit__close { position: fixed; top: 16px; right: 18px; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1px solid #ffffff50; border-radius: 50%; background: #181818; color: white; font: 28px/1 sans-serif; cursor: pointer; }
+.meya-orbit__close:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+@keyframes meya-preview-in { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: none; } }
+@media(prefers-reduced-motion: reduce) { .meya-orbit__viewer { animation: none; } }
+.meya-orbit__card > img,
+.meya-orbit__card > video,
+.meya-orbit__card > iframe {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border: 0;
+  object-fit: cover;
+  pointer-events: none;
+}
+.meya-orbit__card > iframe {
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+}
+.meya-orbit__hint {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 600px) {
+  .meya-orbit { height: min(var(--orbit-height), 330px); }
+}
+
+input[type=text]{width:100%;border:1px solid #dcdcd8;border-radius:5px;padding:7px;background:white;color:#333}
+*{box-sizing:border-box}body{margin:0;font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#222;background:#f6f6f4}
+button,input,select{font:inherit}button{cursor:pointer;border:1px solid #dcdcd8;background:white;border-radius:7px;padding:9px 13px;color:inherit}button:hover{background:#efefec}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #607360;outline-offset:2px}
+header{height:70px;border-bottom:1px solid #deded9;display:flex;align-items:center;justify-content:space-between;padding:0 28px;gap:16px}header strong{font-size:17px;font-weight:550;letter-spacing:-.5px}header span{color:#92928a;margin-left:10px;font-size:12px}header nav{display:flex;gap:8px}.primary{background:#242923;color:white;border-color:#242923}.primary:hover{background:#3c463a}
+.layout{display:grid;grid-template-columns:330px minmax(0,1fr);min-height:calc(100vh - 70px)}aside{background:#fafaf8;border-right:1px solid #deded9;padding:25px 22px;max-height:calc(100vh - 70px);overflow:auto}h1,h2,p{margin:0}h1{font-size:15px;font-weight:550;margin-bottom:8px}h2{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#787a73;margin:25px 0 12px}p{color:#7c7d76;font-size:12px;line-height:1.6}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}label{display:block;color:#66695f;font-size:12px}input[type=url],select{width:100%;border:1px solid #dcdcd8;border-radius:5px;padding:7px;background:white;color:#333}input[type=range]{width:100%;accent-color:#475941}.field{margin-bottom:12px}.field label{display:flex;justify-content:space-between;margin-bottom:3px}.media-row{padding:12px 0;border-bottom:1px solid #e5e5df;display:grid;grid-template-columns:42px 1fr 28px;gap:8px;align-items:start}.thumb{width:42px;height:32px;object-fit:cover;border-radius:3px;background:#e8e8e3}.media-row input{font-size:11px;margin-top:5px}.media-row select{font-size:11px;padding:4px}.remove{border:0;background:transparent;padding:3px;color:#8c8e83}.local-note{grid-column:2/4;font-size:10px;color:#9b6a36}.stage-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px;min-width:0;position:relative}.stage{background:#fff;width:100%;max-width:1100px;border:1px solid #e5e5df;border-radius:6px;overflow:hidden}.preview-label{width:100%;max-width:1100px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#92948a}.preview-note{margin-top:20px;text-align:center;max-width:500px;font-size:11px}.preview-actions{display:flex;gap:7px;align-items:center}.preview-actions button{padding:4px 9px;font-size:10px;letter-spacing:0;text-transform:none}#status{min-height:32px;margin-top:18px;color:#53634b;font-size:12px;max-width:550px;text-align:center}dialog{width:min(700px,90vw);border:1px solid #ddd;border-radius:12px;padding:24px}dialog::backdrop{background:#0006}dialog textarea{width:100%;height:290px;margin:16px 0;font:11px/1.5 monospace;border:1px solid #ddd}dialog .actions{justify-content:flex-end}
+@media(max-width:850px){header{padding:0 16px}header span{display:none}.layout{grid-template-columns:1fr}.stage-wrap{grid-row:1;padding:24px 14px}aside{max-height:none;border-right:0;border-top:1px solid #ddd}.stage{max-width:650px}header button{font-size:11px;padding:8px}.preview-note{max-width:320px}}
+</style>
+</head>
+<body>
+<header><div><strong>Meya Orbit</strong><span>Media editor</span></div><nav><button id="view-code">View code</button><button id="download">Download embed</button><button class="primary" id="copy">Copy Webflow embed</button></nav></header>
+<div class="layout">
+<aside>
+  <h1>Your images, in motion.</h1><p>This editor stays on your computer. Only the orbit visual goes into Webflow.</p>
+  <h2>Motion & layout</h2>
+  <div class="field"><label for="height">Height <output id="height-value">420 px</output></label><input id="height" type="range" min="240" max="650" step="10" value="420"></div>
+  <div class="field"><label for="count">Cards <output id="count-value">22</output></label><input id="count" type="range" min="8" max="40" value="22"></div>
+  <div class="field"><label for="speed">Rotation speed <output id="speed-value">0.10</output></label><input id="speed" type="range" min="0" max="0.3" step="0.01" value="0.10"></div>
+  <div class="field"><label for="radius">Corner radius <output id="radius-value">3 px</output></label><input id="radius" type="range" min="0" max="24" value="3"></div>
+  <div class="field"><label><input id="intro" type="checkbox" checked> Animate cards on arrival</label><button id="replay">Replay opening</button></div>
+  <h2>Media</h2><p>Choose each card’s shape and optional popup title below. The section fills your website’s width; its height is set separately. Local files are for preview; replace their URLs before exporting.</p>
+  <div class="actions"><button id="add">+ Add URL</button><button id="upload">Preview local files</button><button id="clear">Clear samples</button></div>
+  <input id="files" type="file" accept="image/*,video/mp4,video/webm" multiple hidden>
+  <div id="media-list"></div>
+  <h2>Using your media</h2><p>Images: upload to Webflow Assets, then paste the asset link here.<br><br>Videos: use Vimeo or a direct hosted MP4/WebM link. Webflow’s regular Assets panel does not accept videos. Vimeo background playback requires a paid Vimeo plan and embedding permission.<br><br>For videos, add a poster image URL so the card also looks good before playback and with reduced motion.</p>
+</aside>
+<main class="stage-wrap">
+  <div class="preview-label"><span>Visual only · Mixed card shapes</span><div class="preview-actions"><button id="mobile">Mobile size</button><button id="background">Dark background</button></div></div>
+  <div class="stage" id="stage"><div id="preview" class="meya-orbit"></div></div>
+  <p class="preview-note">Click a card to open its preview. Drag to rotate. Hover to slow down.<br>The exported background is transparent. Titles appear only in the popup.</p>
+  <p id="status" role="status" aria-live="polite"></p>
+</main>
+</div>
+<dialog id="code-dialog"><h1>Your Webflow embed</h1><p>Replace your old Code Embed with all the code below. Enable custom code in Webflow Preview to test it. This version lets the popup cover the full page; the script notice in Designer is normal.</p><textarea id="code" aria-label="Webflow embed code" readonly></textarea><div class="actions"><button id="select-code">Select all</button><button id="close-dialog">Done</button></div></dialog>
+<script>
+/* Meya Orbit — scoped, reusable HTML/CSS/JS. Vimeo SDK loads only for Vimeo cards. */
+(() => {
+  'use strict';
+  if (window.MeyaOrbit) { window.MeyaOrbit.scan(); return; }
+  const instances = new WeakMap();
+  let sdkPromise;
+  const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+  function safeURL(value) {
+    try {
+      const url = new URL(value);
+      return ['https:', 'http:', 'blob:'].includes(url.protocol) ? url.href : '';
+    } catch { return ''; }
+  }
+  function vimeoURL(value) {
+    try {
+      const url = new URL(value);
+      if (!['vimeo.com', 'www.vimeo.com', 'player.vimeo.com'].includes(url.hostname)) return '';
+      const parts = url.pathname.split('/').filter(Boolean);
+      const id = url.hostname === 'player.vimeo.com' ? parts[1] : parts[0];
+      if (!/^\d+$/.test(id || '')) return '';
+      const result = new URL('https://player.vimeo.com/video/' + id);
+      const hash = url.searchParams.get('h') || (url.hostname !== 'player.vimeo.com' ? parts[1] : '');
+      if (hash) result.searchParams.set('h', hash);
+      for (const [key, val] of Object.entries({ background: 1, autoplay: 0, loop: 1, muted: 1, autopause: 0, playsinline: 1, dnt: 1 })) {
+        result.searchParams.set(key, val);
+      }
+      return result.href;
+    } catch { return ''; }
+  }
+  function vimeoSDK() {
+    if (window.Vimeo?.Player) return Promise.resolve(window.Vimeo);
+    if (!sdkPromise) sdkPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://player.vimeo.com/api/player.js';
+      script.onload = () => window.Vimeo?.Player ? resolve(window.Vimeo) : reject(new Error('Vimeo unavailable'));
+      script.onerror = () => reject(new Error('Could not load the Vimeo player SDK. Check network access or content blockers.'));
+      document.head.append(script);
+    });
+    return sdkPromise;
+  }
+  function mount(root, config = {}) {
+    instances.get(root)?.destroy();
+    const abort = new AbortController();
+    const listen = (el, type, fn) => el.addEventListener(type, fn, { signal: abort.signal });
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const items = (config.media || []).filter(item => safeURL(item.src) && ['image', 'video', 'vimeo'].includes(item.type)).slice(0, 48);
+    const speed = clamp(Number(config.speed ?? 0.10), 0, 0.5);
+    const density = clamp(Number(config.count ?? 22), 1, 48);
+    root.style.setProperty('--orbit-height', clamp(Number(config.height ?? 420), 200, 900) + 'px');
+    root.style.setProperty('--orbit-radius', clamp(Number(config.radius ?? 3), 0, 50) + 'px');
+    root.classList.add('meya-orbit');
+    root.setAttribute('role', 'group');
+    root.setAttribute('aria-label', 'Orbiting project imagery');
+    root.tabIndex = 0;
+    const hint = document.createElement('span');
+    hint.className = 'meya-orbit__hint';
+    hint.textContent = 'Drag to rotate. Use arrow keys to rotate, and Space to pause or resume animation.';
+    root.replaceChildren(hint);
+    let frame = 0, alive = true, visible = true, paused = false, yaw = 0.35, pitch = -0.12;
+    let lastTime = 0, width = 0, height = 0, radiusX = 0, radiusY = 0, cardWidth = 0;
+    let drag = null, hover = false, pointerTilt = 0, tilt = 0, mediaTimer = 0;
+    let introTime = config.intro === false || reduced.matches ? 2.2 : 0;
+    let suppressClick = false, opener = null;
+    const popup = document.createElement('dialog');
+    popup.className = 'meya-orbit__popup';
+    popup.setAttribute('aria-label', 'Project preview');
+    const close = document.createElement('button');
+    close.type = 'button'; close.className = 'meya-orbit__close'; close.textContent = '×';
+    close.setAttribute('aria-label', 'Close preview');
+    const viewer = document.createElement('div'); viewer.className = 'meya-orbit__viewer';
+    const caption = document.createElement('p'); caption.className = 'meya-orbit__caption';
+    popup.append(close, viewer, caption); document.body.append(popup);
+    function openPreview(card) {
+      if (popup.open || card.item.popup === false) return;
+      opener = card.element;
+      caption.textContent = card.item.title || ''; caption.hidden = !card.item.title;
+      popup.setAttribute('aria-label', card.item.title || 'Project preview');
+      let media;
+      if (card.item.type === 'image') {
+        media = document.createElement('img'); media.alt = card.item.title || 'Project image'; media.src = card.item.src;
+      } else if (card.item.type === 'video') {
+        media = document.createElement('video'); media.controls = true; media.playsInline = true;
+        media.src = card.item.src; if (safeURL(card.item.poster)) media.poster = card.item.poster;
+      } else {
+        media = document.createElement('iframe');
+        const url = new URL(vimeoURL(card.item.src));
+        url.searchParams.set('background', '0'); url.searchParams.set('controls', '1');
+        url.searchParams.set('muted', '0'); url.searchParams.set('loop', '0');
+        media.src = url.href; media.title = card.item.title || 'Project video';
+        media.allow = 'autoplay; fullscreen; picture-in-picture'; media.allowFullscreen = true;
+        media.style.aspectRatio = String(clamp(Number(card.item.ratio || 16 / 9), 0.2, 5));
+      }
+      viewer.replaceChildren(media); popup.showModal(); close.focus(); resume();
+    }
+    listen(close, 'click', () => popup.close());
+    let backdropDown = false;
+    listen(popup, 'pointerdown', e => { backdropDown = e.target === popup; });
+    listen(popup, 'click', e => { if (backdropDown && e.target === popup) popup.close(); });
+    listen(popup, 'close', () => {
+      viewer.querySelector('video')?.pause(); viewer.replaceChildren();
+      if (alive) { opener?.focus({ preventScroll: true }); resume(); }
+    });
+    const count = items.length ? Math.max(items.length, density) : 0;
+    const cards = Array.from({ length: count }, (_, i) => {
+      const item = items[i % items.length];
+      const element = document.createElement(item.popup === false ? 'div' : 'button');
+      element.className = 'meya-orbit__card';
+      if (item.popup !== false) {
+        element.type = 'button'; element.setAttribute('aria-label', item.title ? 'Open ' + item.title : 'Open project ' + (i % items.length + 1));
+        element.setAttribute('aria-haspopup', 'dialog');
+      } else element.setAttribute('aria-hidden', 'true');
+      const cardRatio = ({ '4:3': 4/3, '1:1': 1, '3:4': 3/4, '9:16': 9/16 })[item.cardRatio] || 4/3;
+      element.style.aspectRatio = String(cardRatio);
+      const y = 1 - 2 * (i + 0.5) / count;
+      const r = Math.sqrt(1 - y * y), angle = i * Math.PI * (3 - Math.sqrt(5));
+      const card = { element, item, cardRatio, index: i, x: Math.cos(angle) * r, y, z: Math.sin(angle) * r, depth: 0, wanted: false, node: null, player: null, loading: false };
+      listen(element, 'click', e => { if (!suppressClick || e.detail === 0) openPreview(card); });
+      if (item.type === 'image' || safeURL(item.poster)) {
+        const img = document.createElement('img');
+        img.src = item.type === 'image' ? item.src : item.poster;
+        img.alt = ''; img.draggable = false; img.decoding = 'async';
+        img.addEventListener('error', () => { element.dataset.mediaError = 'true'; img.style.visibility = 'hidden'; });
+        element.append(img);
+      }
+      root.append(element);
+      return card;
+    });
+    function setPlayback(card, wanted) {
+      card.wanted = wanted;
+      if (card.node?.tagName === 'VIDEO') {
+        if (wanted && card.node.paused) card.node.play().catch(() => {});
+        else if (!wanted && !card.node.paused) card.node.pause();
+      }
+      if (card.player) {
+        (wanted ? card.player.play() : card.player.pause()).catch(() => {});
+      }
+    }
+    async function prepare(card) {
+      if (card.loading || card.node || !alive) return;
+      card.loading = true;
+      if (card.item.type === 'video') {
+        const video = document.createElement('video');
+        video.muted = true; video.defaultMuted = true; video.loop = true; video.playsInline = true;
+        video.setAttribute('muted', ''); video.setAttribute('playsinline', '');
+        video.preload = 'metadata';
+        if (safeURL(card.item.poster)) video.poster = card.item.poster;
+        video.src = card.item.src;
+        video.addEventListener('error', () => { card.element.dataset.mediaError = 'true'; video.style.visibility = 'hidden'; });
+        card.node = video; card.element.append(video);
+        setPlayback(card, card.wanted);
+      } else if (card.item.type === 'vimeo') {
+        const src = vimeoURL(card.item.src);
+        if (!src) { card.element.dataset.mediaError = 'true'; return; }
+        try {
+          const Vimeo = await vimeoSDK();
+          if (!alive) return;
+          const iframe = document.createElement('iframe');
+          iframe.title = 'Decorative project video'; iframe.tabIndex = -1;
+          iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+          iframe.src = src;
+          // Source ratio and the displayed card shape are independent.
+          const ratio = clamp(Number(card.item.ratio || 16 / 9), 0.2, 5);
+          iframe.style.width = Math.max(100, ratio / card.cardRatio * 100) + '%';
+          iframe.style.height = Math.max(100, card.cardRatio / ratio * 100) + '%';
+          card.node = iframe; card.element.append(iframe);
+          card.player = new Vimeo.Player(iframe);
+          await card.player.ready();
+          if (!alive) return;
+          await card.player.setVolume(0);
+          setPlayback(card, card.wanted);
+        } catch (error) { card.element.dataset.mediaError = error.message || 'Vimeo player could not load'; }
+      }
+    }
+    function syncMedia() {
+      const active = alive && visible && !document.hidden && !paused && !popup.open && !reduced.matches;
+      // Only the nearest three videos run; the rest retain their poster or paused frame.
+      const front = active ? cards.filter(c => c.item.type !== 'image' && c.depth > -0.1).sort((a, b) => b.depth - a.depth).slice(0, 3) : [];
+      for (const card of cards) {
+        if (card.item.type === 'image') continue;
+        const wanted = front.includes(card);
+        if (wanted !== card.wanted) setPlayback(card, wanted);
+        if (wanted) prepare(card);
+      }
+    }
+    function draw() {
+      const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch + tilt), sp = Math.sin(pitch + tilt);
+      for (const card of cards) {
+        const progress = clamp((introTime - card.index / Math.max(1, count) * 0.35) / 1.65, 0, 1);
+        const reveal = 1 - Math.pow(1 - progress, 3);
+        const x = card.x * cy + card.z * sy;
+        const z0 = card.z * cy - card.x * sy;
+        const y = card.y * cp - z0 * sp;
+        const z = card.y * sp + z0 * cp;
+        const perspective = 1 / (1 - z * 0.20);
+        const scale = (0.76 + (z + 1) * 0.16) * perspective;
+        card.depth = z;
+        const spread = 1 + (1 - reveal) * 2.6;
+        card.element.style.transform = `translate(-50%, -50%) translate3d(${(x * radiusX * perspective * spread).toFixed(2)}px, ${(y * radiusY * perspective * spread).toFixed(2)}px, 0) scale(${(scale * (1 + (1 - reveal) * 0.6)).toFixed(4)})`;
+        card.element.style.opacity = ((0.27 + Math.pow((z + 1) / 2, 0.8) * 0.73) * Math.min(1, progress * 5)).toFixed(3);
+        card.element.style.zIndex = String(Math.round((z + 1) * 1000));
+        card.element.style.filter = `blur(${(Math.max(0, -z) * 0.65).toFixed(2)}px)`;
+      }
+    }
+    function resize() {
+      width = root.clientWidth; height = root.clientHeight;
+      const span = Math.min(width * 0.90, 680, height * 1.7);
+      cardWidth = Math.min(140, span * 0.215);
+      radiusX = Math.max(0, (span - cardWidth * 1.45) / 2.12);
+      const maxCardHeight = Math.max(0, ...cards.map(card => cardWidth * Math.min(1, card.cardRatio) / card.cardRatio));
+      radiusY = Math.max(0, (height * 0.91 - maxCardHeight * 1.45) / 2.12);
+      for (const card of cards) card.element.style.width = cardWidth * Math.min(1, card.cardRatio) + 'px';
+      draw();
+    }
+    function tick(time) {
+      frame = 0;
+      if (!alive || !visible || document.hidden || paused || popup.open || reduced.matches) return;
+      const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;
+      lastTime = time;
+      introTime = Math.min(2.2, introTime + dt);
+      if (!drag) yaw += dt * speed * (hover ? 0.3 : 1);
+      tilt += (pointerTilt - tilt) * (1 - Math.exp(-dt * 5));
+      draw();
+      if (time - mediaTimer > 300) { syncMedia(); mediaTimer = time; }
+      frame = requestAnimationFrame(tick);
+    }
+    function resume() {
+      cancelAnimationFrame(frame); frame = 0; lastTime = 0;
+      if (reduced.matches) introTime = 2.2;
+      draw(); syncMedia();
+      if (alive && visible && !document.hidden && !paused && !popup.open && !reduced.matches) frame = requestAnimationFrame(tick);
+    }
+    listen(root, 'pointerdown', e => {
+      if (e.button !== 0 || !e.isPrimary) return;
+      suppressClick = false;
+      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw, pitch };
+      root.dataset.dragging = 'true';
+    });
+    listen(root, 'pointermove', e => {
+      if (drag && e.pointerId === drag.id) {
+        if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 7) {
+          suppressClick = true; introTime = 2.2;
+          if (!root.hasPointerCapture(e.pointerId)) root.setPointerCapture(e.pointerId);
+        }
+        if (!suppressClick) return;
+        yaw = drag.yaw + (e.clientX - drag.x) * 0.007;
+        pitch = clamp(drag.pitch - (e.clientY - drag.y) * 0.004, -0.75, 0.75);
+        draw();
+      } else if (e.pointerType === 'mouse' && !reduced.matches) {
+        const rect = root.getBoundingClientRect();
+        pointerTilt = ((e.clientY - rect.top) / height - 0.5) * 0.16;
+      }
+    });
+    function release(e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      drag = null; root.dataset.dragging = 'false';
+      if (root.hasPointerCapture(e.pointerId)) root.releasePointerCapture(e.pointerId);
+      syncMedia();
+    }
+    listen(window, 'pointerup', release); listen(root, 'pointercancel', release); listen(root, 'lostpointercapture', release);
+    listen(root, 'pointerenter', () => { hover = true; });
+    listen(root, 'pointerleave', () => { hover = false; pointerTilt = 0; });
+    listen(root, 'keydown', e => {
+      if (e.target !== root && ['Space', 'Enter'].includes(e.code)) return;
+      if (e.code === 'Space') { e.preventDefault(); paused = !paused; resume(); }
+      else if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+        e.preventDefault();
+        if (e.key === 'ArrowLeft') yaw -= 0.15;
+        if (e.key === 'ArrowRight') yaw += 0.15;
+        if (e.key === 'ArrowUp') pitch = clamp(pitch - 0.1, -0.75, 0.75);
+        if (e.key === 'ArrowDown') pitch = clamp(pitch + 0.1, -0.75, 0.75);
+        draw(); syncMedia();
+      }
+    });
+    listen(document, 'visibilitychange', resume); listen(reduced, 'change', resume);
+    const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; resume(); }, { threshold: 0.01 });
+    const sizeObserver = new ResizeObserver(resize);
+    observer.observe(root); sizeObserver.observe(root);
+    resize(); resume();
+    const instance = { destroy() {
+      alive = false; abort.abort(); cancelAnimationFrame(frame);
+      viewer.querySelector('video')?.pause(); if (popup.open) popup.close(); popup.remove();
+      observer.disconnect(); sizeObserver.disconnect();
+      for (const card of cards) {
+        card.wanted = false;
+        if (card.player) card.player.destroy().catch(() => {});
+        if (card.node?.tagName === 'VIDEO') { card.node.pause(); card.node.removeAttribute('src'); card.node.load(); }
+      }
+      root.replaceChildren(); instances.delete(root);
+    }};
+    instances.set(root, instance);
+    return instance;
+  }
+  function scan() {
+    document.querySelectorAll('[data-meya-orbit]').forEach(root => {
+      if (instances.has(root)) return;
+      const data = root.querySelector('script[type="application/json"]');
+      if (!data) return;
+      try { mount(root, JSON.parse(data.textContent)); } catch (error) { console.warn('Check Meya Orbit configuration.', error); }
+    });
+  }
+  window.MeyaOrbit = { mount, scan };
+  scan();
+})();
+
+</script>
+<script>
+const bundledCSS = ".meya-orbit {\n  --orbit-height: 420px;\n  --orbit-radius: 3px;\n  position: relative;\n  isolation: isolate;\n  width: 100%;\n  height: var(--orbit-height);\n  overflow: hidden;\n  background: transparent;\n  touch-action: pan-y;\n  cursor: grab;\n  user-select: none;\n  -webkit-user-select: none;\n  outline: none;\n}\n.meya-orbit:focus-visible { outline: 2px solid #828282; outline-offset: -4px; }\n.meya-orbit[data-dragging=\"true\"] { cursor: grabbing; }\n.meya-orbit__card {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 140px;\n  aspect-ratio: 4 / 3;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  overflow: hidden;\n  border-radius: var(--orbit-radius);\n  background: #e9e8e5;\n  will-change: transform, opacity;\n  transform-origin: center;\n  box-shadow: 0 2px 7px #00000008;\n}\n.meya-orbit button.meya-orbit__card { cursor: pointer; }\n.meya-orbit button.meya-orbit__card:focus-visible { outline: 3px solid #7d9eff; outline-offset: 3px; }\n.meya-orbit__popup {\n  position: fixed; inset: 0; box-sizing: border-box;\n  width: 100%; max-width: none; height: 100%; max-height: none;\n  margin: 0; padding: 64px 24px 28px; border: 0;\n  background: transparent; color: white; overflow: auto;\n  font: 16px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n}\n.meya-orbit__popup[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }\n.meya-orbit__popup::backdrop { background: #000c; backdrop-filter: blur(5px); }\n.meya-orbit__viewer { display: flex; align-items: center; justify-content: center; max-width: 100%; min-height: 0; animation: meya-preview-in 250ms ease-out both; }\n.meya-orbit__viewer > img, .meya-orbit__viewer > video {\n  display: block; width: auto; height: auto; max-width: min(100%, 1000px);\n  max-height: calc(100dvh - 150px); object-fit: contain; border-radius: 14px;\n}\n.meya-orbit__viewer > iframe { width: min(1000px, calc(100vw - 48px)); max-height: calc(100dvh - 150px); border: 0; border-radius: 14px; background: #111; }\n.meya-orbit__caption { margin: 0; color: white; text-align: center; max-width: 900px; overflow-wrap: anywhere; font: inherit; }\n.meya-orbit__caption[hidden] { display: none; }\n.meya-orbit__close { position: fixed; top: 16px; right: 18px; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1px solid #ffffff50; border-radius: 50%; background: #181818; color: white; font: 28px/1 sans-serif; cursor: pointer; }\n.meya-orbit__close:focus-visible { outline: 2px solid white; outline-offset: 3px; }\n@keyframes meya-preview-in { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: none; } }\n@media(prefers-reduced-motion: reduce) { .meya-orbit__viewer { animation: none; } }\n.meya-orbit__card > img,\n.meya-orbit__card > video,\n.meya-orbit__card > iframe {\n  display: block;\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  max-width: none;\n  border: 0;\n  object-fit: cover;\n  pointer-events: none;\n}\n.meya-orbit__card > iframe {\n  inset: 50% auto auto 50%;\n  transform: translate(-50%, -50%);\n}\n.meya-orbit__hint {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border: 0;\n}\n@media (max-width: 600px) {\n  .meya-orbit { height: min(var(--orbit-height), 330px); }\n}\n";
+const bundledJS = "/* Meya Orbit — scoped, reusable HTML/CSS/JS. Vimeo SDK loads only for Vimeo cards. */\n(() => {\n  'use strict';\n  if (window.MeyaOrbit) { window.MeyaOrbit.scan(); return; }\n  const instances = new WeakMap();\n  let sdkPromise;\n  const clamp = (n, a, b) => Math.min(b, Math.max(a, n));\n  function safeURL(value) {\n    try {\n      const url = new URL(value);\n      return ['https:', 'http:', 'blob:'].includes(url.protocol) ? url.href : '';\n    } catch { return ''; }\n  }\n  function vimeoURL(value) {\n    try {\n      const url = new URL(value);\n      if (!['vimeo.com', 'www.vimeo.com', 'player.vimeo.com'].includes(url.hostname)) return '';\n      const parts = url.pathname.split('/').filter(Boolean);\n      const id = url.hostname === 'player.vimeo.com' ? parts[1] : parts[0];\n      if (!/^\\d+$/.test(id || '')) return '';\n      const result = new URL('https://player.vimeo.com/video/' + id);\n      const hash = url.searchParams.get('h') || (url.hostname !== 'player.vimeo.com' ? parts[1] : '');\n      if (hash) result.searchParams.set('h', hash);\n      for (const [key, val] of Object.entries({ background: 1, autoplay: 0, loop: 1, muted: 1, autopause: 0, playsinline: 1, dnt: 1 })) {\n        result.searchParams.set(key, val);\n      }\n      return result.href;\n    } catch { return ''; }\n  }\n  function vimeoSDK() {\n    if (window.Vimeo?.Player) return Promise.resolve(window.Vimeo);\n    if (!sdkPromise) sdkPromise = new Promise((resolve, reject) => {\n      const script = document.createElement('script');\n      script.src = 'https://player.vimeo.com/api/player.js';\n      script.onload = () => window.Vimeo?.Player ? resolve(window.Vimeo) : reject(new Error('Vimeo unavailable'));\n      script.onerror = () => reject(new Error('Could not load the Vimeo player SDK. Check network access or content blockers.'));\n      document.head.append(script);\n    });\n    return sdkPromise;\n  }\n  function mount(root, config = {}) {\n    instances.get(root)?.destroy();\n    const abort = new AbortController();\n    const listen = (el, type, fn) => el.addEventListener(type, fn, { signal: abort.signal });\n    const reduced = matchMedia('(prefers-reduced-motion: reduce)');\n    const items = (config.media || []).filter(item => safeURL(item.src) && ['image', 'video', 'vimeo'].includes(item.type)).slice(0, 48);\n    const speed = clamp(Number(config.speed ?? 0.10), 0, 0.5);\n    const density = clamp(Number(config.count ?? 22), 1, 48);\n    root.style.setProperty('--orbit-height', clamp(Number(config.height ?? 420), 200, 900) + 'px');\n    root.style.setProperty('--orbit-radius', clamp(Number(config.radius ?? 3), 0, 50) + 'px');\n    root.classList.add('meya-orbit');\n    root.setAttribute('role', 'group');\n    root.setAttribute('aria-label', 'Orbiting project imagery');\n    root.tabIndex = 0;\n    const hint = document.createElement('span');\n    hint.className = 'meya-orbit__hint';\n    hint.textContent = 'Drag to rotate. Use arrow keys to rotate, and Space to pause or resume animation.';\n    root.replaceChildren(hint);\n    let frame = 0, alive = true, visible = true, paused = false, yaw = 0.35, pitch = -0.12;\n    let lastTime = 0, width = 0, height = 0, radiusX = 0, radiusY = 0, cardWidth = 0;\n    let drag = null, hover = false, pointerTilt = 0, tilt = 0, mediaTimer = 0;\n    let introTime = config.intro === false || reduced.matches ? 2.2 : 0;\n    let suppressClick = false, opener = null;\n    const popup = document.createElement('dialog');\n    popup.className = 'meya-orbit__popup';\n    popup.setAttribute('aria-label', 'Project preview');\n    const close = document.createElement('button');\n    close.type = 'button'; close.className = 'meya-orbit__close'; close.textContent = '×';\n    close.setAttribute('aria-label', 'Close preview');\n    const viewer = document.createElement('div'); viewer.className = 'meya-orbit__viewer';\n    const caption = document.createElement('p'); caption.className = 'meya-orbit__caption';\n    popup.append(close, viewer, caption); document.body.append(popup);\n    function openPreview(card) {\n      if (popup.open || card.item.popup === false) return;\n      opener = card.element;\n      caption.textContent = card.item.title || ''; caption.hidden = !card.item.title;\n      popup.setAttribute('aria-label', card.item.title || 'Project preview');\n      let media;\n      if (card.item.type === 'image') {\n        media = document.createElement('img'); media.alt = card.item.title || 'Project image'; media.src = card.item.src;\n      } else if (card.item.type === 'video') {\n        media = document.createElement('video'); media.controls = true; media.playsInline = true;\n        media.src = card.item.src; if (safeURL(card.item.poster)) media.poster = card.item.poster;\n      } else {\n        media = document.createElement('iframe');\n        const url = new URL(vimeoURL(card.item.src));\n        url.searchParams.set('background', '0'); url.searchParams.set('controls', '1');\n        url.searchParams.set('muted', '0'); url.searchParams.set('loop', '0');\n        media.src = url.href; media.title = card.item.title || 'Project video';\n        media.allow = 'autoplay; fullscreen; picture-in-picture'; media.allowFullscreen = true;\n        media.style.aspectRatio = String(clamp(Number(card.item.ratio || 16 / 9), 0.2, 5));\n      }\n      viewer.replaceChildren(media); popup.showModal(); close.focus(); resume();\n    }\n    listen(close, 'click', () => popup.close());\n    let backdropDown = false;\n    listen(popup, 'pointerdown', e => { backdropDown = e.target === popup; });\n    listen(popup, 'click', e => { if (backdropDown && e.target === popup) popup.close(); });\n    listen(popup, 'close', () => {\n      viewer.querySelector('video')?.pause(); viewer.replaceChildren();\n      if (alive) { opener?.focus({ preventScroll: true }); resume(); }\n    });\n    const count = items.length ? Math.max(items.length, density) : 0;\n    const cards = Array.from({ length: count }, (_, i) => {\n      const item = items[i % items.length];\n      const element = document.createElement(item.popup === false ? 'div' : 'button');\n      element.className = 'meya-orbit__card';\n      if (item.popup !== false) {\n        element.type = 'button'; element.setAttribute('aria-label', item.title ? 'Open ' + item.title : 'Open project ' + (i % items.length + 1));\n        element.setAttribute('aria-haspopup', 'dialog');\n      } else element.setAttribute('aria-hidden', 'true');\n      const cardRatio = ({ '4:3': 4/3, '1:1': 1, '3:4': 3/4, '9:16': 9/16 })[item.cardRatio] || 4/3;\n      element.style.aspectRatio = String(cardRatio);\n      const y = 1 - 2 * (i + 0.5) / count;\n      const r = Math.sqrt(1 - y * y), angle = i * Math.PI * (3 - Math.sqrt(5));\n      const card = { element, item, cardRatio, index: i, x: Math.cos(angle) * r, y, z: Math.sin(angle) * r, depth: 0, wanted: false, node: null, player: null, loading: false };\n      listen(element, 'click', e => { if (!suppressClick || e.detail === 0) openPreview(card); });\n      if (item.type === 'image' || safeURL(item.poster)) {\n        const img = document.createElement('img');\n        img.src = item.type === 'image' ? item.src : item.poster;\n        img.alt = ''; img.draggable = false; img.decoding = 'async';\n        img.addEventListener('error', () => { element.dataset.mediaError = 'true'; img.style.visibility = 'hidden'; });\n        element.append(img);\n      }\n      root.append(element);\n      return card;\n    });\n    function setPlayback(card, wanted) {\n      card.wanted = wanted;\n      if (card.node?.tagName === 'VIDEO') {\n        if (wanted && card.node.paused) card.node.play().catch(() => {});\n        else if (!wanted && !card.node.paused) card.node.pause();\n      }\n      if (card.player) {\n        (wanted ? card.player.play() : card.player.pause()).catch(() => {});\n      }\n    }\n    async function prepare(card) {\n      if (card.loading || card.node || !alive) return;\n      card.loading = true;\n      if (card.item.type === 'video') {\n        const video = document.createElement('video');\n        video.muted = true; video.defaultMuted = true; video.loop = true; video.playsInline = true;\n        video.setAttribute('muted', ''); video.setAttribute('playsinline', '');\n        video.preload = 'metadata';\n        if (safeURL(card.item.poster)) video.poster = card.item.poster;\n        video.src = card.item.src;\n        video.addEventListener('error', () => { card.element.dataset.mediaError = 'true'; video.style.visibility = 'hidden'; });\n        card.node = video; card.element.append(video);\n        setPlayback(card, card.wanted);\n      } else if (card.item.type === 'vimeo') {\n        const src = vimeoURL(card.item.src);\n        if (!src) { card.element.dataset.mediaError = 'true'; return; }\n        try {\n          const Vimeo = await vimeoSDK();\n          if (!alive) return;\n          const iframe = document.createElement('iframe');\n          iframe.title = 'Decorative project video'; iframe.tabIndex = -1;\n          iframe.allow = 'autoplay; fullscreen; picture-in-picture';\n          iframe.src = src;\n          // Source ratio and the displayed card shape are independent.\n          const ratio = clamp(Number(card.item.ratio || 16 / 9), 0.2, 5);\n          iframe.style.width = Math.max(100, ratio / card.cardRatio * 100) + '%';\n          iframe.style.height = Math.max(100, card.cardRatio / ratio * 100) + '%';\n          card.node = iframe; card.element.append(iframe);\n          card.player = new Vimeo.Player(iframe);\n          await card.player.ready();\n          if (!alive) return;\n          await card.player.setVolume(0);\n          setPlayback(card, card.wanted);\n        } catch (error) { card.element.dataset.mediaError = error.message || 'Vimeo player could not load'; }\n      }\n    }\n    function syncMedia() {\n      const active = alive && visible && !document.hidden && !paused && !popup.open && !reduced.matches;\n      // Only the nearest three videos run; the rest retain their poster or paused frame.\n      const front = active ? cards.filter(c => c.item.type !== 'image' && c.depth > -0.1).sort((a, b) => b.depth - a.depth).slice(0, 3) : [];\n      for (const card of cards) {\n        if (card.item.type === 'image') continue;\n        const wanted = front.includes(card);\n        if (wanted !== card.wanted) setPlayback(card, wanted);\n        if (wanted) prepare(card);\n      }\n    }\n    function draw() {\n      const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch + tilt), sp = Math.sin(pitch + tilt);\n      for (const card of cards) {\n        const progress = clamp((introTime - card.index / Math.max(1, count) * 0.35) / 1.65, 0, 1);\n        const reveal = 1 - Math.pow(1 - progress, 3);\n        const x = card.x * cy + card.z * sy;\n        const z0 = card.z * cy - card.x * sy;\n        const y = card.y * cp - z0 * sp;\n        const z = card.y * sp + z0 * cp;\n        const perspective = 1 / (1 - z * 0.20);\n        const scale = (0.76 + (z + 1) * 0.16) * perspective;\n        card.depth = z;\n        const spread = 1 + (1 - reveal) * 2.6;\n        card.element.style.transform = `translate(-50%, -50%) translate3d(${(x * radiusX * perspective * spread).toFixed(2)}px, ${(y * radiusY * perspective * spread).toFixed(2)}px, 0) scale(${(scale * (1 + (1 - reveal) * 0.6)).toFixed(4)})`;\n        card.element.style.opacity = ((0.27 + Math.pow((z + 1) / 2, 0.8) * 0.73) * Math.min(1, progress * 5)).toFixed(3);\n        card.element.style.zIndex = String(Math.round((z + 1) * 1000));\n        card.element.style.filter = `blur(${(Math.max(0, -z) * 0.65).toFixed(2)}px)`;\n      }\n    }\n    function resize() {\n      width = root.clientWidth; height = root.clientHeight;\n      const span = Math.min(width * 0.90, 680, height * 1.7);\n      cardWidth = Math.min(140, span * 0.215);\n      radiusX = Math.max(0, (span - cardWidth * 1.45) / 2.12);\n      const maxCardHeight = Math.max(0, ...cards.map(card => cardWidth * Math.min(1, card.cardRatio) / card.cardRatio));\n      radiusY = Math.max(0, (height * 0.91 - maxCardHeight * 1.45) / 2.12);\n      for (const card of cards) card.element.style.width = cardWidth * Math.min(1, card.cardRatio) + 'px';\n      draw();\n    }\n    function tick(time) {\n      frame = 0;\n      if (!alive || !visible || document.hidden || paused || popup.open || reduced.matches) return;\n      const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;\n      lastTime = time;\n      introTime = Math.min(2.2, introTime + dt);\n      if (!drag) yaw += dt * speed * (hover ? 0.3 : 1);\n      tilt += (pointerTilt - tilt) * (1 - Math.exp(-dt * 5));\n      draw();\n      if (time - mediaTimer > 300) { syncMedia(); mediaTimer = time; }\n      frame = requestAnimationFrame(tick);\n    }\n    function resume() {\n      cancelAnimationFrame(frame); frame = 0; lastTime = 0;\n      if (reduced.matches) introTime = 2.2;\n      draw(); syncMedia();\n      if (alive && visible && !document.hidden && !paused && !popup.open && !reduced.matches) frame = requestAnimationFrame(tick);\n    }\n    listen(root, 'pointerdown', e => {\n      if (e.button !== 0 || !e.isPrimary) return;\n      suppressClick = false;\n      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw, pitch };\n      root.dataset.dragging = 'true';\n    });\n    listen(root, 'pointermove', e => {\n      if (drag && e.pointerId === drag.id) {\n        if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 7) {\n          suppressClick = true; introTime = 2.2;\n          if (!root.hasPointerCapture(e.pointerId)) root.setPointerCapture(e.pointerId);\n        }\n        if (!suppressClick) return;\n        yaw = drag.yaw + (e.clientX - drag.x) * 0.007;\n        pitch = clamp(drag.pitch - (e.clientY - drag.y) * 0.004, -0.75, 0.75);\n        draw();\n      } else if (e.pointerType === 'mouse' && !reduced.matches) {\n        const rect = root.getBoundingClientRect();\n        pointerTilt = ((e.clientY - rect.top) / height - 0.5) * 0.16;\n      }\n    });\n    function release(e) {\n      if (!drag || e.pointerId !== drag.id) return;\n      drag = null; root.dataset.dragging = 'false';\n      if (root.hasPointerCapture(e.pointerId)) root.releasePointerCapture(e.pointerId);\n      syncMedia();\n    }\n    listen(window, 'pointerup', release); listen(root, 'pointercancel', release); listen(root, 'lostpointercapture', release);\n    listen(root, 'pointerenter', () => { hover = true; });\n    listen(root, 'pointerleave', () => { hover = false; pointerTilt = 0; });\n    listen(root, 'keydown', e => {\n      if (e.target !== root && ['Space', 'Enter'].includes(e.code)) return;\n      if (e.code === 'Space') { e.preventDefault(); paused = !paused; resume(); }\n      else if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {\n        e.preventDefault();\n        if (e.key === 'ArrowLeft') yaw -= 0.15;\n        if (e.key === 'ArrowRight') yaw += 0.15;\n        if (e.key === 'ArrowUp') pitch = clamp(pitch - 0.1, -0.75, 0.75);\n        if (e.key === 'ArrowDown') pitch = clamp(pitch + 0.1, -0.75, 0.75);\n        draw(); syncMedia();\n      }\n    });\n    listen(document, 'visibilitychange', resume); listen(reduced, 'change', resume);\n    const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; resume(); }, { threshold: 0.01 });\n    const sizeObserver = new ResizeObserver(resize);\n    observer.observe(root); sizeObserver.observe(root);\n    resize(); resume();\n    const instance = { destroy() {\n      alive = false; abort.abort(); cancelAnimationFrame(frame);\n      viewer.querySelector('video')?.pause(); if (popup.open) popup.close(); popup.remove();\n      observer.disconnect(); sizeObserver.disconnect();\n      for (const card of cards) {\n        card.wanted = false;\n        if (card.player) card.player.destroy().catch(() => {});\n        if (card.node?.tagName === 'VIDEO') { card.node.pause(); card.node.removeAttribute('src'); card.node.load(); }\n      }\n      root.replaceChildren(); instances.delete(root);\n    }};\n    instances.set(root, instance);\n    return instance;\n  }\n  function scan() {\n    document.querySelectorAll('[data-meya-orbit]').forEach(root => {\n      if (instances.has(root)) return;\n      const data = root.querySelector('script[type=\"application/json\"]');\n      if (!data) return;\n      try { mount(root, JSON.parse(data.textContent)); } catch (error) { console.warn('Check Meya Orbit configuration.', error); }\n    });\n  }\n  window.MeyaOrbit = { mount, scan };\n  scan();\n})();\n";
+const initial = {
+  "height": 420,
+  "count": 22,
+  "speed": 0.1,
+  "radius": 3,
+  "intro": true,
+  "media": [
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "4:3",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "1:1",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "3:4",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "9:16",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "4:3",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "1:1",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "3:4",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "9:16",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "4:3",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "1:1",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "3:4",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=960&q=85"
+    },
+    {
+      "type": "image",
+      "title": "",
+      "cardRatio": "9:16",
+      "popup": true,
+      "src": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=960&q=85"
+    }
+  ]
+};
+const config = structuredClone(initial);
+const list = document.querySelector('#media-list'), preview = document.querySelector('#preview');
+const status = document.querySelector('#status');
+const temporaryURLs = new Set();
+let mobile = false, dark = false, previewTimer;
+function renderOrbit(replay = false) { clearTimeout(previewTimer); window.MeyaOrbit.mount(preview, {...config, intro: replay && config.intro !== false}); }
+function input(label, value, onChange, kind = 'url') {
+  const field = document.createElement('input'); field.type = kind; field.placeholder = label; field.setAttribute('aria-label', label); field.value = value || '';
+  field.addEventListener('input', () => { onChange(field.value.trim()); clearTimeout(previewTimer); previewTimer = setTimeout(renderOrbit, 250); });
+  field.addEventListener('change', () => { clearTimeout(previewTimer); onChange(field.value.trim()); renderList(); renderOrbit(); });
+  return field;
+}
+function renderList() {
+  list.replaceChildren();
+  config.media.forEach((item, index) => {
+    const row = document.createElement('div'); row.className = 'media-row';
+    const thumb = document.createElement('img'); thumb.className = 'thumb'; thumb.alt = '';
+    if (item.type === 'image' || item.poster) thumb.src = item.type === 'image' ? item.src : item.poster;
+    thumb.addEventListener('error', () => { thumb.style.visibility = 'hidden'; });
+    const fields = document.createElement('div'), type = document.createElement('select'); type.setAttribute('aria-label', 'Media type ' + (index + 1));
+    for (const [value, label] of [['image','Image'],['video','MP4 / WebM'],['vimeo','Vimeo']]) {
+      const option = document.createElement('option'); option.value = value; option.textContent = label; option.selected = item.type === value; type.append(option);
+    }
+    type.addEventListener('change', () => { item.type = type.value; renderList(); renderOrbit(); });
+    fields.append(type, input('Media URL ' + (index + 1), item.src.startsWith('blob:') ? '' : item.src, value => { item.src = value; }));
+    fields.append(input('Title (optional) ' + (index + 1), item.title, value => { item.title = value; }, 'text'));
+    const shape = document.createElement('select'); shape.setAttribute('aria-label', 'Card shape ' + (index + 1));
+    for (const value of ['4:3', '1:1', '3:4', '9:16']) {
+      const option = document.createElement('option'); option.value = value; option.textContent = 'Card: ' + value;
+      option.selected = (item.cardRatio || '4:3') === value; shape.append(option);
+    }
+    shape.addEventListener('change', () => { item.cardRatio = shape.value; renderOrbit(); }); fields.append(shape);
+    const popupLabel = document.createElement('label'), popupToggle = document.createElement('input');
+    popupToggle.type = 'checkbox'; popupToggle.checked = item.popup !== false;
+    popupToggle.setAttribute('aria-label', 'Enable popup ' + (index + 1));
+    popupToggle.addEventListener('change', () => { item.popup = popupToggle.checked; renderOrbit(); });
+    popupLabel.append(popupToggle, ' Open popup on click'); fields.append(popupLabel);
+    if (item.type !== 'image') fields.append(input('Poster image URL ' + (index + 1), item.poster, value => { item.poster = value; }));
+    if (item.type === 'vimeo') {
+      const ratio = document.createElement('select'); ratio.setAttribute('aria-label','Vimeo source ratio ' + (index + 1));
+      for (const [value,label] of [[16/9,'Source: 16:9'],[4/3,'Source: 4:3'],[1,'Source: square'],[9/16,'Source: vertical']]) {
+        const option = document.createElement('option'); option.value = value; option.textContent = label; option.selected = Number(item.ratio || 16/9) === value; ratio.append(option);
+      }
+      ratio.addEventListener('change', () => { item.ratio = Number(ratio.value); renderOrbit(); }); fields.append(ratio);
+    }
+    const remove = document.createElement('button'); remove.className = 'remove'; remove.textContent = '×'; remove.setAttribute('aria-label', 'Remove media ' + (index + 1));
+    remove.addEventListener('click', () => { config.media.splice(index,1); renderList(); renderOrbit(); });
+    row.append(thumb,fields,remove);
+    if (item.src.startsWith('blob:')) { const note = document.createElement('span'); note.className='local-note'; note.textContent='Local preview. Add a hosted URL to export.'; row.append(note); }
+    list.append(row);
+  });
+}
+for (const name of ['height','count','speed','radius']) {
+  document.getElementById(name).addEventListener('input', e => {
+    config[name] = Number(e.target.value);
+    document.getElementById(name + '-value').textContent = name === 'speed' ? config[name].toFixed(2) : config[name] + (['height','radius'].includes(name) ? ' px' : '');
+    renderOrbit();
+  });
+}
+document.querySelector('#add').onclick = () => {
+  if (config.media.length >= 48) { status.textContent = 'Use up to 48 media items.'; return; }
+  config.media.push({type:'image',src:''}); renderList();
+  list.lastElementChild.querySelector('input').focus();
+};
+document.querySelector('#clear').onclick = () => { config.media = []; renderList(); renderOrbit(); status.textContent = 'Samples cleared. Add your own media links or preview local files.'; };
+document.querySelector('#upload').onclick = () => document.querySelector('#files').click();
+document.querySelector('#files').onchange = e => {
+  for (const file of e.target.files) {
+    if (config.media.length >= 48) break;
+    if (!file.type.startsWith('image/') && !['video/mp4','video/webm'].includes(file.type)) continue;
+    const src = URL.createObjectURL(file); temporaryURLs.add(src);
+    config.media.push({type:file.type.startsWith('image/') ? 'image' : 'video',src});
+  }
+  renderList(); renderOrbit(); e.target.value = '';
+  status.textContent = 'Files are previewed locally. Add hosted URLs to those cards before exporting.';
+};
+document.querySelector('#mobile').onclick = e => { mobile = !mobile; document.querySelector('#stage').style.maxWidth = mobile ? '390px' : '1100px'; e.target.textContent = mobile ? 'Desktop size' : 'Mobile size'; };
+document.querySelector('#background').onclick = e => { dark = !dark; document.querySelector('#stage').style.background = dark ? '#101110' : '#fff'; e.target.textContent = dark ? 'White background' : 'Dark background'; };
+function getEmbed() {
+  if (!config.media.length) { status.textContent = 'Add at least one media item first.'; return null; }
+  for (let i=0;i<config.media.length;i++) {
+    const item = config.media[i];
+    try {
+      const url = new URL(item.src);
+      if (!['https:','http:'].includes(url.protocol)) throw new Error();
+      if (item.type === 'vimeo' && (!['vimeo.com','www.vimeo.com','player.vimeo.com'].includes(url.hostname) || !/^\/(?:video\/)?\d+(?:\/[^/]+)?\/?$/.test(url.pathname))) throw new Error();
+      if (item.poster && !/^https?:$/.test(new URL(item.poster).protocol)) throw new Error();
+    } catch { status.textContent = 'Add a valid hosted ' + item.type + ' URL for media ' + (i+1) + ' before exporting. Local previews cannot be published.'; return null; }
+  }
+  const json = JSON.stringify(config,null,2).replace(/</g,'\\u003c');
+  const direct = '<style>\n' + bundledCSS + '</style>\n<div class="meya-orbit" data-meya-orbit>\n<script type="application/json">\n' + json + '\n</scr' + 'ipt>\n</div>\n<script>\n' + bundledJS + '</scr' + 'ipt>';
+  const code = direct;
+  if(code.length > 50000) { status.textContent='This exceeds Webflow’s 50,000-character embed limit. Use fewer media items or shorter URLs.'; return null; }
+  return code;
+}
+document.querySelector('#view-code').onclick = () => {
+  const code = getEmbed(); if(!code) return;
+  document.querySelector('#code').value = code; document.querySelector('#code-dialog').showModal();
+};
+document.querySelector('#copy').onclick = async () => {
+  const code = getEmbed(); if(!code) return;
+  try { await navigator.clipboard.writeText(code); status.textContent = 'Copied. Replace your old Webflow Code Embed. Test with custom code enabled in Preview; the Designer script notice is normal.'; }
+  catch { document.querySelector('#code').value = code; document.querySelector('#code-dialog').showModal(); document.querySelector('#code').select(); }
+};
+document.querySelector('#download').onclick = () => {
+  const code = getEmbed(); if(!code) return;
+  const url = URL.createObjectURL(new Blob([code],{type:'text/plain'}));
+  const link = document.createElement('a'); link.href=url; link.download='meya-orbit-webflow.txt'; link.click(); setTimeout(() => URL.revokeObjectURL(url),1000);
+  status.textContent = 'Embed downloaded. Paste its contents into a Webflow Code Embed.';
+};
+document.querySelector('#close-dialog').onclick = () => document.querySelector('#code-dialog').close();
+document.querySelector('#select-code').onclick = () => document.querySelector('#code').select();
+window.addEventListener('beforeunload', () => temporaryURLs.forEach(url => URL.revokeObjectURL(url)));
+document.querySelector('#intro').onchange = e => { config.intro = e.target.checked; renderOrbit(true); };
+document.querySelector('#replay').onclick = () => renderOrbit(true);
+renderList(); renderOrbit(true);
+</script>
+</body></html>
