@@ -178,7 +178,7 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
     <label class="canvas-dimension"><b>W</b><input id="canvas-width" type="number" min="320" max="1920" step="2" value="1200" aria-label="Canvas width"></label>
     <label class="canvas-dimension"><b>H</b><input id="canvas-height" type="number" min="240" max="1920" step="2" value="800" aria-label="Canvas height"></label>
     <select id="canvas-preset" aria-label="Canvas preset"><option value="custom">Custom</option><option value="hd">HD 16:9</option><option value="square">Square 1:1</option><option value="landscape43">4:3</option><option value="portrait">Portrait 9:16</option></select>
-  </div><small class="canvas-size-note">The editor preview stays responsive. Export uses these exact pixels.</small></div>
+  </div><small class="canvas-size-note">W also resizes the editor stage. H and W are used as exact export pixels.</small></div>
   </details>
   <details class="inspector-section" open><summary><h2 class="panel-title">Motion & layout</h2></summary>
   <div class="field"><label for="height">Height <output id="height-value">420 px</output></label><input id="height" type="range" min="240" max="650" step="10" value="420"></div>
@@ -2721,6 +2721,12 @@ function updateCanvasInputs() {
   const preset = document.querySelector('#canvas-preset');
   const current = `${config.canvasWidth}x${config.canvasHeight}`;
   preset.value = ({'1920x1080':'hd','1080x1080':'square','1600x1200':'landscape43','1080x1920':'portrait'})[current] || 'custom';
+  updateStageWidth();
+}
+function updateStageWidth() {
+  const stage = document.querySelector('#stage');
+  stage.style.width = mobile ? '390px' : `min(100%, ${config.canvasWidth}px)`;
+  stage.style.maxWidth = mobile ? '390px' : '100%';
 }
 function setCanvas(width, height) {
   config.canvasWidth = Math.round(Math.min(1920, Math.max(320, Number(width) || 1200)) / 2) * 2;
@@ -2819,7 +2825,7 @@ document.querySelector('#files').onchange = e => {
   renderList(); renderOrbit(); e.target.value = '';
   status.textContent = 'Files are previewed locally. Add hosted URLs to those cards before exporting.';
 };
-document.querySelector('#mobile').onclick = e => { mobile = !mobile; document.querySelector('#stage').style.maxWidth = mobile ? '390px' : '1100px'; e.target.textContent = mobile ? 'Desktop size' : 'Mobile size'; };
+document.querySelector('#mobile').onclick = e => { mobile = !mobile; updateStageWidth(); e.target.textContent = mobile ? 'Desktop size' : 'Mobile size'; };
 document.querySelector('#background').onclick = e => { dark = !dark; document.querySelector('#stage').style.background = dark ? '#101110' : '#fff'; e.target.textContent = dark ? 'White background' : 'Dark background'; };
 document.querySelector('#global-ratio').addEventListener('click', event => {
   const button = event.target.closest('.ratio-preset'); if (!button) return;
