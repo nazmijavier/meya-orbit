@@ -1,13 +1,15 @@
-# Meya Orbit
+# Meya Animate
 
 An animated media cloud for your Meya header: transparent background, mixed card shapes, opening animation, rotation, and drag interaction. Click a card to open the full image or video with an optional title. Sample photos are placeholders from Unsplash; replace them with your work.
 
 ## Easiest way to use it
 
-1. Open **orbit-editor.html** in your browser (double-click the file).
+1. Open **orbit-editor.html** in your browser (double-click the file). The hosted project’s main URL opens this editor; **orbit-preview.html** remains the visual-only preview.
 2. Click **Clear samples**, then **+ Add URL** to add your media. Choose Image, MP4 / WebM, or Vimeo for each item.
 3. Use **Card aspect ratio** to set every card to Mixed, 1:1, 4:3, 3:4, 16:9, or 9:16. You can still change one card’s shape separately in its own dropdown. Returning to **Mixed** restores the original varied proportions. Enter an optional title and enable or disable its popup. Adjust section height, card count, speed, and corners. Media repeats when the card count exceeds the number of items, up to 48 cards.
-4. Click **Copy Webflow embed**. **View code** lets you select and copy it manually; **Download embed** saves it as a text file.
+4. Choose **Orbit**, **Carousel**, or **Wave** under **Animation template**. Set the canvas width and height directly, or use HD 16:9, Square 1:1, 4:3, or Portrait 9:16. These dimensions are used by the MP4 export; the Webflow section remains responsive.
+5. Use **Preview** to open an orbit-only full-screen view. **Export JSON** saves the complete project settings. **Export MP4** renders a downloadable video in browsers that provide WebCodecs/H.264 support.
+6. Click **Copy Webflow embed**. **View code** lets you select and copy it manually; **Download embed** saves it as a text file.
 5. In Webflow, add a **Code Embed** element inside the header where the image placeholder belongs. Set its width to 100%, and paste the code. Do not add another full HTML document around it.
 6. Save and check Webflow Preview with custom code enabled, then your published staging page. The default export uses a direct embed so the popup can cover the whole page. The script notice in Designer is normal.
 
@@ -50,6 +52,9 @@ The updated editor was checked for all five card shapes, global ratio changes, p
 
 - **orbit-preview.html** — visual only.
 - **orbit-editor.html** — media editor with live preview and Webflow export.
+- **assets/meya-logo.png** — Meya Animate header mark.
+- **vendor/mp4-muxer.js** — bundled MP4 container writer used by the editor export.
+- **video-export.js** — browser MP4 export module.
 - **webflow-embed.html** — ready-to-paste direct embed with sample images and full-page popups. Open as text to copy its contents.
 - **webflow-script-embed.html** — same direct embed, retained for compatibility.
 - **webflow-iframe-embed.html** — optional iframe version; its popup is confined to the frame.

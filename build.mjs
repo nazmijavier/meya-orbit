@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url';
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const css = fs.readFileSync(path.join(dir, 'orbit.css'), 'utf8');
 const js = fs.readFileSync(path.join(dir, 'orbit.js'), 'utf8');
+const videoExport = fs.readFileSync(path.join(dir, 'video-export.js'), 'utf8');
+const mp4Muxer = fs.readFileSync(path.join(dir, 'vendor', 'mp4-muxer.js'), 'utf8');
 const photos = [
   'photo-1518837695005-2083093ee35b',
   'photo-1441974231531-c6227db76b6e',
@@ -18,7 +20,7 @@ const photos = [
   'photo-1447752875215-b2761acb3c5d',
   'photo-1501785888041-af3ef285b470'
 ];
-const config = { height: 420, count: 22, speed: 0.10, radius: 3, intro: true,
+const config = { height: 420, canvasWidth: 1200, canvasHeight: 800, count: 22, speed: 0.10, radius: 3, intro: true, template: 'orbit', cardSize: 100, spread: 100, depth: 100, tilt: 0, rows: 3, gap: 12, reverse: false, fps: 30, duration: 8,
   media: photos.map((id, i) => ({ type: 'image', title: '', cardRatio: ['4:3', '1:1', '3:4', '9:16'][i % 4], popup: true, src: `https://images.unsplash.com/${id}?auto=format&fit=crop&w=960&q=85` }))
 };
 const escaped = obj => JSON.stringify(obj, null, 2).replace(/</g, '\\u003c');
@@ -45,12 +47,14 @@ fs.writeFileSync(path.join(dir, 'webflow-embed.html'), embed);
 fs.writeFileSync(path.join(dir, 'webflow-iframe-embed.html'), iframe);
 fs.writeFileSync(path.join(dir, 'webflow-script-embed.html'), embed);
 fs.writeFileSync(path.join(dir, 'orbit-preview.html'), `<!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Meya Orbit</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Meya Animate</title>
 <style>html,body{margin:0;min-height:100%;background:transparent}body{min-height:100vh;display:grid;align-items:center}main{width:100%;max-width:1120px;margin:auto}</style></head>
 <body><main>${embed}</main></body></html>`);
 const template = fs.readFileSync(path.join(dir, 'editor-template.html'), 'utf8');
 const editorCSS = template.match(/<style>\n\/\* ORBIT_CSS \*\/\n([\s\S]*?)\n<\/style>/)?.[1];
 if (!editorCSS) throw new Error('Could not extract editor UI styles.');
 fs.writeFileSync(path.join(dir, 'editor-ui.css'), editorCSS + '\n');
-fs.writeFileSync(path.join(dir, 'orbit-editor.html'), template.replace('/* ORBIT_CSS */', css).replace('/* ORBIT_RUNTIME */', js).replace('/* ORBIT_BUNDLE */', `const bundledCSS = ${JSON.stringify(css)};\nconst bundledJS = ${JSON.stringify(js)};\nconst initial = ${escaped(config)};`));
+const editorHTML = template.replace('/* ORBIT_CSS */', css).replace('/* ORBIT_RUNTIME */', js).replace('/* MP4_MUXER */', mp4Muxer).replace('/* VIDEO_EXPORT */', videoExport).replace('/* ORBIT_BUNDLE */', `const bundledCSS = ${JSON.stringify(css)};\nconst bundledJS = ${JSON.stringify(js)};\nconst initial = ${escaped(config)};`);
+fs.writeFileSync(path.join(dir, 'orbit-editor.html'), editorHTML);
+fs.writeFileSync(path.join(dir, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Meya Animate</title><meta http-equiv="refresh" content="0; url=orbit-editor.html"></head><body><p>Opening <a href="orbit-editor.html">Meya Animate</a>…</p></body></html>\n`);
 console.log('Built preview, editor, and Webflow embeds (' + iframe.length + ' iframe characters, ' + embed.length + ' script characters).');

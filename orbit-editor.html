@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meya Orbit · Media editor</title>
+<title>Meya Animate · Visual editor</title>
 <script>
 // This source file is used by the builder. If opened directly, send visitors to the finished editor.
 if (location.pathname.endsWith('/editor-template.html')) location.replace('orbit-editor.html');
@@ -102,7 +102,7 @@ if (location.pathname.endsWith('/editor-template.html')) location.replace('orbit
 
 :root{--shell:#eceef1;--surface:#fff;--ink:#1d2430;--muted:#7b8491;--line:rgba(18,25,38,.08);--blue:#c8dcfe;--blue-ink:#1d4ed8;--soft:#f5f6f8;--radius-lg:24px;--radius-md:14px;--shadow:0 4px 24px -2px rgba(0,0,0,.04)}
 *{box-sizing:border-box}html{background:var(--shell)}body{margin:0;min-width:320px;min-height:100vh;font:13px/1.45 Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:var(--ink);background:var(--shell);-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 13px;color:var(--ink);transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}button:hover{background:#f8f9fb;border-color:rgba(18,25,38,.14)}button:active{transform:translateY(1px)}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #80aafc;outline-offset:2px}
-header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);backdrop-filter:blur(18px);position:sticky;top:0;z-index:5}header>div{display:flex;align-items:center;gap:10px}header strong{font-size:17px;font-weight:650;letter-spacing:-.65px}header strong:before{content:"";display:inline-block;width:9px;height:9px;margin-right:8px;border-radius:50%;background:#222;box-shadow:0 0 0 4px #edf0f4;vertical-align:1px}header span{color:#98a0ab;font-size:12px}header nav{display:flex;gap:8px;align-items:center}.primary{background:var(--blue);color:var(--blue-ink);border-color:transparent;font-weight:600;box-shadow:0 2px 8px rgba(58,108,208,.12)}.primary:hover{background:#b9d2fb;border-color:transparent}
+header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);backdrop-filter:blur(18px);position:sticky;top:0;z-index:5}header>div{display:flex;align-items:center;gap:10px}.brand-mark{width:30px;height:30px;object-fit:contain;border-radius:8px;background:#fff}.brand-lockup{gap:9px}.brand-lockup strong{font-size:17px;font-weight:650;letter-spacing:-.65px}.brand-lockup span{color:#98a0ab;font-size:12px}.header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.header-actions button{white-space:nowrap}.primary{background:var(--blue);color:var(--blue-ink);border-color:transparent;font-weight:600;box-shadow:0 2px 8px rgba(58,108,208,.12)}.primary:hover{background:#b9d2fb;border-color:transparent}.preview-button{background:#202938;color:#fff;border-color:#202938}.preview-button:hover{background:#111927}
 .layout{display:grid;grid-template-columns:312px minmax(0,1fr) 286px;gap:20px;min-height:calc(100vh - 72px);padding:18px 20px 24px 18px}aside{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px 18px;max-height:calc(100vh - 114px);overflow:auto;box-shadow:var(--shadow)}h1,h2,p{margin:0}h1{font-size:15px;font-weight:650;letter-spacing:-.25px;margin-bottom:7px}h2{display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;font-weight:600;margin:25px 0 12px;padding-top:17px;border-top:1px solid var(--line)}h2:after{content:"⌄";font-size:14px;line-height:1;color:#b3bac4;letter-spacing:0}p{color:var(--muted);font-size:12px;line-height:1.55}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.actions button{font-size:11px;padding:8px 10px;background:var(--soft);border-color:transparent}.actions button:first-child{background:#202938;color:#fff;border-color:#202938}.actions button:hover{background:#e8ebf0}.actions button:first-child:hover{background:#111927}label{display:block;color:#697382;font-size:12px}.field{margin-bottom:14px}.field>label:not(:has(input[type=checkbox])){display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}.field output{min-width:52px;text-align:right;color:#202938;font-variant-numeric:tabular-nums;font-weight:600}.field:has(#intro){display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 11px;background:var(--soft);border:1px solid var(--line);border-radius:12px}.field:has(#intro)>label{display:flex;align-items:center;gap:7px;color:#4b5563}.field:has(#intro) button{padding:6px 9px;font-size:11px;white-space:nowrap;background:#fff}
 .segmented,.inspector-tabs{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;margin:22px 0 4px;background:#eef0f3;border-radius:12px;color:#98a0ac;text-align:center;font-size:12px}.segmented span,.inspector-tabs span{padding:8px 6px;border-radius:9px}.segmented .active,.inspector-tabs .active{background:#fff;color:#273244;box-shadow:0 1px 3px rgba(20,28,40,.08);font-weight:600}.inspector-tabs{margin:0 0 20px}.inspector-right{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px 17px;max-height:calc(100vh - 114px);overflow:auto;box-shadow:var(--shadow)}.property-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:12px;color:#7b8491}.property-row strong{font-weight:600;color:#293444;text-align:right}
 input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 9px;background:#fafbfc;color:#283241;min-height:34px}input[type=text]::placeholder,input[type=url]::placeholder{color:#a0a8b4}select{appearance:none;background-color:#fafbfc;background-image:linear-gradient(45deg,transparent 50%,#9aa3b0 50%),linear-gradient(135deg,#9aa3b0 50%,transparent 50%);background-position:calc(100% - 13px) 14px,calc(100% - 9px) 14px;background-size:4px 4px,4px 4px;background-repeat:no-repeat;padding-right:25px}input[type=checkbox]{accent-color:#4e7fe8;width:15px;height:15px;margin:0}input[type=range]{width:100%;height:16px;margin:0;appearance:none;background:transparent;accent-color:#202938}input[type=range]::-webkit-slider-runnable-track{height:3px;border-radius:999px;background:#e2e4e9}input[type=range]::-webkit-slider-thumb{appearance:none;width:11px;height:11px;margin-top:-4px;border:0;border-radius:50%;background:#202938;box-shadow:0 0 0 3px #fff}input[type=range]::-moz-range-track{height:3px;border-radius:999px;background:#e2e4e9}input[type=range]::-moz-range-thumb{width:11px;height:11px;border:0;border-radius:50%;background:#202938}
@@ -131,12 +131,13 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
 .stage .meya-orbit__card{transition:none}
 .inspector-right{display:block}
 .ratio-control{margin:14px 0 4px}.ratio-control>span{display:block;margin-bottom:8px;color:#7b8491;font-size:12px}.ratio-presets{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;padding:3px;background:#eef0f3;border-radius:12px}.ratio-preset{min-width:0;height:38px;padding:4px 2px;border:0;border-radius:9px;background:transparent;color:#7b8491;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}.ratio-preset:hover{border:0;background:rgba(255,255,255,.55)}.ratio-preset[aria-pressed=true]{background:#fff;color:#273244;box-shadow:0 1px 4px rgba(20,28,40,.1);font-weight:600}.ratio-icon{display:block;width:13px;height:10px;border:1.5px solid currentColor;border-radius:2px}.ratio-preset[data-ratio="1:1"] .ratio-icon{width:10px}.ratio-preset[data-ratio="3:4"] .ratio-icon{width:8px;height:11px}.ratio-preset[data-ratio="16:9"] .ratio-icon{width:15px;height:8px}.ratio-preset[data-ratio="9:16"] .ratio-icon{width:7px;height:12px}.ratio-preset[data-ratio="mixed"] .ratio-icon{border-style:dashed;transform:rotate(-7deg)}
+.template-control{margin:14px 0}.template-control>span,.canvas-size>span{display:block;margin-bottom:8px;color:#7b8491;font-size:12px}.template-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:3px;background:#eef0f3;border-radius:12px}.template-preset{padding:9px 5px;border:0;border-radius:9px;background:transparent;color:#7b8491;font-size:11px}.template-preset[aria-pressed=true]{background:#fff;color:#273244;box-shadow:0 1px 4px rgba(20,28,40,.1);font-weight:600}.canvas-size{margin:8px 0 15px;padding:11px;background:#f7f8fa;border:1px solid var(--line);border-radius:14px}.canvas-size-row{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:7px;align-items:center}.canvas-dimension{display:flex;align-items:center;gap:5px}.canvas-dimension b{font-size:11px;color:#273244}.canvas-dimension input{min-width:0;margin:0;padding:7px 5px;text-align:center;font-variant-numeric:tabular-nums}.canvas-size select{min-width:0;margin:0;font-size:11px}.canvas-size-note{display:block;margin-top:7px;color:#9aa3af;font-size:10px}.extra-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.extra-fields .field:last-child{grid-column:1/-1}.field input[type=number]{font-variant-numeric:tabular-nums}.switch-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;background:var(--soft);border:1px solid var(--line);border-radius:12px}.switch-row label{display:flex;align-items:center;gap:7px}.fullscreen-preview{position:fixed;inset:0;z-index:20;width:100%;max-width:none;height:100%;max-height:none;padding:24px;border:0;border-radius:0;background:#08090c;color:#fff}.fullscreen-preview::backdrop{background:#08090c}.fullscreen-preview__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;color:#cbd2dd}.fullscreen-preview__top strong{font-size:14px}.fullscreen-preview__top button{background:#1d2430;color:#fff;border-color:#3b4555}.fullscreen-preview__stage{height:calc(100% - 46px);display:grid;place-items:center}.fullscreen-preview__stage .meya-orbit{width:min(100%,1400px);height:min(100%,900px);border-radius:20px}.export-dialog{max-width:440px}.export-dialog progress{width:100%;height:8px;margin:14px 0}.export-dialog .actions{justify-content:flex-end}
 @media(max-width:1100px) and (min-width:851px){.layout{grid-template-columns:280px minmax(0,1fr)}.inspector-right{grid-column:1/-1;max-height:none;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}.inspector-heading{grid-column:1/-1}.inspector-right .inspector-section{margin-top:0}}
 @media(max-width:520px){header{height:auto;min-height:64px;flex-wrap:wrap;gap:12px;padding:14px}header nav{width:100%;display:flex;flex-wrap:wrap}header nav button{flex:1;font-size:10px;padding:9px 6px;white-space:nowrap}.preview-label>span{font-size:10px}.layout{padding:10px}.stage-wrap{width:100%}}
 </style>
 </head>
 <body>
-<header><div class="brand-lockup"><strong>Meya Orbit</strong><span>Media editor</span></div><nav class="header-actions"><button id="view-code">View code</button><button id="download">Download embed</button><button class="primary" id="copy">Copy Webflow embed</button></nav></header>
+<header><div class="brand-lockup"><img class="brand-mark" src="assets/meya-logo.png" alt=""><div><strong>Meya Animate</strong><span>Visual editor</span></div></div><nav class="header-actions"><button class="preview-button" id="fullscreen-preview">Preview</button><button id="export-json">Export JSON</button><button id="export-mp4">Export MP4</button><button id="view-code">View code</button><button id="download">Webflow embed</button><button class="primary" id="copy">Copy Webflow embed</button></nav></header>
 <div class="layout">
 <aside class="inspector-panel">
   <h1>Your images, in motion.</h1><p>This editor stays on your computer. Only the orbit visual goes into Webflow.</p>
@@ -168,13 +169,25 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
     <button class="ratio-preset" type="button" data-ratio="16:9" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>16:9</button>
     <button class="ratio-preset" type="button" data-ratio="9:16" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>9:16</button>
   </div></div>
+  <div class="template-control"><span>Animation template</span><div class="template-presets" id="template-presets" role="group" aria-label="Animation template">
+    <button class="template-preset" type="button" data-template="orbit" aria-pressed="true">Orbit</button>
+    <button class="template-preset" type="button" data-template="carousel" aria-pressed="false">Carousel</button>
+    <button class="template-preset" type="button" data-template="wave" aria-pressed="false">Wave</button>
+  </div></div>
+  <div class="canvas-size"><span>Canvas size</span><div class="canvas-size-row">
+    <label class="canvas-dimension"><b>W</b><input id="canvas-width" type="number" min="320" max="1920" step="2" value="1200" aria-label="Canvas width"></label>
+    <label class="canvas-dimension"><b>H</b><input id="canvas-height" type="number" min="240" max="1920" step="2" value="800" aria-label="Canvas height"></label>
+    <select id="canvas-preset" aria-label="Canvas preset"><option value="custom">Custom</option><option value="hd">HD 16:9</option><option value="square">Square 1:1</option><option value="landscape43">4:3</option><option value="portrait">Portrait 9:16</option></select>
+  </div><small class="canvas-size-note">The editor preview stays responsive. Export uses these exact pixels.</small></div>
   </details>
   <details class="inspector-section" open><summary><h2 class="panel-title">Motion & layout</h2></summary>
   <div class="field"><label for="height">Height <output id="height-value">420 px</output></label><input id="height" type="range" min="240" max="650" step="10" value="420"></div>
   <div class="field"><label for="count">Cards <output id="count-value">22</output></label><input id="count" type="range" min="8" max="40" value="22"></div>
   <div class="field"><label for="speed">Rotation speed <output id="speed-value">0.10</output></label><input id="speed" type="range" min="0" max="0.3" step="0.01" value="0.10"></div>
   <div class="field"><label for="radius">Corner radius <output id="radius-value">3 px</output></label><input id="radius" type="range" min="0" max="24" value="3"></div>
-  <div class="field"><label><input id="intro" type="checkbox" checked> Animate cards on arrival</label><button id="replay">Replay opening</button></div>
+  <div class="extra-fields"><div class="field"><label for="card-size">Card size <output id="card-size-value">100%</output></label><input id="card-size" type="range" min="55" max="180" value="100"></div><div class="field"><label for="spread">Spread <output id="spread-value">100%</output></label><input id="spread" type="range" min="35" max="180" value="100"></div><div class="field"><label for="depth">Depth <output id="depth-value">100%</output></label><input id="depth" type="range" min="0" max="180" value="100"></div><div class="field"><label for="tilt">Tilt <output id="tilt-value">0°</output></label><input id="tilt" type="range" min="-30" max="30" value="0"></div><div class="field"><label for="rows">Rows <output id="rows-value">3</output></label><input id="rows" type="range" min="2" max="6" value="3"></div><div class="field"><label for="gap">Gap <output id="gap-value">12%</output></label><input id="gap" type="range" min="0" max="30" value="12"></div></div>
+  <div class="switch-row"><label><input id="intro" type="checkbox" checked> Animate cards on arrival</label><button id="replay">Replay opening</button></div>
+  <div class="switch-row"><label><input id="reverse" type="checkbox"> Reverse direction</label></div>
   </details>
   <details class="inspector-section" open><summary><h2 class="panel-title">Interaction</h2></summary>
   <div class="property-row"><span>Card click</span><strong>Set per item</strong></div>
@@ -183,8 +196,56 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
 </aside>
 </div>
 <dialog id="code-dialog"><h1>Your Webflow embed</h1><p>Replace your old Code Embed with all the code below. Enable custom code in Webflow Preview to test it. This version lets the popup cover the full page; the script notice in Designer is normal.</p><textarea id="code" aria-label="Webflow embed code" readonly></textarea><div class="actions"><button id="select-code">Select all</button><button id="close-dialog">Done</button></div></dialog>
+<dialog id="preview-dialog" class="fullscreen-preview"><div class="fullscreen-preview__top"><strong>Meya Animate · Preview</strong><button id="close-preview">Close preview</button></div><div class="fullscreen-preview__stage"><div id="fullscreen-orbit" class="meya-orbit"></div></div></dialog>
+<dialog id="export-dialog" class="export-dialog"><h1>Exporting MP4</h1><p id="export-message">Preparing your animation…</p><progress id="export-progress" value="0" max="1"></progress><div class="actions"><button id="cancel-export">Cancel</button></div></dialog>
 <script>
 /* Meya Orbit — scoped, reusable HTML/CSS/JS. Vimeo SDK loads only for Vimeo cards. */
+/* The scene sampler is shared by the live preview and the MP4 exporter. */
+window.MeyaScene = window.MeyaScene || (() => {
+  const clampScene = (n, a, b) => Math.min(b, Math.max(a, n));
+  const ratioScene = value => ({ '4:3': 4 / 3, '1:1': 1, '3:4': 3 / 4, '16:9': 16 / 9, '9:16': 9 / 16 })[value] || 4 / 3;
+  function cardSize(config, width, height, item) {
+    const ratio = ratioScene(item?.cardRatio);
+    const base = Math.min(width * 0.18, 180) * clampScene(Number(config.cardSize ?? 100) / 100, 0.55, 1.8);
+    return { width: base * Math.min(1, ratio), height: base * Math.min(1, ratio) / ratio };
+  }
+  function sample(config = {}, width = 1200, height = 800, time = 0) {
+    const media = (config.media || []).filter(item => item?.src && ['image', 'video', 'vimeo'].includes(item.type));
+    const count = media.length ? Math.max(media.length, clampScene(Number(config.count ?? 22), 1, 48)) : 0;
+    const template = config.template || 'orbit';
+    const speed = clampScene(Number(config.speed ?? 0.1), 0, 0.5) * (config.reverse ? -1 : 1);
+    const spread = clampScene(Number(config.spread ?? 100) / 100, 0.35, 2.2);
+    const depthAmount = clampScene(Number(config.depth ?? 100) / 100, 0, 1.8);
+    const tilt = Number(config.tilt ?? 0) * Math.PI / 180;
+    const gap = clampScene(Number(config.gap ?? 12) / 100, 0, 0.5);
+    const output = [];
+    for (let i = 0; i < count; i++) {
+      const item = media[i % media.length]; const size = cardSize(config, width, height, item);
+      let nx = 0, ny = 0, depth = 0, rotation = 0;
+      if (template === 'carousel') {
+        const u = count === 1 ? 0 : i / (count - 1) * 2 - 1;
+        nx = u * (0.82 + gap * 0.42) * spread; depth = (1 - Math.abs(u)) * depthAmount; ny = Math.sin(i * 1.37 + time * speed * 1.5) * (0.08 + gap * 0.12);
+        rotation = u * -0.18 + tilt;
+      } else if (template === 'wave') {
+        const rows = clampScene(Number(config.rows ?? 3), 2, 6); const cols = Math.ceil(count / rows);
+        const col = i % cols; const row = Math.floor(i / cols); const u = cols <= 1 ? 0 : col / (cols - 1) * 2 - 1;
+        nx = u * (0.78 + gap * 0.34) * spread; ny = ((row + 0.5) / rows - 0.5) * (1.45 + gap * 0.55) + Math.sin(u * 3 + time * speed * 2) * (0.08 + gap * 0.1);
+        depth = (Math.sin(u * Math.PI + time * speed * 1.4) + 1) * 0.5 * depthAmount; rotation = Math.sin(u * 2 + row) * 0.08 + tilt;
+      } else {
+        const yaw = time * speed * 1.6; const pitch = tilt - 0.12; const y = 1 - 2 * (i + 0.5) / Math.max(1, count);
+        const r = Math.sqrt(Math.max(0, 1 - y * y)); const angle = i * Math.PI * (3 - Math.sqrt(5)) + yaw;
+        const x0 = Math.cos(angle) * r, z0 = Math.sin(angle) * r; const cp = Math.cos(pitch), sp = Math.sin(pitch);
+        nx = x0 * 0.87 * spread; ny = (y * cp - z0 * sp) * 0.9 * spread; depth = (y * sp + z0 * cp) * depthAmount; rotation = tilt + Math.sin(angle) * 0.035;
+      }
+      const perspective = 1 / (1 - depth * 0.17); const scale = (0.76 + (depth + 1) * 0.15) * perspective;
+      const reveal = config.intro === false ? 1 : clampScene((time - i / Math.max(1, count) * 0.35) / 1.65, 0, 1);
+      const ease = 1 - Math.pow(1 - reveal, 3); const outward = 1 + (1 - ease) * 1.8;
+      output.push({ item, index: i, x: width / 2 + nx * width * 0.38 * perspective * outward, y: height / 2 + ny * height * 0.39 * perspective * outward, width: size.width * scale, height: size.height * scale, rotation, opacity: (0.3 + Math.pow((depth + 1) / 2, 0.8) * 0.7) * Math.min(1, reveal * 5), blur: Math.max(0, -depth) * 0.65, depth });
+    }
+    return { cards: output, width, height };
+  }
+  return { sample, ratio: ratioScene };
+})();
 (() => {
   'use strict';
   if (window.MeyaOrbit) { window.MeyaOrbit.scan(); return; }
@@ -234,6 +295,7 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
     const density = clamp(Number(config.count ?? 22), 1, 48);
     root.style.setProperty('--orbit-height', clamp(Number(config.height ?? 420), 200, 900) + 'px');
     root.style.setProperty('--orbit-radius', clamp(Number(config.radius ?? 3), 0, 50) + 'px');
+    root.style.setProperty('--orbit-canvas-ratio', (Number(config.canvasWidth || 1200) / Math.max(1, Number(config.canvasHeight || 800))).toFixed(5));
     root.classList.add('meya-orbit');
     root.setAttribute('role', 'group');
     root.setAttribute('aria-label', 'Orbiting project imagery');
@@ -369,6 +431,20 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
       }
     }
     function draw() {
+      if ((config.template || 'orbit') !== 'orbit') {
+        const layout = window.MeyaScene.sample(config, width, height, (performance.now() || 0) / 1000);
+        for (const card of cards) {
+          const position = layout.cards[card.index]; if (!position) continue;
+          card.depth = position.depth;
+          card.element.style.width = position.width + 'px';
+          card.element.style.aspectRatio = String(card.cardRatio);
+          card.element.style.transform = `translate(-50%, -50%) translate3d(${(position.x - width / 2).toFixed(2)}px, ${(position.y - height / 2).toFixed(2)}px, 0) rotate(${position.rotation}rad)`;
+          card.element.style.opacity = position.opacity.toFixed(3);
+          card.element.style.zIndex = String(Math.round((position.depth + 1) * 1000));
+          card.element.style.filter = `blur(${position.blur.toFixed(2)}px)`;
+        }
+        return;
+      }
       const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch + tilt), sp = Math.sin(pitch + tilt);
       for (const card of cards) {
         const progress = clamp((introTime - card.index / Math.max(1, count) * 0.35) / 1.65, 0, 1);
@@ -377,10 +453,10 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
         const z0 = card.z * cy - card.x * sy;
         const y = card.y * cp - z0 * sp;
         const z = card.y * sp + z0 * cp;
-        const perspective = 1 / (1 - z * 0.20);
+        const perspective = 1 / (1 - z * 0.20 * clamp(Number(config.depth ?? 100) / 100, 0, 1.8));
         const scale = (0.76 + (z + 1) * 0.16) * perspective;
         card.depth = z;
-        const spread = 1 + (1 - reveal) * 2.6;
+        const spread = (1 + (1 - reveal) * 2.6) * clamp(Number(config.spread ?? 100) / 100, 0.35, 2.2);
         card.element.style.transform = `translate(-50%, -50%) translate3d(${(x * radiusX * perspective * spread).toFixed(2)}px, ${(y * radiusY * perspective * spread).toFixed(2)}px, 0) scale(${(scale * (1 + (1 - reveal) * 0.6)).toFixed(4)})`;
         card.element.style.opacity = ((0.27 + Math.pow((z + 1) / 2, 0.8) * 0.73) * Math.min(1, progress * 5)).toFixed(3);
         card.element.style.zIndex = String(Math.round((z + 1) * 1000));
@@ -390,7 +466,7 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
     function resize() {
       width = root.clientWidth; height = root.clientHeight;
       const span = Math.min(width * 0.90, 680, height * 1.7);
-      cardWidth = Math.min(140, span * 0.215);
+      cardWidth = Math.min(140, span * 0.215) * clamp(Number(config.cardSize ?? 100) / 100, 0.55, 1.8);
       radiusX = Math.max(0, (span - cardWidth * 1.45) / 2.12);
       const maxCardHeight = Math.max(0, ...cards.map(card => cardWidth * Math.min(1, card.cardRatio) / card.cardRatio));
       radiusY = Math.max(0, (height * 0.91 - maxCardHeight * 1.45) / 2.12);
@@ -403,7 +479,7 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
       const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;
       lastTime = time;
       introTime = Math.min(2.2, introTime + dt);
-      if (!drag) yaw += dt * speed * (hover ? 0.3 : 1);
+      if (!drag) yaw += dt * speed * (hover ? 0.3 : 1) * (config.reverse ? -1 : 1);
       tilt += (pointerTilt - tilt) * (1 - Math.exp(-dt * 5));
       draw();
       if (time - mediaTimer > 300) { syncMedia(); mediaTimer = time; }
@@ -490,14 +566,2057 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
 
 </script>
 <script>
+"use strict";
+var Mp4Muxer = (() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+  var __accessCheck = (obj, member, msg) => {
+    if (!member.has(obj))
+      throw TypeError("Cannot " + msg);
+  };
+  var __privateGet = (obj, member, getter) => {
+    __accessCheck(obj, member, "read from private field");
+    return getter ? getter.call(obj) : member.get(obj);
+  };
+  var __privateAdd = (obj, member, value) => {
+    if (member.has(obj))
+      throw TypeError("Cannot add the same private member more than once");
+    member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+  };
+  var __privateSet = (obj, member, value, setter) => {
+    __accessCheck(obj, member, "write to private field");
+    setter ? setter.call(obj, value) : member.set(obj, value);
+    return value;
+  };
+  var __privateWrapper = (obj, member, setter, getter) => ({
+    set _(value) {
+      __privateSet(obj, member, value, setter);
+    },
+    get _() {
+      return __privateGet(obj, member, getter);
+    }
+  });
+  var __privateMethod = (obj, member, method) => {
+    __accessCheck(obj, member, "access private method");
+    return method;
+  };
+
+  // src/index.ts
+  var src_exports = {};
+  __export(src_exports, {
+    ArrayBufferTarget: () => ArrayBufferTarget,
+    FileSystemWritableFileStreamTarget: () => FileSystemWritableFileStreamTarget,
+    Muxer: () => Muxer,
+    StreamTarget: () => StreamTarget
+  });
+
+  // src/misc.ts
+  var bytes = new Uint8Array(8);
+  var view = new DataView(bytes.buffer);
+  var u8 = (value) => {
+    return [(value % 256 + 256) % 256];
+  };
+  var u16 = (value) => {
+    view.setUint16(0, value, false);
+    return [bytes[0], bytes[1]];
+  };
+  var i16 = (value) => {
+    view.setInt16(0, value, false);
+    return [bytes[0], bytes[1]];
+  };
+  var u24 = (value) => {
+    view.setUint32(0, value, false);
+    return [bytes[1], bytes[2], bytes[3]];
+  };
+  var u32 = (value) => {
+    view.setUint32(0, value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3]];
+  };
+  var i32 = (value) => {
+    view.setInt32(0, value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3]];
+  };
+  var u64 = (value) => {
+    view.setUint32(0, Math.floor(value / 2 ** 32), false);
+    view.setUint32(4, value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5], bytes[6], bytes[7]];
+  };
+  var fixed_8_8 = (value) => {
+    view.setInt16(0, 2 ** 8 * value, false);
+    return [bytes[0], bytes[1]];
+  };
+  var fixed_16_16 = (value) => {
+    view.setInt32(0, 2 ** 16 * value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3]];
+  };
+  var fixed_2_30 = (value) => {
+    view.setInt32(0, 2 ** 30 * value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3]];
+  };
+  var ascii = (text, nullTerminated = false) => {
+    let bytes2 = Array(text.length).fill(null).map((_, i) => text.charCodeAt(i));
+    if (nullTerminated)
+      bytes2.push(0);
+    return bytes2;
+  };
+  var last = (arr) => {
+    return arr && arr[arr.length - 1];
+  };
+  var lastPresentedSample = (samples) => {
+    let result = void 0;
+    for (let sample of samples) {
+      if (!result || sample.presentationTimestamp > result.presentationTimestamp) {
+        result = sample;
+      }
+    }
+    return result;
+  };
+  var intoTimescale = (timeInSeconds, timescale, round = true) => {
+    let value = timeInSeconds * timescale;
+    return round ? Math.round(value) : value;
+  };
+  var rotationMatrix = (rotationInDegrees) => {
+    let theta = rotationInDegrees * (Math.PI / 180);
+    let cosTheta = Math.cos(theta);
+    let sinTheta = Math.sin(theta);
+    return [
+      cosTheta,
+      sinTheta,
+      0,
+      -sinTheta,
+      cosTheta,
+      0,
+      0,
+      0,
+      1
+    ];
+  };
+  var IDENTITY_MATRIX = rotationMatrix(0);
+  var matrixToBytes = (matrix) => {
+    return [
+      fixed_16_16(matrix[0]),
+      fixed_16_16(matrix[1]),
+      fixed_2_30(matrix[2]),
+      fixed_16_16(matrix[3]),
+      fixed_16_16(matrix[4]),
+      fixed_2_30(matrix[5]),
+      fixed_16_16(matrix[6]),
+      fixed_16_16(matrix[7]),
+      fixed_2_30(matrix[8])
+    ];
+  };
+  var deepClone = (x) => {
+    if (!x)
+      return x;
+    if (typeof x !== "object")
+      return x;
+    if (Array.isArray(x))
+      return x.map(deepClone);
+    return Object.fromEntries(Object.entries(x).map(([key, value]) => [key, deepClone(value)]));
+  };
+  var isU32 = (value) => {
+    return value >= 0 && value < 2 ** 32;
+  };
+
+  // src/box.ts
+  var box = (type, contents, children) => ({
+    type,
+    contents: contents && new Uint8Array(contents.flat(10)),
+    children
+  });
+  var fullBox = (type, version, flags, contents, children) => box(
+    type,
+    [u8(version), u24(flags), contents ?? []],
+    children
+  );
+  var ftyp = (details) => {
+    let minorVersion = 512;
+    if (details.fragmented)
+      return box("ftyp", [
+        ascii("iso5"),
+        // Major brand
+        u32(minorVersion),
+        // Minor version
+        // Compatible brands
+        ascii("iso5"),
+        ascii("iso6"),
+        ascii("mp41")
+      ]);
+    return box("ftyp", [
+      ascii("isom"),
+      // Major brand
+      u32(minorVersion),
+      // Minor version
+      // Compatible brands
+      ascii("isom"),
+      details.holdsAvc ? ascii("avc1") : [],
+      ascii("mp41")
+    ]);
+  };
+  var mdat = (reserveLargeSize) => ({ type: "mdat", largeSize: reserveLargeSize });
+  var free = (size) => ({ type: "free", size });
+  var moov = (tracks, creationTime, fragmented = false) => box("moov", null, [
+    mvhd(creationTime, tracks),
+    ...tracks.map((x) => trak(x, creationTime)),
+    fragmented ? mvex(tracks) : null
+  ]);
+  var mvhd = (creationTime, tracks) => {
+    let duration = intoTimescale(Math.max(
+      0,
+      ...tracks.filter((x) => x.samples.length > 0).map((x) => {
+        const lastSample = lastPresentedSample(x.samples);
+        return lastSample.presentationTimestamp + lastSample.duration;
+      })
+    ), GLOBAL_TIMESCALE);
+    let nextTrackId = Math.max(...tracks.map((x) => x.id)) + 1;
+    let needsU64 = !isU32(creationTime) || !isU32(duration);
+    let u32OrU64 = needsU64 ? u64 : u32;
+    return fullBox("mvhd", +needsU64, 0, [
+      u32OrU64(creationTime),
+      // Creation time
+      u32OrU64(creationTime),
+      // Modification time
+      u32(GLOBAL_TIMESCALE),
+      // Timescale
+      u32OrU64(duration),
+      // Duration
+      fixed_16_16(1),
+      // Preferred rate
+      fixed_8_8(1),
+      // Preferred volume
+      Array(10).fill(0),
+      // Reserved
+      matrixToBytes(IDENTITY_MATRIX),
+      // Matrix
+      Array(24).fill(0),
+      // Pre-defined
+      u32(nextTrackId)
+      // Next track ID
+    ]);
+  };
+  var trak = (track, creationTime) => box("trak", null, [
+    tkhd(track, creationTime),
+    mdia(track, creationTime)
+  ]);
+  var tkhd = (track, creationTime) => {
+    let lastSample = lastPresentedSample(track.samples);
+    let durationInGlobalTimescale = intoTimescale(
+      lastSample ? lastSample.presentationTimestamp + lastSample.duration : 0,
+      GLOBAL_TIMESCALE
+    );
+    let needsU64 = !isU32(creationTime) || !isU32(durationInGlobalTimescale);
+    let u32OrU64 = needsU64 ? u64 : u32;
+    let matrix;
+    if (track.info.type === "video") {
+      matrix = typeof track.info.rotation === "number" ? rotationMatrix(track.info.rotation) : track.info.rotation;
+    } else {
+      matrix = IDENTITY_MATRIX;
+    }
+    return fullBox("tkhd", +needsU64, 3, [
+      u32OrU64(creationTime),
+      // Creation time
+      u32OrU64(creationTime),
+      // Modification time
+      u32(track.id),
+      // Track ID
+      u32(0),
+      // Reserved
+      u32OrU64(durationInGlobalTimescale),
+      // Duration
+      Array(8).fill(0),
+      // Reserved
+      u16(0),
+      // Layer
+      u16(0),
+      // Alternate group
+      fixed_8_8(track.info.type === "audio" ? 1 : 0),
+      // Volume
+      u16(0),
+      // Reserved
+      matrixToBytes(matrix),
+      // Matrix
+      fixed_16_16(track.info.type === "video" ? track.info.width : 0),
+      // Track width
+      fixed_16_16(track.info.type === "video" ? track.info.height : 0)
+      // Track height
+    ]);
+  };
+  var mdia = (track, creationTime) => box("mdia", null, [
+    mdhd(track, creationTime),
+    hdlr(track.info.type === "video" ? "vide" : "soun"),
+    minf(track)
+  ]);
+  var mdhd = (track, creationTime) => {
+    let lastSample = lastPresentedSample(track.samples);
+    let localDuration = intoTimescale(
+      lastSample ? lastSample.presentationTimestamp + lastSample.duration : 0,
+      track.timescale
+    );
+    let needsU64 = !isU32(creationTime) || !isU32(localDuration);
+    let u32OrU64 = needsU64 ? u64 : u32;
+    return fullBox("mdhd", +needsU64, 0, [
+      u32OrU64(creationTime),
+      // Creation time
+      u32OrU64(creationTime),
+      // Modification time
+      u32(track.timescale),
+      // Timescale
+      u32OrU64(localDuration),
+      // Duration
+      u16(21956),
+      // Language ("und", undetermined)
+      u16(0)
+      // Quality
+    ]);
+  };
+  var hdlr = (componentSubtype) => fullBox("hdlr", 0, 0, [
+    ascii("mhlr"),
+    // Component type
+    ascii(componentSubtype),
+    // Component subtype
+    u32(0),
+    // Component manufacturer
+    u32(0),
+    // Component flags
+    u32(0),
+    // Component flags mask
+    ascii("mp4-muxer-hdlr", true)
+    // Component name
+  ]);
+  var minf = (track) => box("minf", null, [
+    track.info.type === "video" ? vmhd() : smhd(),
+    dinf(),
+    stbl(track)
+  ]);
+  var vmhd = () => fullBox("vmhd", 0, 1, [
+    u16(0),
+    // Graphics mode
+    u16(0),
+    // Opcolor R
+    u16(0),
+    // Opcolor G
+    u16(0)
+    // Opcolor B
+  ]);
+  var smhd = () => fullBox("smhd", 0, 0, [
+    u16(0),
+    // Balance
+    u16(0)
+    // Reserved
+  ]);
+  var dinf = () => box("dinf", null, [
+    dref()
+  ]);
+  var dref = () => fullBox("dref", 0, 0, [
+    u32(1)
+    // Entry count
+  ], [
+    url()
+  ]);
+  var url = () => fullBox("url ", 0, 1);
+  var stbl = (track) => {
+    const needsCtts = track.compositionTimeOffsetTable.length > 1 || track.compositionTimeOffsetTable.some((x) => x.sampleCompositionTimeOffset !== 0);
+    return box("stbl", null, [
+      stsd(track),
+      stts(track),
+      stss(track),
+      stsc(track),
+      stsz(track),
+      stco(track),
+      needsCtts ? ctts(track) : null
+    ]);
+  };
+  var stsd = (track) => fullBox("stsd", 0, 0, [
+    u32(1)
+    // Entry count
+  ], [
+    track.info.type === "video" ? videoSampleDescription(
+      VIDEO_CODEC_TO_BOX_NAME[track.info.codec],
+      track
+    ) : soundSampleDescription(
+      AUDIO_CODEC_TO_BOX_NAME[track.info.codec],
+      track
+    )
+  ]);
+  var videoSampleDescription = (compressionType, track) => box(compressionType, [
+    Array(6).fill(0),
+    // Reserved
+    u16(1),
+    // Data reference index
+    u16(0),
+    // Pre-defined
+    u16(0),
+    // Reserved
+    Array(12).fill(0),
+    // Pre-defined
+    u16(track.info.width),
+    // Width
+    u16(track.info.height),
+    // Height
+    u32(4718592),
+    // Horizontal resolution
+    u32(4718592),
+    // Vertical resolution
+    u32(0),
+    // Reserved
+    u16(1),
+    // Frame count
+    Array(32).fill(0),
+    // Compressor name
+    u16(24),
+    // Depth
+    i16(65535)
+    // Pre-defined
+  ], [
+    VIDEO_CODEC_TO_CONFIGURATION_BOX[track.info.codec](track),
+    track.info.decoderConfig.colorSpace ? colr(track) : null
+  ]);
+  var COLOR_PRIMARIES_MAP = {
+    "bt709": 1,
+    // ITU-R BT.709
+    "bt470bg": 5,
+    // ITU-R BT.470BG
+    "smpte170m": 6
+    // ITU-R BT.601 525 - SMPTE 170M
+  };
+  var TRANSFER_CHARACTERISTICS_MAP = {
+    "bt709": 1,
+    // ITU-R BT.709
+    "smpte170m": 6,
+    // SMPTE 170M
+    "iec61966-2-1": 13
+    // IEC 61966-2-1
+  };
+  var MATRIX_COEFFICIENTS_MAP = {
+    "rgb": 0,
+    // Identity
+    "bt709": 1,
+    // ITU-R BT.709
+    "bt470bg": 5,
+    // ITU-R BT.470BG
+    "smpte170m": 6
+    // SMPTE 170M
+  };
+  var colr = (track) => box("colr", [
+    ascii("nclx"),
+    // Colour type
+    u16(COLOR_PRIMARIES_MAP[track.info.decoderConfig.colorSpace.primaries]),
+    // Colour primaries
+    u16(TRANSFER_CHARACTERISTICS_MAP[track.info.decoderConfig.colorSpace.transfer]),
+    // Transfer characteristics
+    u16(MATRIX_COEFFICIENTS_MAP[track.info.decoderConfig.colorSpace.matrix]),
+    // Matrix coefficients
+    u8((track.info.decoderConfig.colorSpace.fullRange ? 1 : 0) << 7)
+    // Full range flag
+  ]);
+  var avcC = (track) => track.info.decoderConfig && box("avcC", [
+    // For AVC, description is an AVCDecoderConfigurationRecord, so nothing else to do here
+    ...new Uint8Array(track.info.decoderConfig.description)
+  ]);
+  var hvcC = (track) => track.info.decoderConfig && box("hvcC", [
+    // For HEVC, description is a HEVCDecoderConfigurationRecord, so nothing else to do here
+    ...new Uint8Array(track.info.decoderConfig.description)
+  ]);
+  var vpcC = (track) => {
+    if (!track.info.decoderConfig) {
+      return null;
+    }
+    let decoderConfig = track.info.decoderConfig;
+    if (!decoderConfig.colorSpace) {
+      throw new Error(`'colorSpace' is required in the decoder config for VP9.`);
+    }
+    let parts = decoderConfig.codec.split(".");
+    let profile = Number(parts[1]);
+    let level = Number(parts[2]);
+    let bitDepth = Number(parts[3]);
+    let chromaSubsampling = 0;
+    let thirdByte = (bitDepth << 4) + (chromaSubsampling << 1) + Number(decoderConfig.colorSpace.fullRange);
+    let colourPrimaries = 2;
+    let transferCharacteristics = 2;
+    let matrixCoefficients = 2;
+    return fullBox("vpcC", 1, 0, [
+      u8(profile),
+      // Profile
+      u8(level),
+      // Level
+      u8(thirdByte),
+      // Bit depth, chroma subsampling, full range
+      u8(colourPrimaries),
+      // Colour primaries
+      u8(transferCharacteristics),
+      // Transfer characteristics
+      u8(matrixCoefficients),
+      // Matrix coefficients
+      u16(0)
+      // Codec initialization data size
+    ]);
+  };
+  var av1C = () => {
+    let marker = 1;
+    let version = 1;
+    let firstByte = (marker << 7) + version;
+    return box("av1C", [
+      firstByte,
+      0,
+      0,
+      0
+    ]);
+  };
+  var soundSampleDescription = (compressionType, track) => box(compressionType, [
+    Array(6).fill(0),
+    // Reserved
+    u16(1),
+    // Data reference index
+    u16(0),
+    // Version
+    u16(0),
+    // Revision level
+    u32(0),
+    // Vendor
+    u16(track.info.numberOfChannels),
+    // Number of channels
+    u16(16),
+    // Sample size (bits)
+    u16(0),
+    // Compression ID
+    u16(0),
+    // Packet size
+    fixed_16_16(track.info.sampleRate)
+    // Sample rate
+  ], [
+    AUDIO_CODEC_TO_CONFIGURATION_BOX[track.info.codec](track)
+  ]);
+  var esds = (track) => {
+    let description = new Uint8Array(track.info.decoderConfig.description);
+    return fullBox("esds", 0, 0, [
+      // https://stackoverflow.com/a/54803118
+      u32(58753152),
+      // TAG(3) = Object Descriptor ([2])
+      u8(32 + description.byteLength),
+      // length of this OD (which includes the next 2 tags)
+      u16(1),
+      // ES_ID = 1
+      u8(0),
+      // flags etc = 0
+      u32(75530368),
+      // TAG(4) = ES Descriptor ([2]) embedded in above OD
+      u8(18 + description.byteLength),
+      // length of this ESD
+      u8(64),
+      // MPEG-4 Audio
+      u8(21),
+      // stream type(6bits)=5 audio, flags(2bits)=1
+      u24(0),
+      // 24bit buffer size
+      u32(130071),
+      // max bitrate
+      u32(130071),
+      // avg bitrate
+      u32(92307584),
+      // TAG(5) = ASC ([2],[3]) embedded in above OD
+      u8(description.byteLength),
+      // length
+      ...description,
+      u32(109084800),
+      // TAG(6)
+      u8(1),
+      // length
+      u8(2)
+      // data
+    ]);
+  };
+  var dOps = (track) => {
+    let preskip = 3840;
+    let gain = 0;
+    const description = track.info.decoderConfig?.description;
+    if (description) {
+      if (description.byteLength < 18) {
+        throw new TypeError("Invalid decoder description provided for Opus; must be at least 18 bytes long.");
+      }
+      const view2 = ArrayBuffer.isView(description) ? new DataView(description.buffer, description.byteOffset, description.byteLength) : new DataView(description);
+      preskip = view2.getUint16(10, true);
+      gain = view2.getInt16(14, true);
+    }
+    return box("dOps", [
+      u8(0),
+      // Version
+      u8(track.info.numberOfChannels),
+      // OutputChannelCount
+      u16(preskip),
+      u32(track.info.sampleRate),
+      // InputSampleRate
+      fixed_8_8(gain),
+      // OutputGain
+      u8(0)
+      // ChannelMappingFamily
+    ]);
+  };
+  var stts = (track) => {
+    return fullBox("stts", 0, 0, [
+      u32(track.timeToSampleTable.length),
+      // Number of entries
+      track.timeToSampleTable.map((x) => [
+        // Time-to-sample table
+        u32(x.sampleCount),
+        // Sample count
+        u32(x.sampleDelta)
+        // Sample duration
+      ])
+    ]);
+  };
+  var stss = (track) => {
+    if (track.samples.every((x) => x.type === "key"))
+      return null;
+    let keySamples = [...track.samples.entries()].filter(([, sample]) => sample.type === "key");
+    return fullBox("stss", 0, 0, [
+      u32(keySamples.length),
+      // Number of entries
+      keySamples.map(([index]) => u32(index + 1))
+      // Sync sample table
+    ]);
+  };
+  var stsc = (track) => {
+    return fullBox("stsc", 0, 0, [
+      u32(track.compactlyCodedChunkTable.length),
+      // Number of entries
+      track.compactlyCodedChunkTable.map((x) => [
+        // Sample-to-chunk table
+        u32(x.firstChunk),
+        // First chunk
+        u32(x.samplesPerChunk),
+        // Samples per chunk
+        u32(1)
+        // Sample description index
+      ])
+    ]);
+  };
+  var stsz = (track) => fullBox("stsz", 0, 0, [
+    u32(0),
+    // Sample size (0 means non-constant size)
+    u32(track.samples.length),
+    // Number of entries
+    track.samples.map((x) => u32(x.size))
+    // Sample size table
+  ]);
+  var stco = (track) => {
+    if (track.finalizedChunks.length > 0 && last(track.finalizedChunks).offset >= 2 ** 32) {
+      return fullBox("co64", 0, 0, [
+        u32(track.finalizedChunks.length),
+        // Number of entries
+        track.finalizedChunks.map((x) => u64(x.offset))
+        // Chunk offset table
+      ]);
+    }
+    return fullBox("stco", 0, 0, [
+      u32(track.finalizedChunks.length),
+      // Number of entries
+      track.finalizedChunks.map((x) => u32(x.offset))
+      // Chunk offset table
+    ]);
+  };
+  var ctts = (track) => {
+    return fullBox("ctts", 0, 0, [
+      u32(track.compositionTimeOffsetTable.length),
+      // Number of entries
+      track.compositionTimeOffsetTable.map((x) => [
+        // Time-to-sample table
+        u32(x.sampleCount),
+        // Sample count
+        u32(x.sampleCompositionTimeOffset)
+        // Sample offset
+      ])
+    ]);
+  };
+  var mvex = (tracks) => {
+    return box("mvex", null, tracks.map(trex));
+  };
+  var trex = (track) => {
+    return fullBox("trex", 0, 0, [
+      u32(track.id),
+      // Track ID
+      u32(1),
+      // Default sample description index
+      u32(0),
+      // Default sample duration
+      u32(0),
+      // Default sample size
+      u32(0)
+      // Default sample flags
+    ]);
+  };
+  var moof = (sequenceNumber, tracks) => {
+    return box("moof", null, [
+      mfhd(sequenceNumber),
+      ...tracks.map(traf)
+    ]);
+  };
+  var mfhd = (sequenceNumber) => {
+    return fullBox("mfhd", 0, 0, [
+      u32(sequenceNumber)
+      // Sequence number
+    ]);
+  };
+  var fragmentSampleFlags = (sample) => {
+    let byte1 = 0;
+    let byte2 = 0;
+    let byte3 = 0;
+    let byte4 = 0;
+    let sampleIsDifferenceSample = sample.type === "delta";
+    byte2 |= +sampleIsDifferenceSample;
+    if (sampleIsDifferenceSample) {
+      byte1 |= 1;
+    } else {
+      byte1 |= 2;
+    }
+    return byte1 << 24 | byte2 << 16 | byte3 << 8 | byte4;
+  };
+  var traf = (track) => {
+    return box("traf", null, [
+      tfhd(track),
+      tfdt(track),
+      trun(track)
+    ]);
+  };
+  var tfhd = (track) => {
+    let tfFlags = 0;
+    tfFlags |= 8;
+    tfFlags |= 16;
+    tfFlags |= 32;
+    tfFlags |= 131072;
+    let referenceSample = track.currentChunk.samples[1] ?? track.currentChunk.samples[0];
+    let referenceSampleInfo = {
+      duration: referenceSample.timescaleUnitsToNextSample,
+      size: referenceSample.size,
+      flags: fragmentSampleFlags(referenceSample)
+    };
+    return fullBox("tfhd", 0, tfFlags, [
+      u32(track.id),
+      // Track ID
+      u32(referenceSampleInfo.duration),
+      // Default sample duration
+      u32(referenceSampleInfo.size),
+      // Default sample size
+      u32(referenceSampleInfo.flags)
+      // Default sample flags
+    ]);
+  };
+  var tfdt = (track) => {
+    return fullBox("tfdt", 1, 0, [
+      u64(intoTimescale(track.currentChunk.startTimestamp, track.timescale))
+      // Base Media Decode Time
+    ]);
+  };
+  var trun = (track) => {
+    let allSampleDurations = track.currentChunk.samples.map((x) => x.timescaleUnitsToNextSample);
+    let allSampleSizes = track.currentChunk.samples.map((x) => x.size);
+    let allSampleFlags = track.currentChunk.samples.map(fragmentSampleFlags);
+    let allSampleCompositionTimeOffsets = track.currentChunk.samples.map((x) => intoTimescale(x.presentationTimestamp - x.decodeTimestamp, track.timescale));
+    let uniqueSampleDurations = new Set(allSampleDurations);
+    let uniqueSampleSizes = new Set(allSampleSizes);
+    let uniqueSampleFlags = new Set(allSampleFlags);
+    let uniqueSampleCompositionTimeOffsets = new Set(allSampleCompositionTimeOffsets);
+    let firstSampleFlagsPresent = uniqueSampleFlags.size === 2 && allSampleFlags[0] !== allSampleFlags[1];
+    let sampleDurationPresent = uniqueSampleDurations.size > 1;
+    let sampleSizePresent = uniqueSampleSizes.size > 1;
+    let sampleFlagsPresent = !firstSampleFlagsPresent && uniqueSampleFlags.size > 1;
+    let sampleCompositionTimeOffsetsPresent = uniqueSampleCompositionTimeOffsets.size > 1 || [...uniqueSampleCompositionTimeOffsets].some((x) => x !== 0);
+    let flags = 0;
+    flags |= 1;
+    flags |= 4 * +firstSampleFlagsPresent;
+    flags |= 256 * +sampleDurationPresent;
+    flags |= 512 * +sampleSizePresent;
+    flags |= 1024 * +sampleFlagsPresent;
+    flags |= 2048 * +sampleCompositionTimeOffsetsPresent;
+    return fullBox("trun", 1, flags, [
+      u32(track.currentChunk.samples.length),
+      // Sample count
+      u32(track.currentChunk.offset - track.currentChunk.moofOffset || 0),
+      // Data offset
+      firstSampleFlagsPresent ? u32(allSampleFlags[0]) : [],
+      track.currentChunk.samples.map((_, i) => [
+        sampleDurationPresent ? u32(allSampleDurations[i]) : [],
+        // Sample duration
+        sampleSizePresent ? u32(allSampleSizes[i]) : [],
+        // Sample size
+        sampleFlagsPresent ? u32(allSampleFlags[i]) : [],
+        // Sample flags
+        // Sample composition time offsets
+        sampleCompositionTimeOffsetsPresent ? i32(allSampleCompositionTimeOffsets[i]) : []
+      ])
+    ]);
+  };
+  var mfra = (tracks) => {
+    return box("mfra", null, [
+      ...tracks.map(tfra),
+      mfro()
+    ]);
+  };
+  var tfra = (track, trackIndex) => {
+    let version = 1;
+    return fullBox("tfra", version, 0, [
+      u32(track.id),
+      // Track ID
+      u32(63),
+      // This specifies that traf number, trun number and sample number are 32-bit ints
+      u32(track.finalizedChunks.length),
+      // Number of entries
+      track.finalizedChunks.map((chunk) => [
+        u64(intoTimescale(chunk.startTimestamp, track.timescale)),
+        // Time
+        u64(chunk.moofOffset),
+        // moof offset
+        u32(trackIndex + 1),
+        // traf number
+        u32(1),
+        // trun number
+        u32(1)
+        // Sample number
+      ])
+    ]);
+  };
+  var mfro = () => {
+    return fullBox("mfro", 0, 0, [
+      // This value needs to be overwritten manually from the outside, where the actual size of the enclosing mfra box
+      // is known
+      u32(0)
+      // Size
+    ]);
+  };
+  var VIDEO_CODEC_TO_BOX_NAME = {
+    "avc": "avc1",
+    "hevc": "hvc1",
+    "vp9": "vp09",
+    "av1": "av01"
+  };
+  var VIDEO_CODEC_TO_CONFIGURATION_BOX = {
+    "avc": avcC,
+    "hevc": hvcC,
+    "vp9": vpcC,
+    "av1": av1C
+  };
+  var AUDIO_CODEC_TO_BOX_NAME = {
+    "aac": "mp4a",
+    "opus": "Opus"
+  };
+  var AUDIO_CODEC_TO_CONFIGURATION_BOX = {
+    "aac": esds,
+    "opus": dOps
+  };
+
+  // src/target.ts
+  var isTarget = Symbol("isTarget");
+  var Target = class {
+  };
+  isTarget;
+  var ArrayBufferTarget = class extends Target {
+    constructor() {
+      super(...arguments);
+      this.buffer = null;
+    }
+  };
+  var StreamTarget = class extends Target {
+    constructor(options) {
+      super();
+      this.options = options;
+      if (typeof options !== "object") {
+        throw new TypeError("StreamTarget requires an options object to be passed to its constructor.");
+      }
+      if (options.onData) {
+        if (typeof options.onData !== "function") {
+          throw new TypeError("options.onData, when provided, must be a function.");
+        }
+        if (options.onData.length < 2) {
+          throw new TypeError(
+            "options.onData, when provided, must be a function that takes in at least two arguments (data and position). Ignoring the position argument, which specifies the byte offset at which the data is to be written, can lead to broken outputs."
+          );
+        }
+      }
+      if (options.chunked !== void 0 && typeof options.chunked !== "boolean") {
+        throw new TypeError("options.chunked, when provided, must be a boolean.");
+      }
+      if (options.chunkSize !== void 0 && (!Number.isInteger(options.chunkSize) || options.chunkSize < 1024)) {
+        throw new TypeError("options.chunkSize, when provided, must be an integer and not smaller than 1024.");
+      }
+    }
+  };
+  var FileSystemWritableFileStreamTarget = class extends Target {
+    constructor(stream, options) {
+      super();
+      this.stream = stream;
+      this.options = options;
+      if (!(stream instanceof FileSystemWritableFileStream)) {
+        throw new TypeError("FileSystemWritableFileStreamTarget requires a FileSystemWritableFileStream instance.");
+      }
+      if (options !== void 0 && typeof options !== "object") {
+        throw new TypeError("FileSystemWritableFileStreamTarget's options, when provided, must be an object.");
+      }
+      if (options) {
+        if (options.chunkSize !== void 0 && (!Number.isInteger(options.chunkSize) || options.chunkSize <= 0)) {
+          throw new TypeError("options.chunkSize, when provided, must be a positive integer");
+        }
+      }
+    }
+  };
+
+  // src/writer.ts
+  var _helper, _helperView;
+  var Writer = class {
+    constructor() {
+      this.pos = 0;
+      __privateAdd(this, _helper, new Uint8Array(8));
+      __privateAdd(this, _helperView, new DataView(__privateGet(this, _helper).buffer));
+      /**
+       * Stores the position from the start of the file to where boxes elements have been written. This is used to
+       * rewrite/edit elements that were already added before, and to measure sizes of things.
+       */
+      this.offsets = /* @__PURE__ */ new WeakMap();
+    }
+    /** Sets the current position for future writes to a new one. */
+    seek(newPos) {
+      this.pos = newPos;
+    }
+    writeU32(value) {
+      __privateGet(this, _helperView).setUint32(0, value, false);
+      this.write(__privateGet(this, _helper).subarray(0, 4));
+    }
+    writeU64(value) {
+      __privateGet(this, _helperView).setUint32(0, Math.floor(value / 2 ** 32), false);
+      __privateGet(this, _helperView).setUint32(4, value, false);
+      this.write(__privateGet(this, _helper).subarray(0, 8));
+    }
+    writeAscii(text) {
+      for (let i = 0; i < text.length; i++) {
+        __privateGet(this, _helperView).setUint8(i % 8, text.charCodeAt(i));
+        if (i % 8 === 7)
+          this.write(__privateGet(this, _helper));
+      }
+      if (text.length % 8 !== 0) {
+        this.write(__privateGet(this, _helper).subarray(0, text.length % 8));
+      }
+    }
+    writeBox(box2) {
+      this.offsets.set(box2, this.pos);
+      if (box2.contents && !box2.children) {
+        this.writeBoxHeader(box2, box2.size ?? box2.contents.byteLength + 8);
+        this.write(box2.contents);
+      } else {
+        let startPos = this.pos;
+        this.writeBoxHeader(box2, 0);
+        if (box2.contents)
+          this.write(box2.contents);
+        if (box2.children) {
+          for (let child of box2.children)
+            if (child)
+              this.writeBox(child);
+        }
+        let endPos = this.pos;
+        let size = box2.size ?? endPos - startPos;
+        this.seek(startPos);
+        this.writeBoxHeader(box2, size);
+        this.seek(endPos);
+      }
+    }
+    writeBoxHeader(box2, size) {
+      this.writeU32(box2.largeSize ? 1 : size);
+      this.writeAscii(box2.type);
+      if (box2.largeSize)
+        this.writeU64(size);
+    }
+    measureBoxHeader(box2) {
+      return 8 + (box2.largeSize ? 8 : 0);
+    }
+    patchBox(box2) {
+      let endPos = this.pos;
+      this.seek(this.offsets.get(box2));
+      this.writeBox(box2);
+      this.seek(endPos);
+    }
+    measureBox(box2) {
+      if (box2.contents && !box2.children) {
+        let headerSize = this.measureBoxHeader(box2);
+        return headerSize + box2.contents.byteLength;
+      } else {
+        let result = this.measureBoxHeader(box2);
+        if (box2.contents)
+          result += box2.contents.byteLength;
+        if (box2.children) {
+          for (let child of box2.children)
+            if (child)
+              result += this.measureBox(child);
+        }
+        return result;
+      }
+    }
+  };
+  _helper = new WeakMap();
+  _helperView = new WeakMap();
+  var _target, _buffer, _bytes, _maxPos, _ensureSize, ensureSize_fn;
+  var ArrayBufferTargetWriter = class extends Writer {
+    constructor(target) {
+      super();
+      __privateAdd(this, _ensureSize);
+      __privateAdd(this, _target, void 0);
+      __privateAdd(this, _buffer, new ArrayBuffer(2 ** 16));
+      __privateAdd(this, _bytes, new Uint8Array(__privateGet(this, _buffer)));
+      __privateAdd(this, _maxPos, 0);
+      __privateSet(this, _target, target);
+    }
+    write(data) {
+      __privateMethod(this, _ensureSize, ensureSize_fn).call(this, this.pos + data.byteLength);
+      __privateGet(this, _bytes).set(data, this.pos);
+      this.pos += data.byteLength;
+      __privateSet(this, _maxPos, Math.max(__privateGet(this, _maxPos), this.pos));
+    }
+    finalize() {
+      __privateMethod(this, _ensureSize, ensureSize_fn).call(this, this.pos);
+      __privateGet(this, _target).buffer = __privateGet(this, _buffer).slice(0, Math.max(__privateGet(this, _maxPos), this.pos));
+    }
+  };
+  _target = new WeakMap();
+  _buffer = new WeakMap();
+  _bytes = new WeakMap();
+  _maxPos = new WeakMap();
+  _ensureSize = new WeakSet();
+  ensureSize_fn = function(size) {
+    let newLength = __privateGet(this, _buffer).byteLength;
+    while (newLength < size)
+      newLength *= 2;
+    if (newLength === __privateGet(this, _buffer).byteLength)
+      return;
+    let newBuffer = new ArrayBuffer(newLength);
+    let newBytes = new Uint8Array(newBuffer);
+    newBytes.set(__privateGet(this, _bytes), 0);
+    __privateSet(this, _buffer, newBuffer);
+    __privateSet(this, _bytes, newBytes);
+  };
+  var DEFAULT_CHUNK_SIZE = 2 ** 24;
+  var MAX_CHUNKS_AT_ONCE = 2;
+  var _target2, _sections, _chunked, _chunkSize, _chunks, _writeDataIntoChunks, writeDataIntoChunks_fn, _insertSectionIntoChunk, insertSectionIntoChunk_fn, _createChunk, createChunk_fn, _flushChunks, flushChunks_fn;
+  var StreamTargetWriter = class extends Writer {
+    constructor(target) {
+      super();
+      __privateAdd(this, _writeDataIntoChunks);
+      __privateAdd(this, _insertSectionIntoChunk);
+      __privateAdd(this, _createChunk);
+      __privateAdd(this, _flushChunks);
+      __privateAdd(this, _target2, void 0);
+      __privateAdd(this, _sections, []);
+      __privateAdd(this, _chunked, void 0);
+      __privateAdd(this, _chunkSize, void 0);
+      /**
+       * The data is divided up into fixed-size chunks, whose contents are first filled in RAM and then flushed out.
+       * A chunk is flushed if all of its contents have been written.
+       */
+      __privateAdd(this, _chunks, []);
+      __privateSet(this, _target2, target);
+      __privateSet(this, _chunked, target.options?.chunked ?? false);
+      __privateSet(this, _chunkSize, target.options?.chunkSize ?? DEFAULT_CHUNK_SIZE);
+    }
+    write(data) {
+      __privateGet(this, _sections).push({
+        data: data.slice(),
+        start: this.pos
+      });
+      this.pos += data.byteLength;
+    }
+    flush() {
+      if (__privateGet(this, _sections).length === 0)
+        return;
+      let chunks = [];
+      let sorted = [...__privateGet(this, _sections)].sort((a, b) => a.start - b.start);
+      chunks.push({
+        start: sorted[0].start,
+        size: sorted[0].data.byteLength
+      });
+      for (let i = 1; i < sorted.length; i++) {
+        let lastChunk = chunks[chunks.length - 1];
+        let section = sorted[i];
+        if (section.start <= lastChunk.start + lastChunk.size) {
+          lastChunk.size = Math.max(lastChunk.size, section.start + section.data.byteLength - lastChunk.start);
+        } else {
+          chunks.push({
+            start: section.start,
+            size: section.data.byteLength
+          });
+        }
+      }
+      for (let chunk of chunks) {
+        chunk.data = new Uint8Array(chunk.size);
+        for (let section of __privateGet(this, _sections)) {
+          if (chunk.start <= section.start && section.start < chunk.start + chunk.size) {
+            chunk.data.set(section.data, section.start - chunk.start);
+          }
+        }
+        if (__privateGet(this, _chunked)) {
+          __privateMethod(this, _writeDataIntoChunks, writeDataIntoChunks_fn).call(this, chunk.data, chunk.start);
+          __privateMethod(this, _flushChunks, flushChunks_fn).call(this);
+        } else {
+          __privateGet(this, _target2).options.onData?.(chunk.data, chunk.start);
+        }
+      }
+      __privateGet(this, _sections).length = 0;
+    }
+    finalize() {
+      if (__privateGet(this, _chunked)) {
+        __privateMethod(this, _flushChunks, flushChunks_fn).call(this, true);
+      }
+    }
+  };
+  _target2 = new WeakMap();
+  _sections = new WeakMap();
+  _chunked = new WeakMap();
+  _chunkSize = new WeakMap();
+  _chunks = new WeakMap();
+  _writeDataIntoChunks = new WeakSet();
+  writeDataIntoChunks_fn = function(data, position) {
+    let chunkIndex = __privateGet(this, _chunks).findIndex((x) => x.start <= position && position < x.start + __privateGet(this, _chunkSize));
+    if (chunkIndex === -1)
+      chunkIndex = __privateMethod(this, _createChunk, createChunk_fn).call(this, position);
+    let chunk = __privateGet(this, _chunks)[chunkIndex];
+    let relativePosition = position - chunk.start;
+    let toWrite = data.subarray(0, Math.min(__privateGet(this, _chunkSize) - relativePosition, data.byteLength));
+    chunk.data.set(toWrite, relativePosition);
+    let section = {
+      start: relativePosition,
+      end: relativePosition + toWrite.byteLength
+    };
+    __privateMethod(this, _insertSectionIntoChunk, insertSectionIntoChunk_fn).call(this, chunk, section);
+    if (chunk.written[0].start === 0 && chunk.written[0].end === __privateGet(this, _chunkSize)) {
+      chunk.shouldFlush = true;
+    }
+    if (__privateGet(this, _chunks).length > MAX_CHUNKS_AT_ONCE) {
+      for (let i = 0; i < __privateGet(this, _chunks).length - 1; i++) {
+        __privateGet(this, _chunks)[i].shouldFlush = true;
+      }
+      __privateMethod(this, _flushChunks, flushChunks_fn).call(this);
+    }
+    if (toWrite.byteLength < data.byteLength) {
+      __privateMethod(this, _writeDataIntoChunks, writeDataIntoChunks_fn).call(this, data.subarray(toWrite.byteLength), position + toWrite.byteLength);
+    }
+  };
+  _insertSectionIntoChunk = new WeakSet();
+  insertSectionIntoChunk_fn = function(chunk, section) {
+    let low = 0;
+    let high = chunk.written.length - 1;
+    let index = -1;
+    while (low <= high) {
+      let mid = Math.floor(low + (high - low + 1) / 2);
+      if (chunk.written[mid].start <= section.start) {
+        low = mid + 1;
+        index = mid;
+      } else {
+        high = mid - 1;
+      }
+    }
+    chunk.written.splice(index + 1, 0, section);
+    if (index === -1 || chunk.written[index].end < section.start)
+      index++;
+    while (index < chunk.written.length - 1 && chunk.written[index].end >= chunk.written[index + 1].start) {
+      chunk.written[index].end = Math.max(chunk.written[index].end, chunk.written[index + 1].end);
+      chunk.written.splice(index + 1, 1);
+    }
+  };
+  _createChunk = new WeakSet();
+  createChunk_fn = function(includesPosition) {
+    let start = Math.floor(includesPosition / __privateGet(this, _chunkSize)) * __privateGet(this, _chunkSize);
+    let chunk = {
+      start,
+      data: new Uint8Array(__privateGet(this, _chunkSize)),
+      written: [],
+      shouldFlush: false
+    };
+    __privateGet(this, _chunks).push(chunk);
+    __privateGet(this, _chunks).sort((a, b) => a.start - b.start);
+    return __privateGet(this, _chunks).indexOf(chunk);
+  };
+  _flushChunks = new WeakSet();
+  flushChunks_fn = function(force = false) {
+    for (let i = 0; i < __privateGet(this, _chunks).length; i++) {
+      let chunk = __privateGet(this, _chunks)[i];
+      if (!chunk.shouldFlush && !force)
+        continue;
+      for (let section of chunk.written) {
+        __privateGet(this, _target2).options.onData?.(
+          chunk.data.subarray(section.start, section.end),
+          chunk.start + section.start
+        );
+      }
+      __privateGet(this, _chunks).splice(i--, 1);
+    }
+  };
+  var FileSystemWritableFileStreamTargetWriter = class extends StreamTargetWriter {
+    constructor(target) {
+      super(new StreamTarget({
+        onData: (data, position) => target.stream.write({
+          type: "write",
+          data,
+          position
+        }),
+        chunked: true,
+        chunkSize: target.options?.chunkSize
+      }));
+    }
+  };
+
+  // src/muxer.ts
+  var GLOBAL_TIMESCALE = 1e3;
+  var SUPPORTED_VIDEO_CODECS = ["avc", "hevc", "vp9", "av1"];
+  var SUPPORTED_AUDIO_CODECS = ["aac", "opus"];
+  var TIMESTAMP_OFFSET = 2082844800;
+  var FIRST_TIMESTAMP_BEHAVIORS = ["strict", "offset", "cross-track-offset"];
+  var _options, _writer, _ftypSize, _mdat, _videoTrack, _audioTrack, _creationTime, _finalizedChunks, _nextFragmentNumber, _videoSampleQueue, _audioSampleQueue, _finalized, _validateOptions, validateOptions_fn, _writeHeader, writeHeader_fn, _computeMoovSizeUpperBound, computeMoovSizeUpperBound_fn, _prepareTracks, prepareTracks_fn, _generateMpeg4AudioSpecificConfig, generateMpeg4AudioSpecificConfig_fn, _createSampleForTrack, createSampleForTrack_fn, _addSampleToTrack, addSampleToTrack_fn, _validateTimestamp, validateTimestamp_fn, _finalizeCurrentChunk, finalizeCurrentChunk_fn, _finalizeFragment, finalizeFragment_fn, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn, _ensureNotFinalized, ensureNotFinalized_fn;
+  var Muxer = class {
+    constructor(options) {
+      __privateAdd(this, _validateOptions);
+      __privateAdd(this, _writeHeader);
+      __privateAdd(this, _computeMoovSizeUpperBound);
+      __privateAdd(this, _prepareTracks);
+      // https://wiki.multimedia.cx/index.php/MPEG-4_Audio
+      __privateAdd(this, _generateMpeg4AudioSpecificConfig);
+      __privateAdd(this, _createSampleForTrack);
+      __privateAdd(this, _addSampleToTrack);
+      __privateAdd(this, _validateTimestamp);
+      __privateAdd(this, _finalizeCurrentChunk);
+      __privateAdd(this, _finalizeFragment);
+      __privateAdd(this, _maybeFlushStreamingTargetWriter);
+      __privateAdd(this, _ensureNotFinalized);
+      __privateAdd(this, _options, void 0);
+      __privateAdd(this, _writer, void 0);
+      __privateAdd(this, _ftypSize, void 0);
+      __privateAdd(this, _mdat, void 0);
+      __privateAdd(this, _videoTrack, null);
+      __privateAdd(this, _audioTrack, null);
+      __privateAdd(this, _creationTime, Math.floor(Date.now() / 1e3) + TIMESTAMP_OFFSET);
+      __privateAdd(this, _finalizedChunks, []);
+      // Fields for fragmented MP4:
+      __privateAdd(this, _nextFragmentNumber, 1);
+      __privateAdd(this, _videoSampleQueue, []);
+      __privateAdd(this, _audioSampleQueue, []);
+      __privateAdd(this, _finalized, false);
+      __privateMethod(this, _validateOptions, validateOptions_fn).call(this, options);
+      options.video = deepClone(options.video);
+      options.audio = deepClone(options.audio);
+      options.fastStart = deepClone(options.fastStart);
+      this.target = options.target;
+      __privateSet(this, _options, {
+        firstTimestampBehavior: "strict",
+        ...options
+      });
+      if (options.target instanceof ArrayBufferTarget) {
+        __privateSet(this, _writer, new ArrayBufferTargetWriter(options.target));
+      } else if (options.target instanceof StreamTarget) {
+        __privateSet(this, _writer, new StreamTargetWriter(options.target));
+      } else if (options.target instanceof FileSystemWritableFileStreamTarget) {
+        __privateSet(this, _writer, new FileSystemWritableFileStreamTargetWriter(options.target));
+      } else {
+        throw new Error(`Invalid target: ${options.target}`);
+      }
+      __privateMethod(this, _prepareTracks, prepareTracks_fn).call(this);
+      __privateMethod(this, _writeHeader, writeHeader_fn).call(this);
+    }
+    addVideoChunk(sample, meta, timestamp, compositionTimeOffset) {
+      if (!(sample instanceof EncodedVideoChunk)) {
+        throw new TypeError("addVideoChunk's first argument (sample) must be of type EncodedVideoChunk.");
+      }
+      if (meta && typeof meta !== "object") {
+        throw new TypeError("addVideoChunk's second argument (meta), when provided, must be an object.");
+      }
+      if (timestamp !== void 0 && (!Number.isFinite(timestamp) || timestamp < 0)) {
+        throw new TypeError(
+          "addVideoChunk's third argument (timestamp), when provided, must be a non-negative real number."
+        );
+      }
+      if (compositionTimeOffset !== void 0 && !Number.isFinite(compositionTimeOffset)) {
+        throw new TypeError(
+          "addVideoChunk's fourth argument (compositionTimeOffset), when provided, must be a real number."
+        );
+      }
+      let data = new Uint8Array(sample.byteLength);
+      sample.copyTo(data);
+      this.addVideoChunkRaw(
+        data,
+        sample.type,
+        timestamp ?? sample.timestamp,
+        sample.duration,
+        meta,
+        compositionTimeOffset
+      );
+    }
+    addVideoChunkRaw(data, type, timestamp, duration, meta, compositionTimeOffset) {
+      if (!(data instanceof Uint8Array)) {
+        throw new TypeError("addVideoChunkRaw's first argument (data) must be an instance of Uint8Array.");
+      }
+      if (type !== "key" && type !== "delta") {
+        throw new TypeError("addVideoChunkRaw's second argument (type) must be either 'key' or 'delta'.");
+      }
+      if (!Number.isFinite(timestamp) || timestamp < 0) {
+        throw new TypeError("addVideoChunkRaw's third argument (timestamp) must be a non-negative real number.");
+      }
+      if (!Number.isFinite(duration) || duration < 0) {
+        throw new TypeError("addVideoChunkRaw's fourth argument (duration) must be a non-negative real number.");
+      }
+      if (meta && typeof meta !== "object") {
+        throw new TypeError("addVideoChunkRaw's fifth argument (meta), when provided, must be an object.");
+      }
+      if (compositionTimeOffset !== void 0 && !Number.isFinite(compositionTimeOffset)) {
+        throw new TypeError(
+          "addVideoChunkRaw's sixth argument (compositionTimeOffset), when provided, must be a real number."
+        );
+      }
+      __privateMethod(this, _ensureNotFinalized, ensureNotFinalized_fn).call(this);
+      if (!__privateGet(this, _options).video)
+        throw new Error("No video track declared.");
+      if (typeof __privateGet(this, _options).fastStart === "object" && __privateGet(this, _videoTrack).samples.length === __privateGet(this, _options).fastStart.expectedVideoChunks) {
+        throw new Error(`Cannot add more video chunks than specified in 'fastStart' (${__privateGet(this, _options).fastStart.expectedVideoChunks}).`);
+      }
+      let videoSample = __privateMethod(this, _createSampleForTrack, createSampleForTrack_fn).call(this, __privateGet(this, _videoTrack), data, type, timestamp, duration, meta, compositionTimeOffset);
+      if (__privateGet(this, _options).fastStart === "fragmented" && __privateGet(this, _audioTrack)) {
+        while (__privateGet(this, _audioSampleQueue).length > 0 && __privateGet(this, _audioSampleQueue)[0].decodeTimestamp <= videoSample.decodeTimestamp) {
+          let audioSample = __privateGet(this, _audioSampleQueue).shift();
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _audioTrack), audioSample);
+        }
+        if (videoSample.decodeTimestamp <= __privateGet(this, _audioTrack).lastDecodeTimestamp) {
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _videoTrack), videoSample);
+        } else {
+          __privateGet(this, _videoSampleQueue).push(videoSample);
+        }
+      } else {
+        __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _videoTrack), videoSample);
+      }
+    }
+    addAudioChunk(sample, meta, timestamp) {
+      if (!(sample instanceof EncodedAudioChunk)) {
+        throw new TypeError("addAudioChunk's first argument (sample) must be of type EncodedAudioChunk.");
+      }
+      if (meta && typeof meta !== "object") {
+        throw new TypeError("addAudioChunk's second argument (meta), when provided, must be an object.");
+      }
+      if (timestamp !== void 0 && (!Number.isFinite(timestamp) || timestamp < 0)) {
+        throw new TypeError(
+          "addAudioChunk's third argument (timestamp), when provided, must be a non-negative real number."
+        );
+      }
+      let data = new Uint8Array(sample.byteLength);
+      sample.copyTo(data);
+      this.addAudioChunkRaw(data, sample.type, timestamp ?? sample.timestamp, sample.duration, meta);
+    }
+    addAudioChunkRaw(data, type, timestamp, duration, meta) {
+      if (!(data instanceof Uint8Array)) {
+        throw new TypeError("addAudioChunkRaw's first argument (data) must be an instance of Uint8Array.");
+      }
+      if (type !== "key" && type !== "delta") {
+        throw new TypeError("addAudioChunkRaw's second argument (type) must be either 'key' or 'delta'.");
+      }
+      if (!Number.isFinite(timestamp) || timestamp < 0) {
+        throw new TypeError("addAudioChunkRaw's third argument (timestamp) must be a non-negative real number.");
+      }
+      if (!Number.isFinite(duration) || duration < 0) {
+        throw new TypeError("addAudioChunkRaw's fourth argument (duration) must be a non-negative real number.");
+      }
+      if (meta && typeof meta !== "object") {
+        throw new TypeError("addAudioChunkRaw's fifth argument (meta), when provided, must be an object.");
+      }
+      __privateMethod(this, _ensureNotFinalized, ensureNotFinalized_fn).call(this);
+      if (!__privateGet(this, _options).audio)
+        throw new Error("No audio track declared.");
+      if (typeof __privateGet(this, _options).fastStart === "object" && __privateGet(this, _audioTrack).samples.length === __privateGet(this, _options).fastStart.expectedAudioChunks) {
+        throw new Error(`Cannot add more audio chunks than specified in 'fastStart' (${__privateGet(this, _options).fastStart.expectedAudioChunks}).`);
+      }
+      let audioSample = __privateMethod(this, _createSampleForTrack, createSampleForTrack_fn).call(this, __privateGet(this, _audioTrack), data, type, timestamp, duration, meta);
+      if (__privateGet(this, _options).fastStart === "fragmented" && __privateGet(this, _videoTrack)) {
+        while (__privateGet(this, _videoSampleQueue).length > 0 && __privateGet(this, _videoSampleQueue)[0].decodeTimestamp <= audioSample.decodeTimestamp) {
+          let videoSample = __privateGet(this, _videoSampleQueue).shift();
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _videoTrack), videoSample);
+        }
+        if (audioSample.decodeTimestamp <= __privateGet(this, _videoTrack).lastDecodeTimestamp) {
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _audioTrack), audioSample);
+        } else {
+          __privateGet(this, _audioSampleQueue).push(audioSample);
+        }
+      } else {
+        __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _audioTrack), audioSample);
+      }
+    }
+    /** Finalizes the file, making it ready for use. Must be called after all video and audio chunks have been added. */
+    finalize() {
+      if (__privateGet(this, _finalized)) {
+        throw new Error("Cannot finalize a muxer more than once.");
+      }
+      if (__privateGet(this, _options).fastStart === "fragmented") {
+        for (let videoSample of __privateGet(this, _videoSampleQueue))
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _videoTrack), videoSample);
+        for (let audioSample of __privateGet(this, _audioSampleQueue))
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _audioTrack), audioSample);
+        __privateMethod(this, _finalizeFragment, finalizeFragment_fn).call(this, false);
+      } else {
+        if (__privateGet(this, _videoTrack))
+          __privateMethod(this, _finalizeCurrentChunk, finalizeCurrentChunk_fn).call(this, __privateGet(this, _videoTrack));
+        if (__privateGet(this, _audioTrack))
+          __privateMethod(this, _finalizeCurrentChunk, finalizeCurrentChunk_fn).call(this, __privateGet(this, _audioTrack));
+      }
+      let tracks = [__privateGet(this, _videoTrack), __privateGet(this, _audioTrack)].filter(Boolean);
+      if (__privateGet(this, _options).fastStart === "in-memory") {
+        let mdatSize;
+        for (let i = 0; i < 2; i++) {
+          let movieBox2 = moov(tracks, __privateGet(this, _creationTime));
+          let movieBoxSize = __privateGet(this, _writer).measureBox(movieBox2);
+          mdatSize = __privateGet(this, _writer).measureBox(__privateGet(this, _mdat));
+          let currentChunkPos = __privateGet(this, _writer).pos + movieBoxSize + mdatSize;
+          for (let chunk of __privateGet(this, _finalizedChunks)) {
+            chunk.offset = currentChunkPos;
+            for (let { data } of chunk.samples) {
+              currentChunkPos += data.byteLength;
+              mdatSize += data.byteLength;
+            }
+          }
+          if (currentChunkPos < 2 ** 32)
+            break;
+          if (mdatSize >= 2 ** 32)
+            __privateGet(this, _mdat).largeSize = true;
+        }
+        let movieBox = moov(tracks, __privateGet(this, _creationTime));
+        __privateGet(this, _writer).writeBox(movieBox);
+        __privateGet(this, _mdat).size = mdatSize;
+        __privateGet(this, _writer).writeBox(__privateGet(this, _mdat));
+        for (let chunk of __privateGet(this, _finalizedChunks)) {
+          for (let sample of chunk.samples) {
+            __privateGet(this, _writer).write(sample.data);
+            sample.data = null;
+          }
+        }
+      } else if (__privateGet(this, _options).fastStart === "fragmented") {
+        let startPos = __privateGet(this, _writer).pos;
+        let mfraBox = mfra(tracks);
+        __privateGet(this, _writer).writeBox(mfraBox);
+        let mfraBoxSize = __privateGet(this, _writer).pos - startPos;
+        __privateGet(this, _writer).seek(__privateGet(this, _writer).pos - 4);
+        __privateGet(this, _writer).writeU32(mfraBoxSize);
+      } else {
+        let mdatPos = __privateGet(this, _writer).offsets.get(__privateGet(this, _mdat));
+        let mdatSize = __privateGet(this, _writer).pos - mdatPos;
+        __privateGet(this, _mdat).size = mdatSize;
+        __privateGet(this, _mdat).largeSize = mdatSize >= 2 ** 32;
+        __privateGet(this, _writer).patchBox(__privateGet(this, _mdat));
+        let movieBox = moov(tracks, __privateGet(this, _creationTime));
+        if (typeof __privateGet(this, _options).fastStart === "object") {
+          __privateGet(this, _writer).seek(__privateGet(this, _ftypSize));
+          __privateGet(this, _writer).writeBox(movieBox);
+          let remainingBytes = mdatPos - __privateGet(this, _writer).pos;
+          __privateGet(this, _writer).writeBox(free(remainingBytes));
+        } else {
+          __privateGet(this, _writer).writeBox(movieBox);
+        }
+      }
+      __privateMethod(this, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn).call(this);
+      __privateGet(this, _writer).finalize();
+      __privateSet(this, _finalized, true);
+    }
+  };
+  _options = new WeakMap();
+  _writer = new WeakMap();
+  _ftypSize = new WeakMap();
+  _mdat = new WeakMap();
+  _videoTrack = new WeakMap();
+  _audioTrack = new WeakMap();
+  _creationTime = new WeakMap();
+  _finalizedChunks = new WeakMap();
+  _nextFragmentNumber = new WeakMap();
+  _videoSampleQueue = new WeakMap();
+  _audioSampleQueue = new WeakMap();
+  _finalized = new WeakMap();
+  _validateOptions = new WeakSet();
+  validateOptions_fn = function(options) {
+    if (typeof options !== "object") {
+      throw new TypeError("The muxer requires an options object to be passed to its constructor.");
+    }
+    if (!(options.target instanceof Target)) {
+      throw new TypeError("The target must be provided and an instance of Target.");
+    }
+    if (options.video) {
+      if (!SUPPORTED_VIDEO_CODECS.includes(options.video.codec)) {
+        throw new TypeError(`Unsupported video codec: ${options.video.codec}`);
+      }
+      if (!Number.isInteger(options.video.width) || options.video.width <= 0) {
+        throw new TypeError(`Invalid video width: ${options.video.width}. Must be a positive integer.`);
+      }
+      if (!Number.isInteger(options.video.height) || options.video.height <= 0) {
+        throw new TypeError(`Invalid video height: ${options.video.height}. Must be a positive integer.`);
+      }
+      const videoRotation = options.video.rotation;
+      if (typeof videoRotation === "number" && ![0, 90, 180, 270].includes(videoRotation)) {
+        throw new TypeError(`Invalid video rotation: ${videoRotation}. Has to be 0, 90, 180 or 270.`);
+      } else if (Array.isArray(videoRotation) && (videoRotation.length !== 9 || videoRotation.some((value) => typeof value !== "number"))) {
+        throw new TypeError(`Invalid video transformation matrix: ${videoRotation.join()}`);
+      }
+      if (options.video.frameRate !== void 0 && (!Number.isInteger(options.video.frameRate) || options.video.frameRate <= 0)) {
+        throw new TypeError(
+          `Invalid video frame rate: ${options.video.frameRate}. Must be a positive integer.`
+        );
+      }
+    }
+    if (options.audio) {
+      if (!SUPPORTED_AUDIO_CODECS.includes(options.audio.codec)) {
+        throw new TypeError(`Unsupported audio codec: ${options.audio.codec}`);
+      }
+      if (!Number.isInteger(options.audio.numberOfChannels) || options.audio.numberOfChannels <= 0) {
+        throw new TypeError(
+          `Invalid number of audio channels: ${options.audio.numberOfChannels}. Must be a positive integer.`
+        );
+      }
+      if (!Number.isInteger(options.audio.sampleRate) || options.audio.sampleRate <= 0) {
+        throw new TypeError(
+          `Invalid audio sample rate: ${options.audio.sampleRate}. Must be a positive integer.`
+        );
+      }
+    }
+    if (options.firstTimestampBehavior && !FIRST_TIMESTAMP_BEHAVIORS.includes(options.firstTimestampBehavior)) {
+      throw new TypeError(`Invalid first timestamp behavior: ${options.firstTimestampBehavior}`);
+    }
+    if (typeof options.fastStart === "object") {
+      if (options.video) {
+        if (options.fastStart.expectedVideoChunks === void 0) {
+          throw new TypeError(`'fastStart' is an object but is missing property 'expectedVideoChunks'.`);
+        } else if (!Number.isInteger(options.fastStart.expectedVideoChunks) || options.fastStart.expectedVideoChunks < 0) {
+          throw new TypeError(`'expectedVideoChunks' must be a non-negative integer.`);
+        }
+      }
+      if (options.audio) {
+        if (options.fastStart.expectedAudioChunks === void 0) {
+          throw new TypeError(`'fastStart' is an object but is missing property 'expectedAudioChunks'.`);
+        } else if (!Number.isInteger(options.fastStart.expectedAudioChunks) || options.fastStart.expectedAudioChunks < 0) {
+          throw new TypeError(`'expectedAudioChunks' must be a non-negative integer.`);
+        }
+      }
+    } else if (![false, "in-memory", "fragmented"].includes(options.fastStart)) {
+      throw new TypeError(`'fastStart' option must be false, 'in-memory', 'fragmented' or an object.`);
+    }
+    if (options.minFragmentDuration !== void 0 && (!Number.isFinite(options.minFragmentDuration) || options.minFragmentDuration < 0)) {
+      throw new TypeError(`'minFragmentDuration' must be a non-negative number.`);
+    }
+  };
+  _writeHeader = new WeakSet();
+  writeHeader_fn = function() {
+    __privateGet(this, _writer).writeBox(ftyp({
+      holdsAvc: __privateGet(this, _options).video?.codec === "avc",
+      fragmented: __privateGet(this, _options).fastStart === "fragmented"
+    }));
+    __privateSet(this, _ftypSize, __privateGet(this, _writer).pos);
+    if (__privateGet(this, _options).fastStart === "in-memory") {
+      __privateSet(this, _mdat, mdat(false));
+    } else if (__privateGet(this, _options).fastStart === "fragmented") {
+    } else {
+      if (typeof __privateGet(this, _options).fastStart === "object") {
+        let moovSizeUpperBound = __privateMethod(this, _computeMoovSizeUpperBound, computeMoovSizeUpperBound_fn).call(this);
+        __privateGet(this, _writer).seek(__privateGet(this, _writer).pos + moovSizeUpperBound);
+      }
+      __privateSet(this, _mdat, mdat(true));
+      __privateGet(this, _writer).writeBox(__privateGet(this, _mdat));
+    }
+    __privateMethod(this, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn).call(this);
+  };
+  _computeMoovSizeUpperBound = new WeakSet();
+  computeMoovSizeUpperBound_fn = function() {
+    if (typeof __privateGet(this, _options).fastStart !== "object")
+      return;
+    let upperBound = 0;
+    let sampleCounts = [
+      __privateGet(this, _options).fastStart.expectedVideoChunks,
+      __privateGet(this, _options).fastStart.expectedAudioChunks
+    ];
+    for (let n of sampleCounts) {
+      if (!n)
+        continue;
+      upperBound += (4 + 4) * Math.ceil(2 / 3 * n);
+      upperBound += 4 * n;
+      upperBound += (4 + 4 + 4) * Math.ceil(2 / 3 * n);
+      upperBound += 4 * n;
+      upperBound += 8 * n;
+    }
+    upperBound += 4096;
+    return upperBound;
+  };
+  _prepareTracks = new WeakSet();
+  prepareTracks_fn = function() {
+    if (__privateGet(this, _options).video) {
+      __privateSet(this, _videoTrack, {
+        id: 1,
+        info: {
+          type: "video",
+          codec: __privateGet(this, _options).video.codec,
+          width: __privateGet(this, _options).video.width,
+          height: __privateGet(this, _options).video.height,
+          rotation: __privateGet(this, _options).video.rotation ?? 0,
+          decoderConfig: null
+        },
+        // The fallback contains many common frame rates as factors
+        timescale: __privateGet(this, _options).video.frameRate ?? 57600,
+        samples: [],
+        finalizedChunks: [],
+        currentChunk: null,
+        firstDecodeTimestamp: void 0,
+        lastDecodeTimestamp: -1,
+        timeToSampleTable: [],
+        compositionTimeOffsetTable: [],
+        lastTimescaleUnits: null,
+        lastSample: null,
+        compactlyCodedChunkTable: []
+      });
+    }
+    if (__privateGet(this, _options).audio) {
+      __privateSet(this, _audioTrack, {
+        id: __privateGet(this, _options).video ? 2 : 1,
+        info: {
+          type: "audio",
+          codec: __privateGet(this, _options).audio.codec,
+          numberOfChannels: __privateGet(this, _options).audio.numberOfChannels,
+          sampleRate: __privateGet(this, _options).audio.sampleRate,
+          decoderConfig: null
+        },
+        timescale: __privateGet(this, _options).audio.sampleRate,
+        samples: [],
+        finalizedChunks: [],
+        currentChunk: null,
+        firstDecodeTimestamp: void 0,
+        lastDecodeTimestamp: -1,
+        timeToSampleTable: [],
+        compositionTimeOffsetTable: [],
+        lastTimescaleUnits: null,
+        lastSample: null,
+        compactlyCodedChunkTable: []
+      });
+      if (__privateGet(this, _options).audio.codec === "aac") {
+        let guessedCodecPrivate = __privateMethod(this, _generateMpeg4AudioSpecificConfig, generateMpeg4AudioSpecificConfig_fn).call(
+          this,
+          2,
+          // Object type for AAC-LC, since it's the most common
+          __privateGet(this, _options).audio.sampleRate,
+          __privateGet(this, _options).audio.numberOfChannels
+        );
+        __privateGet(this, _audioTrack).info.decoderConfig = {
+          codec: __privateGet(this, _options).audio.codec,
+          description: guessedCodecPrivate,
+          numberOfChannels: __privateGet(this, _options).audio.numberOfChannels,
+          sampleRate: __privateGet(this, _options).audio.sampleRate
+        };
+      }
+    }
+  };
+  _generateMpeg4AudioSpecificConfig = new WeakSet();
+  generateMpeg4AudioSpecificConfig_fn = function(objectType, sampleRate, numberOfChannels) {
+    let frequencyIndices = [96e3, 88200, 64e3, 48e3, 44100, 32e3, 24e3, 22050, 16e3, 12e3, 11025, 8e3, 7350];
+    let frequencyIndex = frequencyIndices.indexOf(sampleRate);
+    let channelConfig = numberOfChannels;
+    let configBits = "";
+    configBits += objectType.toString(2).padStart(5, "0");
+    configBits += frequencyIndex.toString(2).padStart(4, "0");
+    if (frequencyIndex === 15)
+      configBits += sampleRate.toString(2).padStart(24, "0");
+    configBits += channelConfig.toString(2).padStart(4, "0");
+    let paddingLength = Math.ceil(configBits.length / 8) * 8;
+    configBits = configBits.padEnd(paddingLength, "0");
+    let configBytes = new Uint8Array(configBits.length / 8);
+    for (let i = 0; i < configBits.length; i += 8) {
+      configBytes[i / 8] = parseInt(configBits.slice(i, i + 8), 2);
+    }
+    return configBytes;
+  };
+  _createSampleForTrack = new WeakSet();
+  createSampleForTrack_fn = function(track, data, type, timestamp, duration, meta, compositionTimeOffset) {
+    let presentationTimestampInSeconds = timestamp / 1e6;
+    let decodeTimestampInSeconds = (timestamp - (compositionTimeOffset ?? 0)) / 1e6;
+    let durationInSeconds = duration / 1e6;
+    let adjusted = __privateMethod(this, _validateTimestamp, validateTimestamp_fn).call(this, presentationTimestampInSeconds, decodeTimestampInSeconds, track);
+    presentationTimestampInSeconds = adjusted.presentationTimestamp;
+    decodeTimestampInSeconds = adjusted.decodeTimestamp;
+    if (meta?.decoderConfig) {
+      if (track.info.decoderConfig === null) {
+        track.info.decoderConfig = meta.decoderConfig;
+      } else {
+        Object.assign(track.info.decoderConfig, meta.decoderConfig);
+      }
+    }
+    let sample = {
+      presentationTimestamp: presentationTimestampInSeconds,
+      decodeTimestamp: decodeTimestampInSeconds,
+      duration: durationInSeconds,
+      data,
+      size: data.byteLength,
+      type,
+      // Will be refined once the next sample comes in
+      timescaleUnitsToNextSample: intoTimescale(durationInSeconds, track.timescale)
+    };
+    return sample;
+  };
+  _addSampleToTrack = new WeakSet();
+  addSampleToTrack_fn = function(track, sample) {
+    if (__privateGet(this, _options).fastStart !== "fragmented") {
+      track.samples.push(sample);
+    }
+    const sampleCompositionTimeOffset = intoTimescale(sample.presentationTimestamp - sample.decodeTimestamp, track.timescale);
+    if (track.lastTimescaleUnits !== null) {
+      let timescaleUnits = intoTimescale(sample.decodeTimestamp, track.timescale, false);
+      let delta = Math.round(timescaleUnits - track.lastTimescaleUnits);
+      track.lastTimescaleUnits += delta;
+      track.lastSample.timescaleUnitsToNextSample = delta;
+      if (__privateGet(this, _options).fastStart !== "fragmented") {
+        let lastTableEntry = last(track.timeToSampleTable);
+        if (lastTableEntry.sampleCount === 1) {
+          lastTableEntry.sampleDelta = delta;
+          lastTableEntry.sampleCount++;
+        } else if (lastTableEntry.sampleDelta === delta) {
+          lastTableEntry.sampleCount++;
+        } else {
+          lastTableEntry.sampleCount--;
+          track.timeToSampleTable.push({
+            sampleCount: 2,
+            sampleDelta: delta
+          });
+        }
+        const lastCompositionTimeOffsetTableEntry = last(track.compositionTimeOffsetTable);
+        if (lastCompositionTimeOffsetTableEntry.sampleCompositionTimeOffset === sampleCompositionTimeOffset) {
+          lastCompositionTimeOffsetTableEntry.sampleCount++;
+        } else {
+          track.compositionTimeOffsetTable.push({
+            sampleCount: 1,
+            sampleCompositionTimeOffset
+          });
+        }
+      }
+    } else {
+      track.lastTimescaleUnits = 0;
+      if (__privateGet(this, _options).fastStart !== "fragmented") {
+        track.timeToSampleTable.push({
+          sampleCount: 1,
+          sampleDelta: intoTimescale(sample.duration, track.timescale)
+        });
+        track.compositionTimeOffsetTable.push({
+          sampleCount: 1,
+          sampleCompositionTimeOffset
+        });
+      }
+    }
+    track.lastSample = sample;
+    let beginNewChunk = false;
+    if (!track.currentChunk) {
+      beginNewChunk = true;
+    } else {
+      let currentChunkDuration = sample.presentationTimestamp - track.currentChunk.startTimestamp;
+      if (__privateGet(this, _options).fastStart === "fragmented") {
+        let mostImportantTrack = __privateGet(this, _videoTrack) ?? __privateGet(this, _audioTrack);
+        const chunkDuration = __privateGet(this, _options).minFragmentDuration ?? 1;
+        if (track === mostImportantTrack && sample.type === "key" && currentChunkDuration >= chunkDuration) {
+          beginNewChunk = true;
+          __privateMethod(this, _finalizeFragment, finalizeFragment_fn).call(this);
+        }
+      } else {
+        beginNewChunk = currentChunkDuration >= 0.5;
+      }
+    }
+    if (beginNewChunk) {
+      if (track.currentChunk) {
+        __privateMethod(this, _finalizeCurrentChunk, finalizeCurrentChunk_fn).call(this, track);
+      }
+      track.currentChunk = {
+        startTimestamp: sample.presentationTimestamp,
+        samples: []
+      };
+    }
+    track.currentChunk.samples.push(sample);
+  };
+  _validateTimestamp = new WeakSet();
+  validateTimestamp_fn = function(presentationTimestamp, decodeTimestamp, track) {
+    const strictTimestampBehavior = __privateGet(this, _options).firstTimestampBehavior === "strict";
+    const noLastDecodeTimestamp = track.lastDecodeTimestamp === -1;
+    const timestampNonZero = decodeTimestamp !== 0;
+    if (strictTimestampBehavior && noLastDecodeTimestamp && timestampNonZero) {
+      throw new Error(
+        `The first chunk for your media track must have a timestamp of 0 (received DTS=${decodeTimestamp}).Non-zero first timestamps are often caused by directly piping frames or audio data from a MediaStreamTrack into the encoder. Their timestamps are typically relative to the age of thedocument, which is probably what you want.
+
+If you want to offset all timestamps of a track such that the first one is zero, set firstTimestampBehavior: 'offset' in the options.
+`
+      );
+    } else if (__privateGet(this, _options).firstTimestampBehavior === "offset" || __privateGet(this, _options).firstTimestampBehavior === "cross-track-offset") {
+      if (track.firstDecodeTimestamp === void 0) {
+        track.firstDecodeTimestamp = decodeTimestamp;
+      }
+      let baseDecodeTimestamp;
+      if (__privateGet(this, _options).firstTimestampBehavior === "offset") {
+        baseDecodeTimestamp = track.firstDecodeTimestamp;
+      } else {
+        baseDecodeTimestamp = Math.min(
+          __privateGet(this, _videoTrack)?.firstDecodeTimestamp ?? Infinity,
+          __privateGet(this, _audioTrack)?.firstDecodeTimestamp ?? Infinity
+        );
+      }
+      decodeTimestamp -= baseDecodeTimestamp;
+      presentationTimestamp -= baseDecodeTimestamp;
+    }
+    if (decodeTimestamp < track.lastDecodeTimestamp) {
+      throw new Error(
+        `Timestamps must be monotonically increasing (DTS went from ${track.lastDecodeTimestamp * 1e6} to ${decodeTimestamp * 1e6}).`
+      );
+    }
+    track.lastDecodeTimestamp = decodeTimestamp;
+    return { presentationTimestamp, decodeTimestamp };
+  };
+  _finalizeCurrentChunk = new WeakSet();
+  finalizeCurrentChunk_fn = function(track) {
+    if (__privateGet(this, _options).fastStart === "fragmented") {
+      throw new Error("Can't finalize individual chunks if 'fastStart' is set to 'fragmented'.");
+    }
+    if (!track.currentChunk)
+      return;
+    track.finalizedChunks.push(track.currentChunk);
+    __privateGet(this, _finalizedChunks).push(track.currentChunk);
+    if (track.compactlyCodedChunkTable.length === 0 || last(track.compactlyCodedChunkTable).samplesPerChunk !== track.currentChunk.samples.length) {
+      track.compactlyCodedChunkTable.push({
+        firstChunk: track.finalizedChunks.length,
+        // 1-indexed
+        samplesPerChunk: track.currentChunk.samples.length
+      });
+    }
+    if (__privateGet(this, _options).fastStart === "in-memory") {
+      track.currentChunk.offset = 0;
+      return;
+    }
+    track.currentChunk.offset = __privateGet(this, _writer).pos;
+    for (let sample of track.currentChunk.samples) {
+      __privateGet(this, _writer).write(sample.data);
+      sample.data = null;
+    }
+    __privateMethod(this, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn).call(this);
+  };
+  _finalizeFragment = new WeakSet();
+  finalizeFragment_fn = function(flushStreamingWriter = true) {
+    if (__privateGet(this, _options).fastStart !== "fragmented") {
+      throw new Error("Can't finalize a fragment unless 'fastStart' is set to 'fragmented'.");
+    }
+    let tracks = [__privateGet(this, _videoTrack), __privateGet(this, _audioTrack)].filter((track) => track && track.currentChunk);
+    if (tracks.length === 0)
+      return;
+    let fragmentNumber = __privateWrapper(this, _nextFragmentNumber)._++;
+    if (fragmentNumber === 1) {
+      let movieBox = moov(tracks, __privateGet(this, _creationTime), true);
+      __privateGet(this, _writer).writeBox(movieBox);
+    }
+    let moofOffset = __privateGet(this, _writer).pos;
+    let moofBox = moof(fragmentNumber, tracks);
+    __privateGet(this, _writer).writeBox(moofBox);
+    {
+      let mdatBox = mdat(false);
+      let totalTrackSampleSize = 0;
+      for (let track of tracks) {
+        for (let sample of track.currentChunk.samples) {
+          totalTrackSampleSize += sample.size;
+        }
+      }
+      let mdatSize = __privateGet(this, _writer).measureBox(mdatBox) + totalTrackSampleSize;
+      if (mdatSize >= 2 ** 32) {
+        mdatBox.largeSize = true;
+        mdatSize = __privateGet(this, _writer).measureBox(mdatBox) + totalTrackSampleSize;
+      }
+      mdatBox.size = mdatSize;
+      __privateGet(this, _writer).writeBox(mdatBox);
+    }
+    for (let track of tracks) {
+      track.currentChunk.offset = __privateGet(this, _writer).pos;
+      track.currentChunk.moofOffset = moofOffset;
+      for (let sample of track.currentChunk.samples) {
+        __privateGet(this, _writer).write(sample.data);
+        sample.data = null;
+      }
+    }
+    let endPos = __privateGet(this, _writer).pos;
+    __privateGet(this, _writer).seek(__privateGet(this, _writer).offsets.get(moofBox));
+    let newMoofBox = moof(fragmentNumber, tracks);
+    __privateGet(this, _writer).writeBox(newMoofBox);
+    __privateGet(this, _writer).seek(endPos);
+    for (let track of tracks) {
+      track.finalizedChunks.push(track.currentChunk);
+      __privateGet(this, _finalizedChunks).push(track.currentChunk);
+      track.currentChunk = null;
+    }
+    if (flushStreamingWriter) {
+      __privateMethod(this, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn).call(this);
+    }
+  };
+  _maybeFlushStreamingTargetWriter = new WeakSet();
+  maybeFlushStreamingTargetWriter_fn = function() {
+    if (__privateGet(this, _writer) instanceof StreamTargetWriter) {
+      __privateGet(this, _writer).flush();
+    }
+  };
+  _ensureNotFinalized = new WeakSet();
+  ensureNotFinalized_fn = function() {
+    if (__privateGet(this, _finalized)) {
+      throw new Error("Cannot add new video or audio chunks after the file has been finalized.");
+    }
+  };
+  return __toCommonJS(src_exports);
+})();
+if (typeof module === "object" && typeof module.exports === "object") Object.assign(module.exports, Mp4Muxer)
+
+</script>
+<script>
+/* Meya Animate MP4 export. Requires the bundled mp4-muxer UMD build and WebCodecs. */
+(() => {
+  'use strict';
+  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+  const even = n => Math.max(2, Math.round(n / 2) * 2);
+  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const abortIfNeeded = signal => { if (signal?.aborted) throw new DOMException('Export cancelled.', 'AbortError'); };
+  function sourceURL(value) {
+    try { const url = new URL(value, location.href); return ['https:', 'http:', 'blob:', 'data:'].includes(url.protocol) ? url.href : ''; }
+    catch { return ''; }
+  }
+  function roundedPath(ctx, x, y, w, h, radius) {
+    const r = Math.min(radius, Math.abs(w) / 2, Math.abs(h) / 2);
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  async function loadImage(item, signal) {
+    abortIfNeeded(signal);
+    const src = sourceURL(item.type === 'image' ? item.src : item.poster);
+    if (!src) throw new Error('Add an image URL or poster image before exporting MP4.');
+    const image = new Image();
+    if (/^https?:/i.test(src)) image.crossOrigin = 'anonymous';
+    image.decoding = 'async'; image.src = src;
+    await image.decode().catch(() => { throw new Error('Could not load an image or poster. Check the URL and CORS settings.'); });
+    return image;
+  }
+  async function loadVideo(item, signal) {
+    abortIfNeeded(signal);
+    const src = sourceURL(item.src);
+    if (!src) throw new Error('Add a direct MP4 or WebM URL before exporting MP4.');
+    const video = document.createElement('video');
+    video.preload = 'auto'; video.muted = true; video.playsInline = true; video.src = src;
+    await new Promise((resolve, reject) => {
+      const done = () => { cleanup(); resolve(); }, fail = () => { cleanup(); reject(new Error('Could not load a video for MP4 export. Check that the URL is a direct MP4/WebM with CORS enabled.')); };
+      const cleanup = () => { video.removeEventListener('loadedmetadata', done); video.removeEventListener('error', fail); };
+      video.addEventListener('loadedmetadata', done, { once: true }); video.addEventListener('error', fail, { once: true });
+      video.load();
+    });
+    return video;
+  }
+  async function seek(video, time, signal) {
+    abortIfNeeded(signal);
+    const duration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 0;
+    if (!duration) return;
+    const target = Math.min(Math.max(0, time % duration), Math.max(0, duration - 0.001));
+    if (Math.abs(video.currentTime - target) < 0.001 && video.readyState >= 2) return;
+    await new Promise((resolve, reject) => {
+      let finished = false;
+      const done = () => { if (finished) return; finished = true; cleanup(); resolve(); };
+      const fail = () => { if (finished) return; finished = true; cleanup(); reject(new Error('A source video could not seek during export.')); };
+      const cleanup = () => { video.removeEventListener('seeked', done); video.removeEventListener('error', fail); };
+      video.addEventListener('seeked', done, { once: true }); video.addEventListener('error', fail, { once: true });
+      video.currentTime = target;
+    });
+  }
+  function drawObjectFit(ctx, source, x, y, w, h) {
+    const sw = source.videoWidth || source.naturalWidth || source.width || 1;
+    const sh = source.videoHeight || source.naturalHeight || source.height || 1;
+    const scale = Math.max(w / sw, h / sh); const dw = sw * scale, dh = sh * scale;
+    ctx.drawImage(source, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+  }
+  async function exportMP4(config = {}, options = {}) {
+    if (!window.VideoEncoder || !window.VideoFrame) throw new Error('This browser cannot export MP4 here. Try the latest Chrome, Edge, or Safari.');
+    const muxerAPI = window.Mp4Muxer;
+    if (!muxerAPI?.Muxer || !muxerAPI?.ArrayBufferTarget) throw new Error('The MP4 encoder is not available. Reload the editor and try again.');
+    const width = even(clamp(Number(options.width || config.canvasWidth || 1200), 320, 1920));
+    const height = even(clamp(Number(options.height || config.canvasHeight || 800), 240, 1920));
+    const fps = clamp(Number(options.fps || config.fps || 30), 12, 60);
+    const duration = clamp(Number(options.duration || config.duration || 8), 1, 30);
+    const signal = options.signal;
+    const media = (config.media || []).filter(item => sourceURL(item.src) && ['image', 'video', 'vimeo'].includes(item.type)).slice(0, 48);
+    if (!media.length) throw new Error('Add at least one hosted image or video before exporting MP4.');
+    if (media.some(item => item.type === 'vimeo' && !sourceURL(item.poster))) throw new Error('Add a poster image to every Vimeo card before exporting MP4. Vimeo cards export their poster image.');
+    const canvas = typeof OffscreenCanvas === 'function' ? new OffscreenCanvas(width, height) : Object.assign(document.createElement('canvas'), { width, height });
+    const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
+    const sources = await Promise.all(media.map(item => item.type === 'video' ? loadVideo(item, signal) : loadImage(item, signal)));
+    const codecCandidates = ['avc1.4d401f', 'avc1.42001f', 'avc1.42E01E'];
+    let supported;
+    for (const codec of codecCandidates) {
+      try {
+        const result = await VideoEncoder.isConfigSupported({ codec, width, height, bitrate: 5_000_000, framerate: fps });
+        if (result.supported) { supported = { ...result.config, codec }; break; }
+      } catch { /* Try the next H.264 profile. */ }
+    }
+    if (!supported) throw new Error('This browser does not expose an H.264 encoder, so it cannot create an MP4. Try Safari or Chrome with hardware video encoding enabled.');
+    const target = new muxerAPI.ArrayBufferTarget();
+    const muxer = new muxerAPI.Muxer({ target, video: { codec: 'avc', width, height, frameRate: fps }, fastStart: 'in-memory' });
+    let encoderError;
+    const encoder = new VideoEncoder({
+      output: (chunk, metadata) => muxer.addVideoChunk(chunk, metadata),
+      error: error => { encoderError = error; }
+    });
+    encoder.configure(supported);
+    const cardCount = Math.max(media.length, clamp(Number(config.count || 22), 1, 48));
+    for (let frameIndex = 0; frameIndex < Math.ceil(duration * fps); frameIndex++) {
+      abortIfNeeded(signal); if (encoderError) throw encoderError;
+      const time = frameIndex / fps;
+      ctx.clearRect(0, 0, width, height);
+      if (options.background && options.background !== 'transparent') { ctx.fillStyle = options.background; ctx.fillRect(0, 0, width, height); }
+      for (const [index, item] of media.entries()) if (item.type === 'video') await seek(sources[index], time, signal);
+      const layout = window.MeyaScene?.sample ? window.MeyaScene.sample({ ...config, count: cardCount }, width, height, time) : { cards: [] };
+      const cards = layout.cards?.length ? layout.cards : Array.from({ length: cardCount }, (_, index) => ({ index, item: media[index % media.length], x: width / 2, y: height / 2, width: width * .18, height: height * .18, depth: 0, opacity: 1, rotation: 0, blur: 0 }));
+      cards.slice().sort((a, b) => (a.depth || 0) - (b.depth || 0)).forEach(card => {
+        const item = card.item || media[card.index % media.length]; const source = sources[card.index % sources.length];
+        ctx.save(); ctx.translate(card.x, card.y); ctx.rotate(card.rotation || 0); ctx.globalAlpha = clamp(Number(card.opacity ?? 1), 0, 1);
+        if (card.blur) ctx.filter = `blur(${clamp(card.blur, 0, 24)}px)`;
+        const x = -card.width / 2, y = -card.height / 2; roundedPath(ctx, x, y, card.width, card.height, Number(config.radius || 3)); ctx.clip(); drawObjectFit(ctx, source, x, y, card.width, card.height); ctx.restore();
+      });
+      const timestamp = Math.round(time * 1_000_000);
+      const frame = new VideoFrame(canvas, { timestamp, duration: Math.round(1_000_000 / fps) });
+      encoder.encode(frame, { keyFrame: frameIndex % Math.max(1, fps * 2) === 0 }); frame.close();
+      options.onProgress?.((frameIndex + 1) / Math.ceil(duration * fps));
+      if (frameIndex % 4 === 0) await wait(0);
+    }
+    await encoder.flush(); encoder.close(); if (encoderError) throw encoderError;
+    muxer.finalize();
+    if (!target.buffer?.byteLength) throw new Error('MP4 export produced an empty file.');
+    return new Blob([target.buffer], { type: 'video/mp4' });
+  }
+  window.MeyaVideo = { exportMP4 };
+})();
+
+</script>
+<script>
 const bundledCSS = ".meya-orbit {\n  --orbit-height: 420px;\n  --orbit-radius: 3px;\n  position: relative;\n  isolation: isolate;\n  width: 100%;\n  height: var(--orbit-height);\n  overflow: hidden;\n  background: transparent;\n  touch-action: pan-y;\n  cursor: grab;\n  user-select: none;\n  -webkit-user-select: none;\n  outline: none;\n}\n.meya-orbit:focus-visible { outline: 2px solid #828282; outline-offset: -4px; }\n.meya-orbit[data-dragging=\"true\"] { cursor: grabbing; }\n.meya-orbit__card {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 140px;\n  aspect-ratio: 4 / 3;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  overflow: hidden;\n  border-radius: var(--orbit-radius);\n  background: #e9e8e5;\n  will-change: transform, opacity;\n  transform-origin: center;\n  box-shadow: 0 2px 7px #00000008;\n}\n.meya-orbit button.meya-orbit__card { cursor: pointer; }\n.meya-orbit button.meya-orbit__card:focus-visible { outline: 3px solid #7d9eff; outline-offset: 3px; }\n.meya-orbit__popup {\n  position: fixed; inset: 0; box-sizing: border-box;\n  width: 100%; max-width: none; height: 100%; max-height: none;\n  margin: 0; padding: 64px 24px 28px; border: 0;\n  background: transparent; color: white; overflow: auto;\n  font: 16px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n}\n.meya-orbit__popup[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }\n.meya-orbit__popup::backdrop { background: #000c; backdrop-filter: blur(5px); }\n.meya-orbit__viewer { display: flex; align-items: center; justify-content: center; max-width: 100%; min-height: 0; animation: meya-preview-in 250ms ease-out both; }\n.meya-orbit__viewer > img, .meya-orbit__viewer > video {\n  display: block; width: auto; height: auto; max-width: min(100%, 1000px);\n  max-height: calc(100dvh - 150px); object-fit: contain; border-radius: 14px;\n}\n.meya-orbit__viewer > iframe { width: min(1000px, calc(100vw - 48px)); max-height: calc(100dvh - 150px); border: 0; border-radius: 14px; background: #111; }\n.meya-orbit__caption { margin: 0; color: white; text-align: center; max-width: 900px; overflow-wrap: anywhere; font: inherit; }\n.meya-orbit__caption[hidden] { display: none; }\n.meya-orbit__close,\n.meya-orbit__close:hover,\n.meya-orbit__close:focus-visible { position: fixed; top: 16px; right: 18px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; outline: none; color: white; font-size: 0; cursor: pointer; }\n.meya-orbit__close::before { content: ''; width: 24px; height: 24px; background: currentColor; -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E\") center / contain no-repeat; mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E\") center / contain no-repeat; }\n.meya-orbit__close:hover::before { opacity: .7; }\n.meya-orbit__close:focus-visible::before { background: #c8dcfe; }\n@keyframes meya-preview-in { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: none; } }\n@media(prefers-reduced-motion: reduce) { .meya-orbit__viewer { animation: none; } }\n.meya-orbit__card > img,\n.meya-orbit__card > video,\n.meya-orbit__card > iframe {\n  display: block;\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  max-width: none;\n  border: 0;\n  object-fit: cover;\n  pointer-events: none;\n}\n.meya-orbit__card > iframe {\n  inset: 50% auto auto 50%;\n  transform: translate(-50%, -50%);\n}\n.meya-orbit__hint {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border: 0;\n}\n@media (max-width: 600px) {\n  .meya-orbit { height: min(var(--orbit-height), 330px); }\n}\n";
-const bundledJS = "/* Meya Orbit — scoped, reusable HTML/CSS/JS. Vimeo SDK loads only for Vimeo cards. */\n(() => {\n  'use strict';\n  if (window.MeyaOrbit) { window.MeyaOrbit.scan(); return; }\n  const instances = new WeakMap();\n  let sdkPromise;\n  const clamp = (n, a, b) => Math.min(b, Math.max(a, n));\n  function safeURL(value) {\n    try {\n      const url = new URL(value);\n      return ['https:', 'http:', 'blob:'].includes(url.protocol) ? url.href : '';\n    } catch { return ''; }\n  }\n  function vimeoURL(value) {\n    try {\n      const url = new URL(value);\n      if (!['vimeo.com', 'www.vimeo.com', 'player.vimeo.com'].includes(url.hostname)) return '';\n      const parts = url.pathname.split('/').filter(Boolean);\n      const id = url.hostname === 'player.vimeo.com' ? parts[1] : parts[0];\n      if (!/^\\d+$/.test(id || '')) return '';\n      const result = new URL('https://player.vimeo.com/video/' + id);\n      const hash = url.searchParams.get('h') || (url.hostname !== 'player.vimeo.com' ? parts[1] : '');\n      if (hash) result.searchParams.set('h', hash);\n      for (const [key, val] of Object.entries({ background: 1, autoplay: 0, loop: 1, muted: 1, autopause: 0, playsinline: 1, dnt: 1 })) {\n        result.searchParams.set(key, val);\n      }\n      return result.href;\n    } catch { return ''; }\n  }\n  function vimeoSDK() {\n    if (window.Vimeo?.Player) return Promise.resolve(window.Vimeo);\n    if (!sdkPromise) sdkPromise = new Promise((resolve, reject) => {\n      const script = document.createElement('script');\n      script.src = 'https://player.vimeo.com/api/player.js';\n      script.onload = () => window.Vimeo?.Player ? resolve(window.Vimeo) : reject(new Error('Vimeo unavailable'));\n      script.onerror = () => reject(new Error('Could not load the Vimeo player SDK. Check network access or content blockers.'));\n      document.head.append(script);\n    });\n    return sdkPromise;\n  }\n  function mount(root, config = {}) {\n    instances.get(root)?.destroy();\n    const abort = new AbortController();\n    const listen = (el, type, fn) => el.addEventListener(type, fn, { signal: abort.signal });\n    const reduced = matchMedia('(prefers-reduced-motion: reduce)');\n    const items = (config.media || []).filter(item => safeURL(item.src) && ['image', 'video', 'vimeo'].includes(item.type)).slice(0, 48);\n    const speed = clamp(Number(config.speed ?? 0.10), 0, 0.5);\n    const density = clamp(Number(config.count ?? 22), 1, 48);\n    root.style.setProperty('--orbit-height', clamp(Number(config.height ?? 420), 200, 900) + 'px');\n    root.style.setProperty('--orbit-radius', clamp(Number(config.radius ?? 3), 0, 50) + 'px');\n    root.classList.add('meya-orbit');\n    root.setAttribute('role', 'group');\n    root.setAttribute('aria-label', 'Orbiting project imagery');\n    root.tabIndex = 0;\n    const hint = document.createElement('span');\n    hint.className = 'meya-orbit__hint';\n    hint.textContent = 'Drag to rotate. Use arrow keys to rotate, and Space to pause or resume animation.';\n    root.replaceChildren(hint);\n    let frame = 0, alive = true, visible = true, paused = false, yaw = 0.35, pitch = -0.12;\n    let lastTime = 0, width = 0, height = 0, radiusX = 0, radiusY = 0, cardWidth = 0;\n    let drag = null, hover = false, pointerTilt = 0, tilt = 0, mediaTimer = 0;\n    let introTime = config.intro === false || reduced.matches ? 2.2 : 0;\n    let suppressClick = false, opener = null;\n    const popup = document.createElement('dialog');\n    popup.className = 'meya-orbit__popup';\n    popup.setAttribute('aria-label', 'Project preview');\n    const close = document.createElement('button');\n    close.type = 'button'; close.className = 'meya-orbit__close'; close.textContent = '×';\n    close.setAttribute('aria-label', 'Close preview');\n    const viewer = document.createElement('div'); viewer.className = 'meya-orbit__viewer';\n    const caption = document.createElement('p'); caption.className = 'meya-orbit__caption';\n    popup.append(close, viewer, caption); document.body.append(popup);\n    function openPreview(card) {\n      if (popup.open || card.item.popup === false) return;\n      opener = card.element;\n      caption.textContent = card.item.title || ''; caption.hidden = !card.item.title;\n      popup.setAttribute('aria-label', card.item.title || 'Project preview');\n      let media;\n      if (card.item.type === 'image') {\n        media = document.createElement('img'); media.alt = card.item.title || 'Project image'; media.src = card.item.src;\n      } else if (card.item.type === 'video') {\n        media = document.createElement('video'); media.controls = true; media.playsInline = true;\n        media.src = card.item.src; if (safeURL(card.item.poster)) media.poster = card.item.poster;\n      } else {\n        media = document.createElement('iframe');\n        const url = new URL(vimeoURL(card.item.src));\n        url.searchParams.set('background', '0'); url.searchParams.set('controls', '1');\n        url.searchParams.set('muted', '0'); url.searchParams.set('loop', '0');\n        media.src = url.href; media.title = card.item.title || 'Project video';\n        media.allow = 'autoplay; fullscreen; picture-in-picture'; media.allowFullscreen = true;\n        media.style.aspectRatio = String(clamp(Number(card.item.ratio || 16 / 9), 0.2, 5));\n      }\n      viewer.replaceChildren(media); popup.showModal(); close.focus(); resume();\n    }\n    listen(close, 'click', () => popup.close());\n    let backdropDown = false;\n    listen(popup, 'pointerdown', e => { backdropDown = e.target === popup; });\n    listen(popup, 'click', e => { if (backdropDown && e.target === popup) popup.close(); });\n    listen(popup, 'close', () => {\n      viewer.querySelector('video')?.pause(); viewer.replaceChildren();\n      if (alive) { opener?.focus({ preventScroll: true }); resume(); }\n    });\n    const count = items.length ? Math.max(items.length, density) : 0;\n    const cards = Array.from({ length: count }, (_, i) => {\n      const item = items[i % items.length];\n      const element = document.createElement(item.popup === false ? 'div' : 'button');\n      element.className = 'meya-orbit__card';\n      if (item.popup !== false) {\n        element.type = 'button'; element.setAttribute('aria-label', item.title ? 'Open ' + item.title : 'Open project ' + (i % items.length + 1));\n        element.setAttribute('aria-haspopup', 'dialog');\n      } else element.setAttribute('aria-hidden', 'true');\n      const cardRatio = ({ '4:3': 4/3, '1:1': 1, '3:4': 3/4, '16:9': 16/9, '9:16': 9/16 })[item.cardRatio] || 4/3;\n      element.style.aspectRatio = String(cardRatio);\n      const y = 1 - 2 * (i + 0.5) / count;\n      const r = Math.sqrt(1 - y * y), angle = i * Math.PI * (3 - Math.sqrt(5));\n      const card = { element, item, cardRatio, index: i, x: Math.cos(angle) * r, y, z: Math.sin(angle) * r, depth: 0, wanted: false, node: null, player: null, loading: false };\n      listen(element, 'click', e => { if (!suppressClick || e.detail === 0) openPreview(card); });\n      if (item.type === 'image' || safeURL(item.poster)) {\n        const img = document.createElement('img');\n        img.src = item.type === 'image' ? item.src : item.poster;\n        img.alt = ''; img.draggable = false; img.decoding = 'async';\n        img.addEventListener('error', () => { element.dataset.mediaError = 'true'; img.style.visibility = 'hidden'; });\n        element.append(img);\n      }\n      root.append(element);\n      return card;\n    });\n    function setPlayback(card, wanted) {\n      card.wanted = wanted;\n      if (card.node?.tagName === 'VIDEO') {\n        if (wanted && card.node.paused) card.node.play().catch(() => {});\n        else if (!wanted && !card.node.paused) card.node.pause();\n      }\n      if (card.player) {\n        (wanted ? card.player.play() : card.player.pause()).catch(() => {});\n      }\n    }\n    async function prepare(card) {\n      if (card.loading || card.node || !alive) return;\n      card.loading = true;\n      if (card.item.type === 'video') {\n        const video = document.createElement('video');\n        video.muted = true; video.defaultMuted = true; video.loop = true; video.playsInline = true;\n        video.setAttribute('muted', ''); video.setAttribute('playsinline', '');\n        video.preload = 'metadata';\n        if (safeURL(card.item.poster)) video.poster = card.item.poster;\n        video.src = card.item.src;\n        video.addEventListener('error', () => { card.element.dataset.mediaError = 'true'; video.style.visibility = 'hidden'; });\n        card.node = video; card.element.append(video);\n        setPlayback(card, card.wanted);\n      } else if (card.item.type === 'vimeo') {\n        const src = vimeoURL(card.item.src);\n        if (!src) { card.element.dataset.mediaError = 'true'; return; }\n        try {\n          const Vimeo = await vimeoSDK();\n          if (!alive) return;\n          const iframe = document.createElement('iframe');\n          iframe.title = 'Decorative project video'; iframe.tabIndex = -1;\n          iframe.allow = 'autoplay; fullscreen; picture-in-picture';\n          iframe.src = src;\n          // Source ratio and the displayed card shape are independent.\n          const ratio = clamp(Number(card.item.ratio || 16 / 9), 0.2, 5);\n          iframe.style.width = Math.max(100, ratio / card.cardRatio * 100) + '%';\n          iframe.style.height = Math.max(100, card.cardRatio / ratio * 100) + '%';\n          card.node = iframe; card.element.append(iframe);\n          card.player = new Vimeo.Player(iframe);\n          await card.player.ready();\n          if (!alive) return;\n          await card.player.setVolume(0);\n          setPlayback(card, card.wanted);\n        } catch (error) { card.element.dataset.mediaError = error.message || 'Vimeo player could not load'; }\n      }\n    }\n    function syncMedia() {\n      const active = alive && visible && !document.hidden && !paused && !popup.open && !reduced.matches;\n      // Only the nearest three videos run; the rest retain their poster or paused frame.\n      const front = active ? cards.filter(c => c.item.type !== 'image' && c.depth > -0.1).sort((a, b) => b.depth - a.depth).slice(0, 3) : [];\n      for (const card of cards) {\n        if (card.item.type === 'image') continue;\n        const wanted = front.includes(card);\n        if (wanted !== card.wanted) setPlayback(card, wanted);\n        if (wanted) prepare(card);\n      }\n    }\n    function draw() {\n      const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch + tilt), sp = Math.sin(pitch + tilt);\n      for (const card of cards) {\n        const progress = clamp((introTime - card.index / Math.max(1, count) * 0.35) / 1.65, 0, 1);\n        const reveal = 1 - Math.pow(1 - progress, 3);\n        const x = card.x * cy + card.z * sy;\n        const z0 = card.z * cy - card.x * sy;\n        const y = card.y * cp - z0 * sp;\n        const z = card.y * sp + z0 * cp;\n        const perspective = 1 / (1 - z * 0.20);\n        const scale = (0.76 + (z + 1) * 0.16) * perspective;\n        card.depth = z;\n        const spread = 1 + (1 - reveal) * 2.6;\n        card.element.style.transform = `translate(-50%, -50%) translate3d(${(x * radiusX * perspective * spread).toFixed(2)}px, ${(y * radiusY * perspective * spread).toFixed(2)}px, 0) scale(${(scale * (1 + (1 - reveal) * 0.6)).toFixed(4)})`;\n        card.element.style.opacity = ((0.27 + Math.pow((z + 1) / 2, 0.8) * 0.73) * Math.min(1, progress * 5)).toFixed(3);\n        card.element.style.zIndex = String(Math.round((z + 1) * 1000));\n        card.element.style.filter = `blur(${(Math.max(0, -z) * 0.65).toFixed(2)}px)`;\n      }\n    }\n    function resize() {\n      width = root.clientWidth; height = root.clientHeight;\n      const span = Math.min(width * 0.90, 680, height * 1.7);\n      cardWidth = Math.min(140, span * 0.215);\n      radiusX = Math.max(0, (span - cardWidth * 1.45) / 2.12);\n      const maxCardHeight = Math.max(0, ...cards.map(card => cardWidth * Math.min(1, card.cardRatio) / card.cardRatio));\n      radiusY = Math.max(0, (height * 0.91 - maxCardHeight * 1.45) / 2.12);\n      for (const card of cards) card.element.style.width = cardWidth * Math.min(1, card.cardRatio) + 'px';\n      draw();\n    }\n    function tick(time) {\n      frame = 0;\n      if (!alive || !visible || document.hidden || paused || popup.open || reduced.matches) return;\n      const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;\n      lastTime = time;\n      introTime = Math.min(2.2, introTime + dt);\n      if (!drag) yaw += dt * speed * (hover ? 0.3 : 1);\n      tilt += (pointerTilt - tilt) * (1 - Math.exp(-dt * 5));\n      draw();\n      if (time - mediaTimer > 300) { syncMedia(); mediaTimer = time; }\n      frame = requestAnimationFrame(tick);\n    }\n    function resume() {\n      cancelAnimationFrame(frame); frame = 0; lastTime = 0;\n      if (reduced.matches) introTime = 2.2;\n      draw(); syncMedia();\n      if (alive && visible && !document.hidden && !paused && !popup.open && !reduced.matches) frame = requestAnimationFrame(tick);\n    }\n    listen(root, 'pointerdown', e => {\n      if (e.button !== 0 || !e.isPrimary) return;\n      suppressClick = false;\n      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw, pitch };\n      root.dataset.dragging = 'true';\n    });\n    listen(root, 'pointermove', e => {\n      if (drag && e.pointerId === drag.id) {\n        if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 7) {\n          suppressClick = true; introTime = 2.2;\n          if (!root.hasPointerCapture(e.pointerId)) root.setPointerCapture(e.pointerId);\n        }\n        if (!suppressClick) return;\n        yaw = drag.yaw + (e.clientX - drag.x) * 0.007;\n        pitch = clamp(drag.pitch - (e.clientY - drag.y) * 0.004, -0.75, 0.75);\n        draw();\n      } else if (e.pointerType === 'mouse' && !reduced.matches) {\n        const rect = root.getBoundingClientRect();\n        pointerTilt = ((e.clientY - rect.top) / height - 0.5) * 0.16;\n      }\n    });\n    function release(e) {\n      if (!drag || e.pointerId !== drag.id) return;\n      drag = null; root.dataset.dragging = 'false';\n      if (root.hasPointerCapture(e.pointerId)) root.releasePointerCapture(e.pointerId);\n      syncMedia();\n    }\n    listen(window, 'pointerup', release); listen(root, 'pointercancel', release); listen(root, 'lostpointercapture', release);\n    listen(root, 'pointerenter', () => { hover = true; });\n    listen(root, 'pointerleave', () => { hover = false; pointerTilt = 0; });\n    listen(root, 'keydown', e => {\n      if (e.target !== root && ['Space', 'Enter'].includes(e.code)) return;\n      if (e.code === 'Space') { e.preventDefault(); paused = !paused; resume(); }\n      else if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {\n        e.preventDefault();\n        if (e.key === 'ArrowLeft') yaw -= 0.15;\n        if (e.key === 'ArrowRight') yaw += 0.15;\n        if (e.key === 'ArrowUp') pitch = clamp(pitch - 0.1, -0.75, 0.75);\n        if (e.key === 'ArrowDown') pitch = clamp(pitch + 0.1, -0.75, 0.75);\n        draw(); syncMedia();\n      }\n    });\n    listen(document, 'visibilitychange', resume); listen(reduced, 'change', resume);\n    const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; resume(); }, { threshold: 0.01 });\n    const sizeObserver = new ResizeObserver(resize);\n    observer.observe(root); sizeObserver.observe(root);\n    resize(); resume();\n    const instance = { destroy() {\n      alive = false; abort.abort(); cancelAnimationFrame(frame);\n      viewer.querySelector('video')?.pause(); if (popup.open) popup.close(); popup.remove();\n      observer.disconnect(); sizeObserver.disconnect();\n      for (const card of cards) {\n        card.wanted = false;\n        if (card.player) card.player.destroy().catch(() => {});\n        if (card.node?.tagName === 'VIDEO') { card.node.pause(); card.node.removeAttribute('src'); card.node.load(); }\n      }\n      root.replaceChildren(); instances.delete(root);\n    }};\n    instances.set(root, instance);\n    return instance;\n  }\n  function scan() {\n    document.querySelectorAll('[data-meya-orbit]').forEach(root => {\n      if (instances.has(root)) return;\n      const data = root.querySelector('script[type=\"application/json\"]');\n      if (!data) return;\n      try { mount(root, JSON.parse(data.textContent)); } catch (error) { console.warn('Check Meya Orbit configuration.', error); }\n    });\n  }\n  window.MeyaOrbit = { mount, scan };\n  scan();\n})();\n";
+const bundledJS = "/* Meya Orbit — scoped, reusable HTML/CSS/JS. Vimeo SDK loads only for Vimeo cards. */\n/* The scene sampler is shared by the live preview and the MP4 exporter. */\nwindow.MeyaScene = window.MeyaScene || (() => {\n  const clampScene = (n, a, b) => Math.min(b, Math.max(a, n));\n  const ratioScene = value => ({ '4:3': 4 / 3, '1:1': 1, '3:4': 3 / 4, '16:9': 16 / 9, '9:16': 9 / 16 })[value] || 4 / 3;\n  function cardSize(config, width, height, item) {\n    const ratio = ratioScene(item?.cardRatio);\n    const base = Math.min(width * 0.18, 180) * clampScene(Number(config.cardSize ?? 100) / 100, 0.55, 1.8);\n    return { width: base * Math.min(1, ratio), height: base * Math.min(1, ratio) / ratio };\n  }\n  function sample(config = {}, width = 1200, height = 800, time = 0) {\n    const media = (config.media || []).filter(item => item?.src && ['image', 'video', 'vimeo'].includes(item.type));\n    const count = media.length ? Math.max(media.length, clampScene(Number(config.count ?? 22), 1, 48)) : 0;\n    const template = config.template || 'orbit';\n    const speed = clampScene(Number(config.speed ?? 0.1), 0, 0.5) * (config.reverse ? -1 : 1);\n    const spread = clampScene(Number(config.spread ?? 100) / 100, 0.35, 2.2);\n    const depthAmount = clampScene(Number(config.depth ?? 100) / 100, 0, 1.8);\n    const tilt = Number(config.tilt ?? 0) * Math.PI / 180;\n    const gap = clampScene(Number(config.gap ?? 12) / 100, 0, 0.5);\n    const output = [];\n    for (let i = 0; i < count; i++) {\n      const item = media[i % media.length]; const size = cardSize(config, width, height, item);\n      let nx = 0, ny = 0, depth = 0, rotation = 0;\n      if (template === 'carousel') {\n        const u = count === 1 ? 0 : i / (count - 1) * 2 - 1;\n        nx = u * (0.82 + gap * 0.42) * spread; depth = (1 - Math.abs(u)) * depthAmount; ny = Math.sin(i * 1.37 + time * speed * 1.5) * (0.08 + gap * 0.12);\n        rotation = u * -0.18 + tilt;\n      } else if (template === 'wave') {\n        const rows = clampScene(Number(config.rows ?? 3), 2, 6); const cols = Math.ceil(count / rows);\n        const col = i % cols; const row = Math.floor(i / cols); const u = cols <= 1 ? 0 : col / (cols - 1) * 2 - 1;\n        nx = u * (0.78 + gap * 0.34) * spread; ny = ((row + 0.5) / rows - 0.5) * (1.45 + gap * 0.55) + Math.sin(u * 3 + time * speed * 2) * (0.08 + gap * 0.1);\n        depth = (Math.sin(u * Math.PI + time * speed * 1.4) + 1) * 0.5 * depthAmount; rotation = Math.sin(u * 2 + row) * 0.08 + tilt;\n      } else {\n        const yaw = time * speed * 1.6; const pitch = tilt - 0.12; const y = 1 - 2 * (i + 0.5) / Math.max(1, count);\n        const r = Math.sqrt(Math.max(0, 1 - y * y)); const angle = i * Math.PI * (3 - Math.sqrt(5)) + yaw;\n        const x0 = Math.cos(angle) * r, z0 = Math.sin(angle) * r; const cp = Math.cos(pitch), sp = Math.sin(pitch);\n        nx = x0 * 0.87 * spread; ny = (y * cp - z0 * sp) * 0.9 * spread; depth = (y * sp + z0 * cp) * depthAmount; rotation = tilt + Math.sin(angle) * 0.035;\n      }\n      const perspective = 1 / (1 - depth * 0.17); const scale = (0.76 + (depth + 1) * 0.15) * perspective;\n      const reveal = config.intro === false ? 1 : clampScene((time - i / Math.max(1, count) * 0.35) / 1.65, 0, 1);\n      const ease = 1 - Math.pow(1 - reveal, 3); const outward = 1 + (1 - ease) * 1.8;\n      output.push({ item, index: i, x: width / 2 + nx * width * 0.38 * perspective * outward, y: height / 2 + ny * height * 0.39 * perspective * outward, width: size.width * scale, height: size.height * scale, rotation, opacity: (0.3 + Math.pow((depth + 1) / 2, 0.8) * 0.7) * Math.min(1, reveal * 5), blur: Math.max(0, -depth) * 0.65, depth });\n    }\n    return { cards: output, width, height };\n  }\n  return { sample, ratio: ratioScene };\n})();\n(() => {\n  'use strict';\n  if (window.MeyaOrbit) { window.MeyaOrbit.scan(); return; }\n  const instances = new WeakMap();\n  let sdkPromise;\n  const clamp = (n, a, b) => Math.min(b, Math.max(a, n));\n  function safeURL(value) {\n    try {\n      const url = new URL(value);\n      return ['https:', 'http:', 'blob:'].includes(url.protocol) ? url.href : '';\n    } catch { return ''; }\n  }\n  function vimeoURL(value) {\n    try {\n      const url = new URL(value);\n      if (!['vimeo.com', 'www.vimeo.com', 'player.vimeo.com'].includes(url.hostname)) return '';\n      const parts = url.pathname.split('/').filter(Boolean);\n      const id = url.hostname === 'player.vimeo.com' ? parts[1] : parts[0];\n      if (!/^\\d+$/.test(id || '')) return '';\n      const result = new URL('https://player.vimeo.com/video/' + id);\n      const hash = url.searchParams.get('h') || (url.hostname !== 'player.vimeo.com' ? parts[1] : '');\n      if (hash) result.searchParams.set('h', hash);\n      for (const [key, val] of Object.entries({ background: 1, autoplay: 0, loop: 1, muted: 1, autopause: 0, playsinline: 1, dnt: 1 })) {\n        result.searchParams.set(key, val);\n      }\n      return result.href;\n    } catch { return ''; }\n  }\n  function vimeoSDK() {\n    if (window.Vimeo?.Player) return Promise.resolve(window.Vimeo);\n    if (!sdkPromise) sdkPromise = new Promise((resolve, reject) => {\n      const script = document.createElement('script');\n      script.src = 'https://player.vimeo.com/api/player.js';\n      script.onload = () => window.Vimeo?.Player ? resolve(window.Vimeo) : reject(new Error('Vimeo unavailable'));\n      script.onerror = () => reject(new Error('Could not load the Vimeo player SDK. Check network access or content blockers.'));\n      document.head.append(script);\n    });\n    return sdkPromise;\n  }\n  function mount(root, config = {}) {\n    instances.get(root)?.destroy();\n    const abort = new AbortController();\n    const listen = (el, type, fn) => el.addEventListener(type, fn, { signal: abort.signal });\n    const reduced = matchMedia('(prefers-reduced-motion: reduce)');\n    const items = (config.media || []).filter(item => safeURL(item.src) && ['image', 'video', 'vimeo'].includes(item.type)).slice(0, 48);\n    const speed = clamp(Number(config.speed ?? 0.10), 0, 0.5);\n    const density = clamp(Number(config.count ?? 22), 1, 48);\n    root.style.setProperty('--orbit-height', clamp(Number(config.height ?? 420), 200, 900) + 'px');\n    root.style.setProperty('--orbit-radius', clamp(Number(config.radius ?? 3), 0, 50) + 'px');\n    root.style.setProperty('--orbit-canvas-ratio', (Number(config.canvasWidth || 1200) / Math.max(1, Number(config.canvasHeight || 800))).toFixed(5));\n    root.classList.add('meya-orbit');\n    root.setAttribute('role', 'group');\n    root.setAttribute('aria-label', 'Orbiting project imagery');\n    root.tabIndex = 0;\n    const hint = document.createElement('span');\n    hint.className = 'meya-orbit__hint';\n    hint.textContent = 'Drag to rotate. Use arrow keys to rotate, and Space to pause or resume animation.';\n    root.replaceChildren(hint);\n    let frame = 0, alive = true, visible = true, paused = false, yaw = 0.35, pitch = -0.12;\n    let lastTime = 0, width = 0, height = 0, radiusX = 0, radiusY = 0, cardWidth = 0;\n    let drag = null, hover = false, pointerTilt = 0, tilt = 0, mediaTimer = 0;\n    let introTime = config.intro === false || reduced.matches ? 2.2 : 0;\n    let suppressClick = false, opener = null;\n    const popup = document.createElement('dialog');\n    popup.className = 'meya-orbit__popup';\n    popup.setAttribute('aria-label', 'Project preview');\n    const close = document.createElement('button');\n    close.type = 'button'; close.className = 'meya-orbit__close'; close.textContent = '×';\n    close.setAttribute('aria-label', 'Close preview');\n    const viewer = document.createElement('div'); viewer.className = 'meya-orbit__viewer';\n    const caption = document.createElement('p'); caption.className = 'meya-orbit__caption';\n    popup.append(close, viewer, caption); document.body.append(popup);\n    function openPreview(card) {\n      if (popup.open || card.item.popup === false) return;\n      opener = card.element;\n      caption.textContent = card.item.title || ''; caption.hidden = !card.item.title;\n      popup.setAttribute('aria-label', card.item.title || 'Project preview');\n      let media;\n      if (card.item.type === 'image') {\n        media = document.createElement('img'); media.alt = card.item.title || 'Project image'; media.src = card.item.src;\n      } else if (card.item.type === 'video') {\n        media = document.createElement('video'); media.controls = true; media.playsInline = true;\n        media.src = card.item.src; if (safeURL(card.item.poster)) media.poster = card.item.poster;\n      } else {\n        media = document.createElement('iframe');\n        const url = new URL(vimeoURL(card.item.src));\n        url.searchParams.set('background', '0'); url.searchParams.set('controls', '1');\n        url.searchParams.set('muted', '0'); url.searchParams.set('loop', '0');\n        media.src = url.href; media.title = card.item.title || 'Project video';\n        media.allow = 'autoplay; fullscreen; picture-in-picture'; media.allowFullscreen = true;\n        media.style.aspectRatio = String(clamp(Number(card.item.ratio || 16 / 9), 0.2, 5));\n      }\n      viewer.replaceChildren(media); popup.showModal(); close.focus(); resume();\n    }\n    listen(close, 'click', () => popup.close());\n    let backdropDown = false;\n    listen(popup, 'pointerdown', e => { backdropDown = e.target === popup; });\n    listen(popup, 'click', e => { if (backdropDown && e.target === popup) popup.close(); });\n    listen(popup, 'close', () => {\n      viewer.querySelector('video')?.pause(); viewer.replaceChildren();\n      if (alive) { opener?.focus({ preventScroll: true }); resume(); }\n    });\n    const count = items.length ? Math.max(items.length, density) : 0;\n    const cards = Array.from({ length: count }, (_, i) => {\n      const item = items[i % items.length];\n      const element = document.createElement(item.popup === false ? 'div' : 'button');\n      element.className = 'meya-orbit__card';\n      if (item.popup !== false) {\n        element.type = 'button'; element.setAttribute('aria-label', item.title ? 'Open ' + item.title : 'Open project ' + (i % items.length + 1));\n        element.setAttribute('aria-haspopup', 'dialog');\n      } else element.setAttribute('aria-hidden', 'true');\n      const cardRatio = ({ '4:3': 4/3, '1:1': 1, '3:4': 3/4, '16:9': 16/9, '9:16': 9/16 })[item.cardRatio] || 4/3;\n      element.style.aspectRatio = String(cardRatio);\n      const y = 1 - 2 * (i + 0.5) / count;\n      const r = Math.sqrt(1 - y * y), angle = i * Math.PI * (3 - Math.sqrt(5));\n      const card = { element, item, cardRatio, index: i, x: Math.cos(angle) * r, y, z: Math.sin(angle) * r, depth: 0, wanted: false, node: null, player: null, loading: false };\n      listen(element, 'click', e => { if (!suppressClick || e.detail === 0) openPreview(card); });\n      if (item.type === 'image' || safeURL(item.poster)) {\n        const img = document.createElement('img');\n        img.src = item.type === 'image' ? item.src : item.poster;\n        img.alt = ''; img.draggable = false; img.decoding = 'async';\n        img.addEventListener('error', () => { element.dataset.mediaError = 'true'; img.style.visibility = 'hidden'; });\n        element.append(img);\n      }\n      root.append(element);\n      return card;\n    });\n    function setPlayback(card, wanted) {\n      card.wanted = wanted;\n      if (card.node?.tagName === 'VIDEO') {\n        if (wanted && card.node.paused) card.node.play().catch(() => {});\n        else if (!wanted && !card.node.paused) card.node.pause();\n      }\n      if (card.player) {\n        (wanted ? card.player.play() : card.player.pause()).catch(() => {});\n      }\n    }\n    async function prepare(card) {\n      if (card.loading || card.node || !alive) return;\n      card.loading = true;\n      if (card.item.type === 'video') {\n        const video = document.createElement('video');\n        video.muted = true; video.defaultMuted = true; video.loop = true; video.playsInline = true;\n        video.setAttribute('muted', ''); video.setAttribute('playsinline', '');\n        video.preload = 'metadata';\n        if (safeURL(card.item.poster)) video.poster = card.item.poster;\n        video.src = card.item.src;\n        video.addEventListener('error', () => { card.element.dataset.mediaError = 'true'; video.style.visibility = 'hidden'; });\n        card.node = video; card.element.append(video);\n        setPlayback(card, card.wanted);\n      } else if (card.item.type === 'vimeo') {\n        const src = vimeoURL(card.item.src);\n        if (!src) { card.element.dataset.mediaError = 'true'; return; }\n        try {\n          const Vimeo = await vimeoSDK();\n          if (!alive) return;\n          const iframe = document.createElement('iframe');\n          iframe.title = 'Decorative project video'; iframe.tabIndex = -1;\n          iframe.allow = 'autoplay; fullscreen; picture-in-picture';\n          iframe.src = src;\n          // Source ratio and the displayed card shape are independent.\n          const ratio = clamp(Number(card.item.ratio || 16 / 9), 0.2, 5);\n          iframe.style.width = Math.max(100, ratio / card.cardRatio * 100) + '%';\n          iframe.style.height = Math.max(100, card.cardRatio / ratio * 100) + '%';\n          card.node = iframe; card.element.append(iframe);\n          card.player = new Vimeo.Player(iframe);\n          await card.player.ready();\n          if (!alive) return;\n          await card.player.setVolume(0);\n          setPlayback(card, card.wanted);\n        } catch (error) { card.element.dataset.mediaError = error.message || 'Vimeo player could not load'; }\n      }\n    }\n    function syncMedia() {\n      const active = alive && visible && !document.hidden && !paused && !popup.open && !reduced.matches;\n      // Only the nearest three videos run; the rest retain their poster or paused frame.\n      const front = active ? cards.filter(c => c.item.type !== 'image' && c.depth > -0.1).sort((a, b) => b.depth - a.depth).slice(0, 3) : [];\n      for (const card of cards) {\n        if (card.item.type === 'image') continue;\n        const wanted = front.includes(card);\n        if (wanted !== card.wanted) setPlayback(card, wanted);\n        if (wanted) prepare(card);\n      }\n    }\n    function draw() {\n      if ((config.template || 'orbit') !== 'orbit') {\n        const layout = window.MeyaScene.sample(config, width, height, (performance.now() || 0) / 1000);\n        for (const card of cards) {\n          const position = layout.cards[card.index]; if (!position) continue;\n          card.depth = position.depth;\n          card.element.style.width = position.width + 'px';\n          card.element.style.aspectRatio = String(card.cardRatio);\n          card.element.style.transform = `translate(-50%, -50%) translate3d(${(position.x - width / 2).toFixed(2)}px, ${(position.y - height / 2).toFixed(2)}px, 0) rotate(${position.rotation}rad)`;\n          card.element.style.opacity = position.opacity.toFixed(3);\n          card.element.style.zIndex = String(Math.round((position.depth + 1) * 1000));\n          card.element.style.filter = `blur(${position.blur.toFixed(2)}px)`;\n        }\n        return;\n      }\n      const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch + tilt), sp = Math.sin(pitch + tilt);\n      for (const card of cards) {\n        const progress = clamp((introTime - card.index / Math.max(1, count) * 0.35) / 1.65, 0, 1);\n        const reveal = 1 - Math.pow(1 - progress, 3);\n        const x = card.x * cy + card.z * sy;\n        const z0 = card.z * cy - card.x * sy;\n        const y = card.y * cp - z0 * sp;\n        const z = card.y * sp + z0 * cp;\n        const perspective = 1 / (1 - z * 0.20 * clamp(Number(config.depth ?? 100) / 100, 0, 1.8));\n        const scale = (0.76 + (z + 1) * 0.16) * perspective;\n        card.depth = z;\n        const spread = (1 + (1 - reveal) * 2.6) * clamp(Number(config.spread ?? 100) / 100, 0.35, 2.2);\n        card.element.style.transform = `translate(-50%, -50%) translate3d(${(x * radiusX * perspective * spread).toFixed(2)}px, ${(y * radiusY * perspective * spread).toFixed(2)}px, 0) scale(${(scale * (1 + (1 - reveal) * 0.6)).toFixed(4)})`;\n        card.element.style.opacity = ((0.27 + Math.pow((z + 1) / 2, 0.8) * 0.73) * Math.min(1, progress * 5)).toFixed(3);\n        card.element.style.zIndex = String(Math.round((z + 1) * 1000));\n        card.element.style.filter = `blur(${(Math.max(0, -z) * 0.65).toFixed(2)}px)`;\n      }\n    }\n    function resize() {\n      width = root.clientWidth; height = root.clientHeight;\n      const span = Math.min(width * 0.90, 680, height * 1.7);\n      cardWidth = Math.min(140, span * 0.215) * clamp(Number(config.cardSize ?? 100) / 100, 0.55, 1.8);\n      radiusX = Math.max(0, (span - cardWidth * 1.45) / 2.12);\n      const maxCardHeight = Math.max(0, ...cards.map(card => cardWidth * Math.min(1, card.cardRatio) / card.cardRatio));\n      radiusY = Math.max(0, (height * 0.91 - maxCardHeight * 1.45) / 2.12);\n      for (const card of cards) card.element.style.width = cardWidth * Math.min(1, card.cardRatio) + 'px';\n      draw();\n    }\n    function tick(time) {\n      frame = 0;\n      if (!alive || !visible || document.hidden || paused || popup.open || reduced.matches) return;\n      const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;\n      lastTime = time;\n      introTime = Math.min(2.2, introTime + dt);\n      if (!drag) yaw += dt * speed * (hover ? 0.3 : 1) * (config.reverse ? -1 : 1);\n      tilt += (pointerTilt - tilt) * (1 - Math.exp(-dt * 5));\n      draw();\n      if (time - mediaTimer > 300) { syncMedia(); mediaTimer = time; }\n      frame = requestAnimationFrame(tick);\n    }\n    function resume() {\n      cancelAnimationFrame(frame); frame = 0; lastTime = 0;\n      if (reduced.matches) introTime = 2.2;\n      draw(); syncMedia();\n      if (alive && visible && !document.hidden && !paused && !popup.open && !reduced.matches) frame = requestAnimationFrame(tick);\n    }\n    listen(root, 'pointerdown', e => {\n      if (e.button !== 0 || !e.isPrimary) return;\n      suppressClick = false;\n      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw, pitch };\n      root.dataset.dragging = 'true';\n    });\n    listen(root, 'pointermove', e => {\n      if (drag && e.pointerId === drag.id) {\n        if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 7) {\n          suppressClick = true; introTime = 2.2;\n          if (!root.hasPointerCapture(e.pointerId)) root.setPointerCapture(e.pointerId);\n        }\n        if (!suppressClick) return;\n        yaw = drag.yaw + (e.clientX - drag.x) * 0.007;\n        pitch = clamp(drag.pitch - (e.clientY - drag.y) * 0.004, -0.75, 0.75);\n        draw();\n      } else if (e.pointerType === 'mouse' && !reduced.matches) {\n        const rect = root.getBoundingClientRect();\n        pointerTilt = ((e.clientY - rect.top) / height - 0.5) * 0.16;\n      }\n    });\n    function release(e) {\n      if (!drag || e.pointerId !== drag.id) return;\n      drag = null; root.dataset.dragging = 'false';\n      if (root.hasPointerCapture(e.pointerId)) root.releasePointerCapture(e.pointerId);\n      syncMedia();\n    }\n    listen(window, 'pointerup', release); listen(root, 'pointercancel', release); listen(root, 'lostpointercapture', release);\n    listen(root, 'pointerenter', () => { hover = true; });\n    listen(root, 'pointerleave', () => { hover = false; pointerTilt = 0; });\n    listen(root, 'keydown', e => {\n      if (e.target !== root && ['Space', 'Enter'].includes(e.code)) return;\n      if (e.code === 'Space') { e.preventDefault(); paused = !paused; resume(); }\n      else if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {\n        e.preventDefault();\n        if (e.key === 'ArrowLeft') yaw -= 0.15;\n        if (e.key === 'ArrowRight') yaw += 0.15;\n        if (e.key === 'ArrowUp') pitch = clamp(pitch - 0.1, -0.75, 0.75);\n        if (e.key === 'ArrowDown') pitch = clamp(pitch + 0.1, -0.75, 0.75);\n        draw(); syncMedia();\n      }\n    });\n    listen(document, 'visibilitychange', resume); listen(reduced, 'change', resume);\n    const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; resume(); }, { threshold: 0.01 });\n    const sizeObserver = new ResizeObserver(resize);\n    observer.observe(root); sizeObserver.observe(root);\n    resize(); resume();\n    const instance = { destroy() {\n      alive = false; abort.abort(); cancelAnimationFrame(frame);\n      viewer.querySelector('video')?.pause(); if (popup.open) popup.close(); popup.remove();\n      observer.disconnect(); sizeObserver.disconnect();\n      for (const card of cards) {\n        card.wanted = false;\n        if (card.player) card.player.destroy().catch(() => {});\n        if (card.node?.tagName === 'VIDEO') { card.node.pause(); card.node.removeAttribute('src'); card.node.load(); }\n      }\n      root.replaceChildren(); instances.delete(root);\n    }};\n    instances.set(root, instance);\n    return instance;\n  }\n  function scan() {\n    document.querySelectorAll('[data-meya-orbit]').forEach(root => {\n      if (instances.has(root)) return;\n      const data = root.querySelector('script[type=\"application/json\"]');\n      if (!data) return;\n      try { mount(root, JSON.parse(data.textContent)); } catch (error) { console.warn('Check Meya Orbit configuration.', error); }\n    });\n  }\n  window.MeyaOrbit = { mount, scan };\n  scan();\n})();\n";
 const initial = {
   "height": 420,
+  "canvasWidth": 1200,
+  "canvasHeight": 800,
   "count": 22,
   "speed": 0.1,
   "radius": 3,
   "intro": true,
+  "template": "orbit",
+  "cardSize": 100,
+  "spread": 100,
+  "depth": 100,
+  "tilt": 0,
+  "rows": 3,
+  "gap": 12,
+  "reverse": false,
+  "fps": 30,
+  "duration": 8,
   "media": [
     {
       "type": "image",
@@ -589,10 +2708,30 @@ const config = structuredClone(initial);
 const list = document.querySelector('#media-list'), preview = document.querySelector('#preview');
 const status = document.querySelector('#status');
 const temporaryURLs = new Set();
-let mobile = false, dark = false, previewTimer, globalCardRatio = 'mixed';
+let mobile = false, dark = false, previewTimer, globalCardRatio = 'mixed', exportController = null;
 const mixedRatios = ['4:3', '1:1', '3:4', '9:16'];
-config.media.forEach((item, index) => { item.mixedCardRatio = item.mixedCardRatio || item.cardRatio || mixedRatios[index % mixedRatios.length]; });
+config.globalCardRatio = config.globalCardRatio || 'mixed'; globalCardRatio = config.globalCardRatio;
+config.media.forEach((item, index) => { item.mixedCardRatio = item.mixedCardRatio || item.cardRatio || mixedRatios[index % mixedRatios.length]; item.cardRatioOverride = item.cardRatioOverride === true; item.cardRatio = item.cardRatio || item.mixedCardRatio; });
+config.template = config.template || 'orbit'; config.canvasWidth = Number(config.canvasWidth || 1200); config.canvasHeight = Number(config.canvasHeight || 800);
+for (const name of ['cardSize','spread','depth','tilt','rows','gap']) config[name] = Number(config[name] ?? ({cardSize:100,spread:100,depth:100,tilt:0,rows:3,gap:12}[name]));
 function renderOrbit(replay = false) { clearTimeout(previewTimer); window.MeyaOrbit.mount(preview, {...config, intro: replay && config.intro !== false}); }
+function updateCanvasInputs() {
+  document.querySelector('#canvas-width').value = config.canvasWidth;
+  document.querySelector('#canvas-height').value = config.canvasHeight;
+  const preset = document.querySelector('#canvas-preset');
+  const current = `${config.canvasWidth}x${config.canvasHeight}`;
+  preset.value = ({'1920x1080':'hd','1080x1080':'square','1600x1200':'landscape43','1080x1920':'portrait'})[current] || 'custom';
+}
+function setCanvas(width, height) {
+  config.canvasWidth = Math.round(Math.min(1920, Math.max(320, Number(width) || 1200)) / 2) * 2;
+  config.canvasHeight = Math.round(Math.min(1920, Math.max(240, Number(height) || 800)) / 2) * 2;
+  updateCanvasInputs(); renderOrbit();
+}
+function setTemplate(template) {
+  config.template = ['orbit','carousel','wave'].includes(template) ? template : 'orbit';
+  document.querySelectorAll('.template-preset').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.template === config.template)));
+  status.textContent = config.template[0].toUpperCase() + config.template.slice(1) + ' template selected.'; renderOrbit();
+}
 function input(label, value, onChange, kind = 'url') {
   const field = document.createElement('input'); field.type = kind; field.placeholder = label; field.setAttribute('aria-label', label); field.value = value || '';
   field.addEventListener('input', () => { onChange(field.value.trim()); clearTimeout(previewTimer); previewTimer = setTimeout(renderOrbit, 250); });
@@ -618,7 +2757,7 @@ function renderList() {
       const option = document.createElement('option'); option.value = value; option.textContent = 'Card: ' + value;
       option.selected = (item.cardRatio || '4:3') === value; shape.append(option);
     }
-    shape.addEventListener('change', () => { item.cardRatio = shape.value; renderOrbit(); }); fields.append(shape);
+    shape.addEventListener('change', () => { item.cardRatio = shape.value; item.cardRatioOverride = true; renderOrbit(); }); fields.append(shape);
     const popupLabel = document.createElement('label'), popupToggle = document.createElement('input');
     popupToggle.type = 'checkbox'; popupToggle.checked = item.popup !== false;
     popupToggle.setAttribute('aria-label', 'Enable popup ' + (index + 1));
@@ -646,10 +2785,25 @@ for (const name of ['height','count','speed','radius']) {
     renderOrbit();
   });
 }
+for (const name of ['card-size','spread','depth','tilt','rows','gap']) {
+  const configName = name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+  document.getElementById(name).addEventListener('input', e => {
+    config[configName] = Number(e.target.value);
+    const suffix = ['tilt'].includes(configName) ? '°' : ['cardSize','spread','depth','gap'].includes(configName) ? '%' : '';
+    document.getElementById(name + '-value').textContent = config[configName] + suffix;
+    renderOrbit();
+  });
+}
+document.querySelector('#template-presets').addEventListener('click', event => { const button = event.target.closest('.template-preset'); if (button) setTemplate(button.dataset.template); });
+document.querySelector('#canvas-preset').addEventListener('change', event => {
+  const presets = { hd:[1920,1080], square:[1080,1080], landscape43:[1600,1200], portrait:[1080,1920] };
+  if (presets[event.target.value]) setCanvas(...presets[event.target.value]); else updateCanvasInputs();
+});
+for (const name of ['canvas-width','canvas-height']) document.querySelector('#' + name).addEventListener('input', () => setCanvas(document.querySelector('#canvas-width').value, document.querySelector('#canvas-height').value));
 document.querySelector('#add').onclick = () => {
   if (config.media.length >= 48) { status.textContent = 'Use up to 48 media items.'; return; }
   const mixedCardRatio = mixedRatios[config.media.length % mixedRatios.length];
-  config.media.push({type:'image',src:'',cardRatio:globalCardRatio === 'mixed' ? mixedCardRatio : globalCardRatio,mixedCardRatio}); renderList();
+  config.media.push({type:'image',src:'',cardRatio:globalCardRatio === 'mixed' ? mixedCardRatio : globalCardRatio,mixedCardRatio,cardRatioOverride:false}); renderList();
   list.lastElementChild.querySelector('input').focus();
 };
 document.querySelector('#clear').onclick = () => { config.media = []; renderList(); renderOrbit(); status.textContent = 'Samples cleared. Add your own media links or preview local files.'; };
@@ -660,7 +2814,7 @@ document.querySelector('#files').onchange = e => {
     if (!file.type.startsWith('image/') && !['video/mp4','video/webm'].includes(file.type)) continue;
     const src = URL.createObjectURL(file); temporaryURLs.add(src);
     const mixedCardRatio = mixedRatios[config.media.length % mixedRatios.length];
-    config.media.push({type:file.type.startsWith('image/') ? 'image' : 'video',src,cardRatio:globalCardRatio === 'mixed' ? mixedCardRatio : globalCardRatio,mixedCardRatio});
+    config.media.push({type:file.type.startsWith('image/') ? 'image' : 'video',src,cardRatio:globalCardRatio === 'mixed' ? mixedCardRatio : globalCardRatio,mixedCardRatio,cardRatioOverride:false});
   }
   renderList(); renderOrbit(); e.target.value = '';
   status.textContent = 'Files are previewed locally. Add hosted URLs to those cards before exporting.';
@@ -670,12 +2824,13 @@ document.querySelector('#background').onclick = e => { dark = !dark; document.qu
 document.querySelector('#global-ratio').addEventListener('click', event => {
   const button = event.target.closest('.ratio-preset'); if (!button) return;
   globalCardRatio = button.dataset.ratio;
+  config.globalCardRatio = globalCardRatio;
   document.querySelectorAll('.ratio-preset').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
   document.querySelector('#card-shapes-value').textContent = globalCardRatio === 'mixed' ? 'Mixed' : globalCardRatio;
   document.querySelector('.preview-label>span').textContent = 'Visual only · ' + (globalCardRatio === 'mixed' ? 'Mixed card shapes' : globalCardRatio + ' cards');
   config.media.forEach((item, index) => {
     item.mixedCardRatio = item.mixedCardRatio || mixedRatios[index % mixedRatios.length];
-    item.cardRatio = globalCardRatio === 'mixed' ? item.mixedCardRatio : globalCardRatio;
+    if (!item.cardRatioOverride) item.cardRatio = globalCardRatio === 'mixed' ? item.mixedCardRatio : globalCardRatio;
   });
   renderList(); renderOrbit();
 });
@@ -730,11 +2885,41 @@ document.querySelector('#download').onclick = () => {
   const link = document.createElement('a'); link.href=url; link.download='meya-orbit-webflow.txt'; link.click(); setTimeout(() => URL.revokeObjectURL(url),1000);
   status.textContent = 'Embed downloaded. Paste its contents into a Webflow Code Embed.';
 };
+document.querySelector('#export-json').onclick = () => {
+  const json = JSON.stringify(config, null, 2); const url = URL.createObjectURL(new Blob([json], {type:'application/json'}));
+  const link = document.createElement('a'); link.href = url; link.download = 'meya-animate-project.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  status.textContent = 'JSON exported. Your media links and animation settings are saved in the project file.';
+};
+const previewDialog = document.querySelector('#preview-dialog'), fullscreenOrbit = document.querySelector('#fullscreen-orbit');
+document.querySelector('#fullscreen-preview').onclick = () => { previewDialog.showModal(); window.MeyaOrbit.mount(fullscreenOrbit, {...config, height: 900}); };
+document.querySelector('#close-preview').onclick = () => previewDialog.close();
+previewDialog.addEventListener('close', () => { window.MeyaOrbit.mount(fullscreenOrbit, {media:[], count:0, intro:false}); fullscreenOrbit.replaceChildren(); });
+document.querySelector('#cancel-export').onclick = () => { exportController?.abort(); exportController = null; const dialog = document.querySelector('#export-dialog'); if (dialog.open) dialog.close(); };
+document.querySelector('#export-mp4').onclick = async () => {
+  if (!window.MeyaVideo?.exportMP4) { status.textContent = 'MP4 export is unavailable. Reload the editor and try again.'; return; }
+  if (!config.media.some(item => item.src && ['image','video','vimeo'].includes(item.type))) { status.textContent = 'Add at least one image or video before exporting MP4.'; return; }
+  exportController = new AbortController(); const dialog = document.querySelector('#export-dialog'); const progress = document.querySelector('#export-progress'); const message = document.querySelector('#export-message');
+  progress.value = 0; message.textContent = 'Preparing your animation…'; document.querySelector('#cancel-export').textContent = 'Cancel'; dialog.showModal();
+  try {
+    const blob = await window.MeyaVideo.exportMP4(config, { signal: exportController.signal, onProgress: value => { progress.value = value; message.textContent = `Rendering frame ${Math.round(value * Math.ceil((config.duration || 8) * (config.fps || 30)))}…`; } });
+    const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = 'meya-animate.mp4'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1500);
+    message.textContent = 'MP4 ready.'; status.textContent = 'MP4 exported.'; setTimeout(() => dialog.close(), 700);
+  } catch (error) { console.error('MP4 export failed.', error); message.textContent = error.name === 'AbortError' ? 'Export cancelled.' : error.message || 'MP4 export failed.'; status.textContent = message.textContent; document.querySelector('#cancel-export').textContent = 'Close'; }
+  finally { exportController = null; }
+};
 document.querySelector('#close-dialog').onclick = () => document.querySelector('#code-dialog').close();
 document.querySelector('#select-code').onclick = () => document.querySelector('#code').select();
 window.addEventListener('beforeunload', () => temporaryURLs.forEach(url => URL.revokeObjectURL(url)));
 document.querySelector('#intro').onchange = e => { config.intro = e.target.checked; renderOrbit(true); };
 document.querySelector('#replay').onclick = () => renderOrbit(true);
+document.querySelector('#reverse').onchange = e => { config.reverse = e.target.checked; renderOrbit(); };
+document.querySelector('#height').value = config.height; document.querySelector('#count').value = config.count; document.querySelector('#speed').value = config.speed; document.querySelector('#radius').value = config.radius;
+for (const name of ['card-size','spread','depth','tilt','rows','gap']) { const key = name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase()); document.querySelector('#' + name).value = config[key]; document.querySelector('#' + name + '-value').textContent = config[key] + (key === 'tilt' ? '°' : ['cardSize','spread','depth','gap'].includes(key) ? '%' : ''); }
+document.querySelectorAll('.template-preset').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.template === config.template)));
+document.querySelectorAll('.ratio-preset').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.ratio === globalCardRatio)));
+document.querySelector('#card-shapes-value').textContent = globalCardRatio === 'mixed' ? 'Mixed' : globalCardRatio;
+document.querySelector('.preview-label>span').textContent = 'Visual only · ' + (globalCardRatio === 'mixed' ? 'Mixed card shapes' : globalCardRatio + ' cards');
+updateCanvasInputs();
 renderList(); renderOrbit(true);
 </script>
 </body></html>
