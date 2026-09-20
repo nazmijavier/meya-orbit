@@ -106,7 +106,9 @@ window.MeyaScene = window.MeyaScene || (() => {
     let frame = 0, alive = true, visible = true, paused = false, yaw = 0.35, pitch = -0.12;
     let lastTime = 0, width = 0, height = 0, radiusX = 0, radiusY = 0, cardWidth = 0;
     let drag = null, hover = false, pointerTilt = 0, tilt = 0, mediaTimer = 0;
-    let introTime = config.intro === false || reduced.matches ? 2.2 : 0;
+    // Start partway into the reveal so a freshly mounted canvas is never mistaken for blank.
+    // The remaining spread/opacity motion still plays as the media finishes loading.
+    let introTime = config.intro === false || reduced.matches ? 2.2 : 0.55;
     let suppressClick = false, opener = null;
     const popup = document.createElement('dialog');
     popup.className = 'meya-orbit__popup';
