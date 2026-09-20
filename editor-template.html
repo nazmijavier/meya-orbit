@@ -43,23 +43,36 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
 .template-control{margin:14px 0}.template-control>span,.canvas-size>span{display:block;margin-bottom:8px;color:#7b8491;font-size:12px}.template-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:3px;background:#eef0f3;border-radius:12px}.template-preset{padding:9px 5px;border:0;border-radius:9px;background:transparent;color:#7b8491;font-size:11px}.template-preset[aria-pressed=true]{background:#fff;color:#273244;box-shadow:0 1px 4px rgba(20,28,40,.1);font-weight:600}.canvas-size{margin:8px 0 15px;padding:11px;background:#f7f8fa;border:1px solid var(--line);border-radius:14px}.canvas-size-row{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:7px;align-items:center}.canvas-dimension{display:flex;align-items:center;gap:5px}.canvas-dimension b{font-size:11px;color:#273244}.canvas-dimension input{min-width:0;margin:0;padding:7px 5px;text-align:center;font-variant-numeric:tabular-nums}.canvas-size select{min-width:0;margin:0;font-size:11px}.canvas-size-note{display:block;margin-top:7px;color:#9aa3af;font-size:10px}.extra-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.extra-fields .field:last-child{grid-column:1/-1}.field input[type=number]{font-variant-numeric:tabular-nums}.switch-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;background:var(--soft);border:1px solid var(--line);border-radius:12px}.switch-row label{display:flex;align-items:center;gap:7px}.fullscreen-preview{position:fixed;inset:0;z-index:20;width:100%;max-width:none;height:100%;max-height:none;padding:24px;border:0;border-radius:0;background:#08090c;color:#fff}.fullscreen-preview::backdrop{background:#08090c}.fullscreen-preview__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;color:#cbd2dd}.fullscreen-preview__top strong{font-size:14px}.fullscreen-preview__top button{background:#1d2430;color:#fff;border-color:#3b4555}.fullscreen-preview__stage{height:calc(100% - 46px);display:grid;place-items:center}.fullscreen-preview__stage .meya-orbit{width:min(100%,1400px);height:min(100%,900px);border-radius:20px}.export-dialog{max-width:440px}.export-dialog progress{width:100%;height:8px;margin:14px 0}.export-dialog .actions{justify-content:flex-end}
 @media(max-width:1100px) and (min-width:851px){.layout{grid-template-columns:280px minmax(0,1fr)}.inspector-right{grid-column:1/-1;max-height:none;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}.inspector-heading{grid-column:1/-1}.inspector-right .inspector-section{margin-top:0}}
 @media(max-width:520px){header{height:auto;min-height:64px;flex-wrap:wrap;gap:12px;padding:14px}header nav{width:100%;display:flex;flex-wrap:wrap}header nav button{flex:1;font-size:10px;padding:9px 6px;white-space:nowrap}.preview-label>span{font-size:10px}.layout{padding:10px}.stage-wrap{width:100%}}
+/* Meya Animate workspace refresh */
+:root{--ease-out:cubic-bezier(.23,1,.32,1);--panel-shadow:0 1px 2px rgba(15,23,42,.03),0 18px 48px -24px rgba(15,23,42,.2)}
+button:active,.export-menu summary:active{transform:scale(.96)}
+header{height:64px;padding:0 18px;box-shadow:0 1px 0 var(--line);border:0}.brand-mark{width:32px;height:32px;border-radius:10px}.brand-lockup strong{font-size:16px}.header-actions{flex-wrap:nowrap}.preview-button{background:#fff;color:#202938;border-color:var(--line)}.preview-button:hover{background:#f5f6f8}.export-menu{position:relative}.export-menu summary{list-style:none;cursor:pointer;border:1px solid transparent;border-radius:12px;padding:10px 14px;background:#202938;color:#fff;font-weight:650;display:flex;align-items:center;gap:8px;transition:transform 150ms var(--ease-out),background 150ms ease}.export-menu summary::-webkit-details-marker{display:none}.export-menu summary svg{width:16px}.export-popover{position:absolute;right:0;top:calc(100% + 8px);z-index:30;width:244px;padding:6px;background:#fff;border-radius:14px;box-shadow:0 18px 55px rgba(15,23,42,.16),0 0 0 1px rgba(15,23,42,.07);transform-origin:top right;opacity:0;transform:translateY(-4px) scale(.97);pointer-events:none;transition:opacity 160ms var(--ease-out),transform 160ms var(--ease-out)}.export-menu[open] .export-popover{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}.export-popover button{width:100%;border:0;background:transparent;border-radius:9px;text-align:left;padding:10px 11px;display:flex;align-items:center;gap:10px;font-size:12px}.export-popover button:hover{background:#f2f4f7}.export-popover svg{width:16px;height:16px;color:#687385}.export-popover hr{border:0;border-top:1px solid var(--line);margin:5px}.export-note{display:block;padding:7px 11px 8px;color:#8b94a1;font-size:10px;line-height:1.45}
+.layout{grid-template-columns:300px minmax(0,1fr) 280px;gap:0;padding:0;min-height:calc(100vh - 64px)}aside,.inspector-right{max-height:calc(100vh - 64px);border:0;border-radius:0;box-shadow:none;padding:18px 16px}.inspector-panel{border-right:1px solid var(--line)}.inspector-right{border-left:1px solid var(--line)}
+.panel-header{display:flex;align-items:center;justify-content:space-between;padding:2px 2px 16px}.panel-header h1{font-size:14px;margin:0}.help{position:relative;width:28px;height:28px;padding:0;border-radius:50%;font-weight:700;color:#7c8694}.help-tip{position:absolute;left:calc(100% + 8px);top:0;width:240px;padding:11px 12px;border-radius:12px;background:#17202e;color:#fff;font-size:11px;font-weight:400;line-height:1.5;opacity:0;transform:translateX(-4px) scale(.97);pointer-events:none;transform-origin:left top;transition:opacity 150ms var(--ease-out),transform 150ms var(--ease-out);z-index:25;text-align:left}.help:hover .help-tip,.help:focus-visible .help-tip{opacity:1;transform:none}
+.inspector-panel>.inspector-section{margin-top:0}.inspector-panel>.inspector-section>summary{display:none}.media-dropzone{display:grid;place-items:center;text-align:center;padding:20px 12px;margin-bottom:12px;border:1px dashed #cbd1da;border-radius:16px;background:#f8f9fb;color:#697382;cursor:pointer;transition:border-color 150ms ease,background 150ms ease,transform 150ms var(--ease-out)}.media-dropzone:hover,.media-dropzone.is-dragging{background:#f1f5fb;border-color:#91aee4}.media-dropzone svg{width:21px;margin-bottom:7px;color:#4a67a1}.media-dropzone strong{display:block;color:#263244;font-size:12px}.media-dropzone span{font-size:10px;margin-top:2px}.media-tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.media-tools button{border:0;background:transparent;padding:6px 7px;font-size:11px;color:#718096}.media-tools #add{color:#315fbd;font-weight:600}
+.media-row{display:block;padding:0;margin:7px 0;border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 0 0 1px rgba(15,23,42,.08)}.media-row[open]{box-shadow:0 0 0 1px rgba(70,106,177,.22),0 8px 24px -16px rgba(15,23,42,.3)}.media-summary{list-style:none;display:grid;grid-template-columns:18px 38px minmax(0,1fr) 28px;gap:9px;align-items:center;padding:8px;cursor:pointer}.media-summary::-webkit-details-marker{display:none}.drag-handle{color:#a4acb8;cursor:grab;font-size:15px}.thumb{width:38px;height:38px;border-radius:10px;outline:1px solid rgba(0,0,0,.1);outline-offset:-1px}.media-meta{min-width:0}.media-meta strong,.media-meta span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.media-meta strong{font-size:11px;color:#283241}.media-meta span{font-size:10px;color:#8a94a1;margin-top:2px}.media-details{padding:4px 10px 11px 74px;border-top:1px solid var(--line)}.media-details input,.media-details select{margin-top:6px!important}.media-details label{margin-top:8px}.remove{width:28px;height:28px;display:grid;place-items:center;padding:0;border-radius:8px}.remove svg{width:15px;height:15px}.local-note{display:block;margin-top:7px}.media-row.drag-over{box-shadow:0 0 0 2px #7ea6f4}
+.stage-wrap{justify-content:flex-start;padding:28px 24px 38px;background-color:#eef0f3;background-image:radial-gradient(rgba(53,64,81,.13) .7px,transparent .7px);background-size:18px 18px;overflow:auto}.stage-toolbar{position:sticky;top:12px;z-index:4;display:flex;align-items:center;gap:7px;margin-bottom:18px;padding:5px;background:rgba(255,255,255,.86);backdrop-filter:blur(18px);border-radius:16px;box-shadow:0 0 0 1px rgba(15,23,42,.06),0 10px 35px -20px rgba(15,23,42,.28)}.stage-toolbar .tool-divider{width:1px;height:25px;background:var(--line)}.stage-toolbar button{height:34px;padding:6px 9px;border:0;border-radius:10px;background:transparent;display:flex;align-items:center;gap:6px;font-size:11px}.stage-toolbar button:hover{background:#f0f2f5}.stage-toolbar svg{width:15px;height:15px}.stage-toolbar .ratio-presets{padding:0;background:transparent;display:flex}.stage-toolbar .ratio-preset{width:38px;height:34px}.stage-toolbar .ratio-preset:first-child{width:48px}.stage{padding:0;border:0;border-radius:24px;box-shadow:0 32px 80px -38px rgba(15,23,42,.5),0 0 0 1px rgba(15,23,42,.05);background:#fff;transition:background 150ms ease}.stage .meya-orbit{border-radius:24px}.preview-label,.preview-note{display:none}#status{position:fixed;left:50%;bottom:24px;z-index:50;min-height:0;margin:0;padding:11px 15px;border-radius:999px;background:#17202e;color:#fff;box-shadow:0 14px 40px rgba(15,23,42,.22);opacity:0;transform:translate(-50%,10px) scale(.97);pointer-events:none;transition:opacity 180ms var(--ease-out),transform 180ms var(--ease-out);max-width:min(560px,calc(100vw - 32px))}#status.is-visible{opacity:1;transform:translate(-50%,0) scale(1)}
+.inspector-heading{padding:2px 0 14px;font-size:14px}.inspector-section{margin-top:0}.inspector-section summary{padding:13px 0}.property-row{padding:8px 0}.field{margin-bottom:12px}.field>label:not(:has(input[type=checkbox])){margin-bottom:4px}.field output{padding:2px 6px;min-width:44px;border-radius:7px;background:#f3f4f6;font-size:11px}.extra-fields{gap:0 10px}.discrete-control{margin:3px 0 14px}.discrete-control>span{display:block;margin-bottom:7px;color:#697382;font-size:12px}.discrete-options{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;padding:3px;border-radius:11px;background:#eef0f3}.discrete-options button{padding:7px 3px;border:0;border-radius:8px;background:transparent;color:#7b8491;font-size:11px}.discrete-options button[aria-pressed=true]{background:#fff;color:#273244;font-weight:650;box-shadow:0 1px 3px rgba(15,23,42,.09)}.interaction-options{grid-template-columns:repeat(3,1fr)}#rows{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}.canvas-size{background:#f7f8fa}.switch-row{padding:8px 9px}.inspector-right .ratio-control{display:none}
+@media(max-width:1100px){.layout{grid-template-columns:270px minmax(0,1fr)}.inspector-right{grid-column:1/-1;max-height:none;border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:760px){header{height:auto;min-height:64px;flex-wrap:wrap;gap:9px;padding:11px 12px}.layout{display:flex;flex-direction:column}.stage-wrap{order:-1;padding:18px 10px 28px}.stage-toolbar{max-width:100%;overflow-x:auto;justify-content:flex-start}.stage-toolbar .tool-divider{display:none}.stage-toolbar>button span{display:none}.inspector-panel,.inspector-right{max-height:none;border:0;border-top:1px solid var(--line)}.export-popover{right:0}.brand-lockup span{display:none}}
 </style>
 </head>
 <body>
-<header><div class="brand-lockup"><img class="brand-mark" src="assets/meya-logo.png" alt=""><div><strong>Meya Animate</strong><span>Visual editor</span></div></div><nav class="header-actions"><button class="preview-button" id="fullscreen-preview">Preview</button><button id="export-json">Export JSON</button><button id="export-mp4">Export MP4</button><button id="view-code">View code</button><button id="download">Webflow embed</button><button class="primary" id="copy">Copy Webflow embed</button></nav></header>
+<header><div class="brand-lockup"><img class="brand-mark" src="assets/meya-logo.png" alt=""><div><strong>Meya Animate</strong><span>Visual editor</span></div></div><nav class="header-actions"><button class="preview-button" id="fullscreen-preview">Preview</button><details class="export-menu"><summary>Export / Embed <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8 10 4 4 4-4"/></svg></summary><div class="export-popover"><button class="primary" id="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy Webflow Embed</button><button id="export-json"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6m-6 3h4"/></svg>Export JSON</button><button id="export-mp4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m16 13 5 3V8l-5 3z"/><rect x="3" y="6" width="13" height="12" rx="2"/></svg>Export MP4</button><span class="export-note">MP4 needs H.264/WebCodecs support. Chrome or Edge desktop works best.</span><hr><button id="view-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m8 9-3 3 3 3m8-6 3 3-3 3m-2-9-4 12"/></svg>View Code</button><button id="download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v12m-4-4 4 4 4-4M5 21h14"/></svg>Download embed file</button></div></details></nav></header>
 <div class="layout">
 <aside class="inspector-panel">
-  <h1>Your images, in motion.</h1><p>This editor stays on your computer. Only the orbit visual goes into Webflow.</p>
+  <div class="panel-header"><h1>Media</h1><button class="help" type="button" aria-label="About the media manager">?<span class="help-tip" role="tooltip">Your images, in motion. Files stay on your computer while you edit; only the finished visual and hosted media links go into Webflow.</span></button></div>
   <details class="inspector-section" open>
-  <summary><h2 class="panel-title">Media</h2></summary><p>Choose each card’s shape and optional popup title below. The section fills your website’s width; its height is set separately. Local files are for preview; replace their URLs before exporting.</p>
-  <div class="actions"><button id="add">+ Add URL</button><button id="upload">Preview local files</button><button id="clear">Clear samples</button></div>
+  <summary><h2 class="panel-title">Media</h2></summary>
+  <button id="upload" class="media-dropzone" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V4m-4 4 4-4 4 4"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg><strong>Drop media here or browse</strong><span>Images, MP4, or WebM · up to 48 items</span></button>
+  <div class="media-tools"><button id="add">+ Add hosted URL</button><button id="clear">Clear samples</button></div>
   <input id="files" type="file" accept="image/*,video/mp4,video/webm" multiple hidden>
   <div id="media-list"></div>
   </details>
   <details class="inspector-section"><summary><h2 class="panel-title">Using your media</h2></summary><p>Images: upload to Webflow Assets, then paste the asset link here.<br><br>Videos: use Vimeo or a direct hosted MP4/WebM link. Webflow’s regular Assets panel does not accept videos. Vimeo background playback requires a paid Vimeo plan and embedding permission.<br><br>For videos, add a poster image URL so the card also looks good before playback and with reduced motion.</p></details>
 </aside>
 <main class="stage-wrap">
-  <div class="preview-label"><span>Visual only · Mixed card shapes</span><div class="preview-actions"><button id="mobile">Mobile size</button><button id="background">Dark background</button></div></div>
+  <div class="stage-toolbar"><button id="mobile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><span>Mobile size</span></button><button id="background"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z"/></svg><span>Dark background</span></button><i class="tool-divider"></i><div class="ratio-presets" id="global-ratio" role="group" aria-label="Card aspect ratio"><button class="ratio-preset" type="button" data-ratio="mixed" aria-pressed="true"><i class="ratio-icon" aria-hidden="true"></i>Mixed</button><button class="ratio-preset" type="button" data-ratio="1:1" aria-pressed="false"><i class="ratio-icon"></i>1:1</button><button class="ratio-preset" type="button" data-ratio="4:3" aria-pressed="false"><i class="ratio-icon"></i>4:3</button><button class="ratio-preset" type="button" data-ratio="3:4" aria-pressed="false"><i class="ratio-icon"></i>3:4</button><button class="ratio-preset" type="button" data-ratio="16:9" aria-pressed="false"><i class="ratio-icon"></i>16:9</button><button class="ratio-preset" type="button" data-ratio="9:16" aria-pressed="false"><i class="ratio-icon"></i>9:16</button></div></div>
   <div class="stage" id="stage"><div id="preview" class="meya-orbit"></div></div>
   <p class="preview-note">Click a card to open its preview. Drag to rotate. Hover to slow down.<br>The exported background is transparent. Titles appear only in the popup.</p>
   <p id="status" role="status" aria-live="polite"></p>
@@ -70,14 +83,6 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
   <div class="property-row"><span>Section</span><strong>Responsive</strong></div>
   <div class="property-row"><span>Background</span><strong>Transparent</strong></div>
   <div class="property-row"><span>Card shapes</span><strong id="card-shapes-value">Mixed</strong></div>
-  <div class="ratio-control"><span>Card aspect ratio</span><div class="ratio-presets" id="global-ratio" role="group" aria-label="Card aspect ratio">
-    <button class="ratio-preset" type="button" data-ratio="mixed" aria-pressed="true"><i class="ratio-icon" aria-hidden="true"></i>Mixed</button>
-    <button class="ratio-preset" type="button" data-ratio="1:1" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>1:1</button>
-    <button class="ratio-preset" type="button" data-ratio="4:3" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>4:3</button>
-    <button class="ratio-preset" type="button" data-ratio="3:4" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>3:4</button>
-    <button class="ratio-preset" type="button" data-ratio="16:9" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>16:9</button>
-    <button class="ratio-preset" type="button" data-ratio="9:16" aria-pressed="false"><i class="ratio-icon" aria-hidden="true"></i>9:16</button>
-  </div></div>
   <div class="template-control"><span>Animation template</span><div class="template-presets" id="template-presets" role="group" aria-label="Animation template">
     <button class="template-preset" type="button" data-template="orbit" aria-pressed="true">Orbit</button>
     <button class="template-preset" type="button" data-template="carousel" aria-pressed="false">Carousel</button>
@@ -94,12 +99,12 @@ input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);
   <div class="field"><label for="count">Cards <output id="count-value">22</output></label><input id="count" type="range" min="8" max="40" value="22"></div>
   <div class="field"><label for="speed">Rotation speed <output id="speed-value">0.10</output></label><input id="speed" type="range" min="0" max="0.3" step="0.01" value="0.10"></div>
   <div class="field"><label for="radius">Corner radius <output id="radius-value">3 px</output></label><input id="radius" type="range" min="0" max="24" value="3"></div>
-  <div class="extra-fields"><div class="field"><label for="card-size">Card size <output id="card-size-value">100%</output></label><input id="card-size" type="range" min="55" max="180" value="100"></div><div class="field"><label for="spread">Spread <output id="spread-value">100%</output></label><input id="spread" type="range" min="35" max="180" value="100"></div><div class="field"><label for="depth">Depth <output id="depth-value">100%</output></label><input id="depth" type="range" min="0" max="180" value="100"></div><div class="field"><label for="tilt">Tilt <output id="tilt-value">0°</output></label><input id="tilt" type="range" min="-30" max="30" value="0"></div><div class="field"><label for="rows">Rows <output id="rows-value">3</output></label><input id="rows" type="range" min="2" max="6" value="3"></div><div class="field"><label for="gap">Gap <output id="gap-value">12%</output></label><input id="gap" type="range" min="0" max="30" value="12"></div></div>
+  <div class="extra-fields"><div class="field"><label for="card-size">Card size <output id="card-size-value">100%</output></label><input id="card-size" type="range" min="55" max="180" value="100"></div><div class="field"><label for="spread">Spread <output id="spread-value">100%</output></label><input id="spread" type="range" min="35" max="180" value="100"></div><div class="field"><label for="depth">Depth <output id="depth-value">100%</output></label><input id="depth" type="range" min="0" max="180" value="100"></div><div class="field"><label for="tilt">Tilt <output id="tilt-value">0°</output></label><input id="tilt" type="range" min="-30" max="30" value="0"></div><div class="field"><label for="gap">Gap <output id="gap-value">12%</output></label><input id="gap" type="range" min="0" max="30" value="12"></div></div><div class="discrete-control"><span>Rows <output id="rows-value">3</output></span><input id="rows" type="range" min="2" max="6" value="3"><div class="discrete-options" id="row-presets" role="group" aria-label="Rows"><button type="button" data-value="2">2</button><button type="button" data-value="3">3</button><button type="button" data-value="4">4</button><button type="button" data-value="5">5</button><button type="button" data-value="6">6</button></div></div>
   <div class="switch-row"><label><input id="intro" type="checkbox" checked> Animate cards on arrival</label><button id="replay">Replay opening</button></div>
   <div class="switch-row"><label><input id="reverse" type="checkbox"> Reverse direction</label></div>
   </details>
   <details class="inspector-section" open><summary><h2 class="panel-title">Interaction</h2></summary>
-  <div class="property-row"><span>Card click</span><strong>Set per item</strong></div>
+  <div class="discrete-control"><span>Card click</span><div class="discrete-options interaction-options" id="interaction-presets" role="group" aria-label="Card click behavior"><button type="button" data-mode="per-item" aria-pressed="true">Per item</button><button type="button" data-mode="all" aria-pressed="false">All on</button><button type="button" data-mode="none" aria-pressed="false">Off</button></div></div>
   <div class="property-row"><span>Titles</span><strong>Optional</strong></div>
   </details>
 </aside>
@@ -122,13 +127,15 @@ const config = structuredClone(initial);
 const list = document.querySelector('#media-list'), preview = document.querySelector('#preview');
 const status = document.querySelector('#status');
 const temporaryURLs = new Set();
-let mobile = false, dark = false, previewTimer, globalCardRatio = 'mixed', exportController = null;
+let mobile = false, dark = false, previewTimer, toastTimer, globalCardRatio = 'mixed', exportController = null, draggedMediaIndex = null;
 const mixedRatios = ['4:3', '1:1', '3:4', '9:16'];
 config.globalCardRatio = config.globalCardRatio || 'mixed'; globalCardRatio = config.globalCardRatio;
 config.media.forEach((item, index) => { item.mixedCardRatio = item.mixedCardRatio || item.cardRatio || mixedRatios[index % mixedRatios.length]; item.cardRatioOverride = item.cardRatioOverride === true; item.cardRatio = item.cardRatio || item.mixedCardRatio; });
 config.template = config.template || 'orbit'; config.canvasWidth = Number(config.canvasWidth || 1200); config.canvasHeight = Number(config.canvasHeight || 800);
 for (const name of ['cardSize','spread','depth','tilt','rows','gap']) config[name] = Number(config[name] ?? ({cardSize:100,spread:100,depth:100,tilt:0,rows:3,gap:12}[name]));
 function renderOrbit(replay = false) { clearTimeout(previewTimer); window.MeyaOrbit.mount(preview, {...config, intro: replay && config.intro !== false}); }
+function showToast(message) { status.textContent = message; status.classList.add('is-visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => status.classList.remove('is-visible'), 3200); }
+new MutationObserver(() => { if (status.textContent.trim()) { status.classList.add('is-visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => status.classList.remove('is-visible'), 3200); } }).observe(status, {childList:true,characterData:true,subtree:true});
 function updateCanvasInputs() {
   document.querySelector('#canvas-width').value = config.canvasWidth;
   document.querySelector('#canvas-height').value = config.canvasHeight;
@@ -161,11 +168,12 @@ function input(label, value, onChange, kind = 'url') {
 function renderList() {
   list.replaceChildren();
   config.media.forEach((item, index) => {
-    const row = document.createElement('div'); row.className = 'media-row';
+    const row = document.createElement('details'); row.className = 'media-row'; row.dataset.index = index; row.draggable = true;
     const thumb = document.createElement('img'); thumb.className = 'thumb'; thumb.alt = '';
     if (item.type === 'image' || item.poster) thumb.src = item.type === 'image' ? item.src : item.poster;
     thumb.addEventListener('error', () => { thumb.style.visibility = 'hidden'; });
-    const fields = document.createElement('div'), type = document.createElement('select'); type.setAttribute('aria-label', 'Media type ' + (index + 1));
+    const fields = document.createElement('div'); fields.className = 'media-details';
+    const type = document.createElement('select'); type.setAttribute('aria-label', 'Media type ' + (index + 1));
     for (const [value, label] of [['image','Image'],['video','MP4 / WebM'],['vimeo','Vimeo']]) {
       const option = document.createElement('option'); option.value = value; option.textContent = label; option.selected = item.type === value; type.append(option);
     }
@@ -181,7 +189,7 @@ function renderList() {
     const popupLabel = document.createElement('label'), popupToggle = document.createElement('input');
     popupToggle.type = 'checkbox'; popupToggle.checked = item.popup !== false;
     popupToggle.setAttribute('aria-label', 'Enable popup ' + (index + 1));
-    popupToggle.addEventListener('change', () => { item.popup = popupToggle.checked; renderOrbit(); });
+    popupToggle.addEventListener('change', () => { item.popup = popupToggle.checked; item.popupMemory = popupToggle.checked; document.querySelectorAll('#interaction-presets button').forEach(option => option.setAttribute('aria-pressed', String(option.dataset.mode === 'per-item'))); renderOrbit(); });
     popupLabel.append(popupToggle, ' Open popup on click'); fields.append(popupLabel);
     if (item.type !== 'image') fields.append(input('Poster image URL ' + (index + 1), item.poster, value => { item.poster = value; }));
     if (item.type === 'vimeo') {
@@ -191,10 +199,19 @@ function renderList() {
       }
       ratio.addEventListener('change', () => { item.ratio = Number(ratio.value); renderOrbit(); }); fields.append(ratio);
     }
-    const remove = document.createElement('button'); remove.className = 'remove'; remove.textContent = '×'; remove.setAttribute('aria-label', 'Remove media ' + (index + 1));
-    remove.addEventListener('click', () => { config.media.splice(index,1); renderList(); renderOrbit(); });
-    row.append(thumb,fields,remove);
+    const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'remove'; remove.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>'; remove.setAttribute('aria-label', 'Remove media ' + (index + 1));
+    remove.addEventListener('click', event => { event.preventDefault(); event.stopPropagation(); config.media.splice(index,1); renderList(); renderOrbit(); });
+    const summary = document.createElement('summary'); summary.className = 'media-summary';
+    const handle = document.createElement('span'); handle.className = 'drag-handle'; handle.textContent = '⠿'; handle.setAttribute('aria-hidden','true');
+    const meta = document.createElement('span'); meta.className = 'media-meta';
+    const metaTitle = document.createElement('strong'), metaDetail = document.createElement('span');
+    metaTitle.textContent = item.title || `Media ${String(index + 1).padStart(2,'0')}`; metaDetail.textContent = `${item.type === 'vimeo' ? 'Vimeo' : item.type === 'video' ? 'Video' : 'Image'} · ${item.cardRatio || '4:3'}`; meta.append(metaTitle,metaDetail);
+    summary.append(handle,thumb,meta,remove); row.append(summary,fields);
     if (item.src.startsWith('blob:')) { const note = document.createElement('span'); note.className='local-note'; note.textContent='Local preview. Add a hosted URL to export.'; row.append(note); }
+    row.addEventListener('dragstart', event => { draggedMediaIndex = index; event.dataTransfer.effectAllowed = 'move'; });
+    row.addEventListener('dragover', event => { event.preventDefault(); row.classList.add('drag-over'); });
+    row.addEventListener('dragleave', () => row.classList.remove('drag-over'));
+    row.addEventListener('drop', event => { event.preventDefault(); row.classList.remove('drag-over'); if (draggedMediaIndex === null || draggedMediaIndex === index) return; const [moved] = config.media.splice(draggedMediaIndex,1); config.media.splice(index,0,moved); draggedMediaIndex = null; renderList(); renderOrbit(); });
     list.append(row);
   });
 }
@@ -215,6 +232,8 @@ for (const name of ['card-size','spread','depth','tilt','rows','gap']) {
   });
 }
 document.querySelector('#template-presets').addEventListener('click', event => { const button = event.target.closest('.template-preset'); if (button) setTemplate(button.dataset.template); });
+document.querySelector('#row-presets').addEventListener('click', event => { const button = event.target.closest('button'); if (!button) return; const input = document.querySelector('#rows'); input.value = button.dataset.value; input.dispatchEvent(new Event('input',{bubbles:true})); document.querySelectorAll('#row-presets button').forEach(option => option.setAttribute('aria-pressed', String(option === button))); });
+document.querySelector('#interaction-presets').addEventListener('click', event => { const button = event.target.closest('button'); if (!button) return; const mode = button.dataset.mode; if (mode !== 'per-item') config.media.forEach(item => { if (item.popupMemory === undefined) item.popupMemory = item.popup !== false; item.popup = mode === 'all'; }); else config.media.forEach(item => { if (item.popupMemory !== undefined) item.popup = item.popupMemory; }); document.querySelectorAll('#interaction-presets button').forEach(option => option.setAttribute('aria-pressed', String(option === button))); renderList(); renderOrbit(); });
 document.querySelector('#canvas-preset').addEventListener('change', event => {
   const presets = { hd:[1920,1080], square:[1080,1080], landscape43:[1600,1200], portrait:[1080,1920] };
   if (presets[event.target.value]) setCanvas(...presets[event.target.value]); else updateCanvasInputs();
@@ -227,27 +246,32 @@ document.querySelector('#add').onclick = () => {
   list.lastElementChild.querySelector('input').focus();
 };
 document.querySelector('#clear').onclick = () => { config.media = []; renderList(); renderOrbit(); status.textContent = 'Samples cleared. Add your own media links or preview local files.'; };
-document.querySelector('#upload').onclick = () => document.querySelector('#files').click();
-document.querySelector('#files').onchange = e => {
-  for (const file of e.target.files) {
+const upload = document.querySelector('#upload');
+upload.onclick = () => document.querySelector('#files').click();
+function addLocalFiles(files) {
+  for (const file of files) {
     if (config.media.length >= 48) break;
     if (!file.type.startsWith('image/') && !['video/mp4','video/webm'].includes(file.type)) continue;
     const src = URL.createObjectURL(file); temporaryURLs.add(src);
     const mixedCardRatio = mixedRatios[config.media.length % mixedRatios.length];
     config.media.push({type:file.type.startsWith('image/') ? 'image' : 'video',src,cardRatio:globalCardRatio === 'mixed' ? mixedCardRatio : globalCardRatio,mixedCardRatio,cardRatioOverride:false});
   }
-  renderList(); renderOrbit(); e.target.value = '';
+  renderList(); renderOrbit();
   status.textContent = 'Files are previewed locally. Add hosted URLs to those cards before exporting.';
-};
-document.querySelector('#mobile').onclick = e => { mobile = !mobile; updateStageWidth(); e.target.textContent = mobile ? 'Desktop size' : 'Mobile size'; };
-document.querySelector('#background').onclick = e => { dark = !dark; document.querySelector('#stage').style.background = dark ? '#101110' : '#fff'; e.target.textContent = dark ? 'White background' : 'Dark background'; };
+}
+document.querySelector('#files').onchange = e => { addLocalFiles(e.target.files); e.target.value = ''; };
+upload.addEventListener('dragover', event => { event.preventDefault(); upload.classList.add('is-dragging'); });
+upload.addEventListener('dragleave', () => upload.classList.remove('is-dragging'));
+upload.addEventListener('drop', event => { event.preventDefault(); upload.classList.remove('is-dragging'); addLocalFiles(event.dataTransfer.files); });
+document.querySelector('#mobile').onclick = e => { mobile = !mobile; updateStageWidth(); e.currentTarget.querySelector('span').textContent = mobile ? 'Desktop size' : 'Mobile size'; };
+document.querySelector('#background').onclick = e => { dark = !dark; document.querySelector('#stage').style.background = dark ? '#101110' : '#fff'; e.currentTarget.querySelector('span').textContent = dark ? 'White background' : 'Dark background'; };
 document.querySelector('#global-ratio').addEventListener('click', event => {
   const button = event.target.closest('.ratio-preset'); if (!button) return;
   globalCardRatio = button.dataset.ratio;
   config.globalCardRatio = globalCardRatio;
   document.querySelectorAll('.ratio-preset').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
   document.querySelector('#card-shapes-value').textContent = globalCardRatio === 'mixed' ? 'Mixed' : globalCardRatio;
-  document.querySelector('.preview-label>span').textContent = 'Visual only · ' + (globalCardRatio === 'mixed' ? 'Mixed card shapes' : globalCardRatio + ' cards');
+  const previewLabel = document.querySelector('.preview-label>span'); if (previewLabel) previewLabel.textContent = 'Visual only · ' + (globalCardRatio === 'mixed' ? 'Mixed card shapes' : globalCardRatio + ' cards');
   config.media.forEach((item, index) => {
     item.mixedCardRatio = item.mixedCardRatio || mixedRatios[index % mixedRatios.length];
     if (!item.cardRatioOverride) item.cardRatio = globalCardRatio === 'mixed' ? item.mixedCardRatio : globalCardRatio;
@@ -296,7 +320,7 @@ async function copyText(text) {
 }
 document.querySelector('#copy').onclick = async () => {
   const code = getEmbed(); if(!code) return;
-  if (await copyText(code)) status.textContent = 'Copied. Replace your old Webflow Code Embed. Test with custom code enabled in Preview; the Designer script notice is normal.';
+  if (await copyText(code)) showToast('Embed code copied to clipboard! Ready to paste into Webflow.');
   else { status.textContent = 'Automatic copy was blocked. The full embed is selected so you can copy it manually.'; document.querySelector('#code').value = code; document.querySelector('#code-dialog').showModal(); document.querySelector('#code').select(); }
 };
 document.querySelector('#download').onclick = () => {
@@ -324,7 +348,7 @@ document.querySelector('#export-mp4').onclick = async () => {
     const blob = await window.MeyaVideo.exportMP4(config, { signal: exportController.signal, onProgress: value => { progress.value = value; message.textContent = `Rendering frame ${Math.round(value * Math.ceil((config.duration || 8) * (config.fps || 30)))}…`; } });
     const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = 'meya-animate.mp4'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1500);
     message.textContent = 'MP4 ready.'; status.textContent = 'MP4 exported.'; setTimeout(() => dialog.close(), 700);
-  } catch (error) { console.error('MP4 export failed.', error); message.textContent = error.name === 'AbortError' ? 'Export cancelled.' : error.message || 'MP4 export failed.'; status.textContent = message.textContent; document.querySelector('#cancel-export').textContent = 'Close'; }
+  } catch (error) { console.error('MP4 export failed.', error); message.textContent = error.name === 'AbortError' ? 'Export cancelled.' : error.message || 'MP4 export failed.'; if (error.name === 'AbortError') showToast('Export cancelled.'); document.querySelector('#cancel-export').textContent = 'Close'; }
   finally { exportController = null; }
 };
 document.querySelector('#close-dialog').onclick = () => document.querySelector('#code-dialog').close();
@@ -335,10 +359,11 @@ document.querySelector('#replay').onclick = () => renderOrbit(true);
 document.querySelector('#reverse').onchange = e => { config.reverse = e.target.checked; renderOrbit(); };
 document.querySelector('#height').value = config.height; document.querySelector('#count').value = config.count; document.querySelector('#speed').value = config.speed; document.querySelector('#radius').value = config.radius;
 for (const name of ['card-size','spread','depth','tilt','rows','gap']) { const key = name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase()); document.querySelector('#' + name).value = config[key]; document.querySelector('#' + name + '-value').textContent = config[key] + (key === 'tilt' ? '°' : ['cardSize','spread','depth','gap'].includes(key) ? '%' : ''); }
+document.querySelectorAll('#row-presets button').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.value) === config.rows)));
 document.querySelectorAll('.template-preset').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.template === config.template)));
 document.querySelectorAll('.ratio-preset').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.ratio === globalCardRatio)));
 document.querySelector('#card-shapes-value').textContent = globalCardRatio === 'mixed' ? 'Mixed' : globalCardRatio;
-document.querySelector('.preview-label>span').textContent = 'Visual only · ' + (globalCardRatio === 'mixed' ? 'Mixed card shapes' : globalCardRatio + ' cards');
+const previewLabel = document.querySelector('.preview-label>span'); if (previewLabel) previewLabel.textContent = 'Visual only · ' + (globalCardRatio === 'mixed' ? 'Mixed card shapes' : globalCardRatio + ' cards');
 updateCanvasInputs();
 renderList(); renderOrbit(true);
 </script>
